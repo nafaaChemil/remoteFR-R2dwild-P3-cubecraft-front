@@ -1,0 +1,15 @@
+@mixin boutonAdd {
+  font-weight: 400;
+  font-size: 1em;
+  padding: .5rem 1rem;
+  text-decoration: none;
+  background-color: $colorPrimary;
+  color: white;
+  border-radius: 10px;
+  position: relative;
+  font-family: $typoSecondaire;
+  text-align: center;
+  &:focus {
+    background: lighten($colorPrimary, 15%);
+  }
+}

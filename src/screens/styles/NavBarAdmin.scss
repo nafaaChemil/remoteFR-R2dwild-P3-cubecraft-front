@@ -1,0 +1,27 @@
+@import "../../components/design/ui.scss";
+
+.admin_navbarcontainer {
+background-color: $colorPrimary;
+width: 30%;
+height: 100vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+.admin_navbar_link{
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+ul {
+    // list-style: none;
+    li {
+        a {
+            color: $colorThird;
+            font-family: $typoSecondaire;
+        }
+    }
+}
+}

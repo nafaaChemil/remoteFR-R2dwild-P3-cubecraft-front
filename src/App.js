@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss'
+import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
+
+import AdminAboutUs from './screens/AdminAboutUs'
+import AdminSlider from './screens/AdminSlider'
+import NavBarAdmin from './screens/NavBarAdmin'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+      <div className='App'>
+        <div id='back'>
+          <NavBarAdmin />
+          <Switch>
+            <Route exact path='/admin/' component={AdminSlider} />
+            <Route path='/admin/about' component={AdminAboutUs} />
+          </Switch>
+        </div>
+      </div>
+    </Router>
+  )
 }
 
-export default App;
+export default App
