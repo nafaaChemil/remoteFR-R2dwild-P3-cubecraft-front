@@ -1,5 +1,5 @@
 import React from 'react'
 
-export default function AdminHomePage() {
+export default function AdminProModified() {
   return <div></div>
 }

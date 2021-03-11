@@ -1,5 +1,5 @@
 import React from 'react'
 
-export default function AdminHomePage() {
+export default function AdminNewsModified() {
   return <div></div>
 }

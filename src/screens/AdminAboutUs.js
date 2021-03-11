@@ -9,31 +9,26 @@ export default function AdminSlider() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const resq = await axios.get('http://localhost:4242/slider')
+      const resq = await axios.get('http://localhost:4242/about')
       setDatas(resq.data)
     }
     fetchData()
   }, [])
 
-  console.log(datas)
   return (
     <>
       <section id='admin'>
-        <h1>Slider Texte </h1>
+        <h1>A propos</h1>
 
         {/* Titre du slider avec bouton sauvegarde */}
+
         <div>
-          <h3>Titre</h3>
-          <input type='text' />
-          <button>Save</button>
-        </div>
-        <div>
-          <ButtonAdd name='Ajouter un texte au slider' />
+          <ButtonAdd name='Ajouter un profil' />
         </div>
 
         <div>
           {datas.map((data, index) => (
-            <SuppOrEdit key={index} name={data.Word}></SuppOrEdit>
+            <SuppOrEdit key={index} name={data.FirstName}></SuppOrEdit>
           ))}
         </div>
       </section>
