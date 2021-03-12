@@ -4,19 +4,16 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import './styles/Admin.scss'
 
-export default function AdminNewsModified() {
+export default function AdminNewsAdd() {
   const [title, setTitle] = useState('')
   const [link, setLink] = useState('')
   const [text, setText] = useState('')
   const [image, setImage] = useState('')
   const [newsAdded, setNewsAdded] = useState(false)
 
-  // a voir comment recuperer l'id dans react router
-  const id = '???'
-  /////
-  const editNews = async () => {
+  const addNews = async () => {
     const res = await axios
-      .put(`http://localhost:4242/news/:${id}`, {
+      .post('http://localhost:4242/news/', {
         link: link,
         text: text,
         title: title,
@@ -64,8 +61,8 @@ export default function AdminNewsModified() {
         value={image}
         onChange={event => setImage(event.target.value)}
       />
-      <button onClick={editNews}>Modifier la news</button>
-      {newsAdded ? <div>Actu modifiée !</div> : ''}
+      <button onClick={addNews}>Ajouter la news</button>
+      {newsAdded ? <div>Actu ajoutée !</div> : ''}
     </div>
   )
 }
