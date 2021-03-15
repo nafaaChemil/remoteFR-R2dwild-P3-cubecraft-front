@@ -2,7 +2,7 @@ export const navbar = [
   {
     id: '1',
     linkname: 'Slider',
-    route: '/admin'
+    route: '/admin/slider'
   },
   {
     id: '2',
