@@ -1,5 +1,5 @@
 import './App.scss'
-import { Route, Switch, BrowserRouter as Router, useHistory } from 'react-router-dom'
+import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
 
 import AdminAboutUs from './screens/Admin/AdminAboutUs'
 import AdminSlider from './screens/Admin/AdminSlider'
