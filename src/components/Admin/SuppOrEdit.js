@@ -7,7 +7,7 @@ export default function SuppOrEdit(props) {
   return (
     <div className='admin_general_Del_Edit'>
       <span>
-        <p> Votre texte : {props.name}</p>
+        <p> {props.name}</p>
       </span>
       <div>
         <button onClick={props.handleClickSupp}>Supp</button>
