@@ -1,11 +1,14 @@
-@import "./design/ui.scss";
+@import "../design/ui.scss";
 
-.admin_general_Del_Edit{
+.admin_general_Add_Field{
     width: 100%;
     margin: 3vh 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-bottom: 3px;
-    border-bottom: 1px solid $colorPrimary;
+    border: 1px solid orange;
+    button {
+        @include boutonAdd;
+    }
 }
