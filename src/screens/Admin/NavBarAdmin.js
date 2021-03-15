@@ -1,5 +1,5 @@
 import React from 'react'
-import { navbar } from '../components/navbarLink'
+import { navbar } from '../../components/Admin/navbarLink'
 import { Link } from 'react-router-dom'
 import './styles/NavBarAdmin.scss'
 

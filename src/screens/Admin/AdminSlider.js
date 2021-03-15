@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import './styles/Admin.scss'
-import SuppOrEdit from '../components/SuppOrEdit'
-import ButtonAdd from '../components/ButtonAdd'
+import SuppOrEdit from '../../components/Admin/SuppOrEdit'
+import ButtonAdd from '../../components/Admin/ButtonAdd'
 
 export default function AdminSlider() {
   const [datas, setDatas] = useState([''])
