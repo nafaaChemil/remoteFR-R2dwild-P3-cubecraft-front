@@ -20,7 +20,7 @@ function App() {
             <Route exact path='/admin/actualites' component={AdminNews} />
             <Route path='/admin/actualites/add' component={AdminNewsAdd} />
             <Route
-              path='/admin/actualites/modif'
+              path='/admin/actualites/modif/:id'
               component={AdminNewsModified}
             />
           </Switch>

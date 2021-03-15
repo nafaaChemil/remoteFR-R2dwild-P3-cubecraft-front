@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 import axios from 'axios'
 import './styles/Admin.scss'
@@ -7,15 +7,13 @@ import SuppOrEdit from '../components/SuppOrEdit'
 import ButtonAdd from '../components/ButtonAdd'
 
 export default function AdminNews() {
+  const history = useHistory()
   const [datas, setDatas] = useState([''])
   const [change, setChange] = useState(false)
   const deleteNews = async id => {
-    console.log(id)
-
     const res = await axios
       .delete(`http://localhost:4242/news/${id}`)
       .then(function (response) {
-        console.log(response)
         setChange(!change)
       })
       .catch(function (error) {
@@ -31,23 +29,28 @@ export default function AdminNews() {
     fetchData()
   }, [change])
 
-  console.log(datas)
+  function handleClickEdit(number) {
+    history.push(`/admin/actualites/modif/${number}`)
+  }
+
+  function handleClickAdd() {
+    history.push(`/admin/actualites/add`)
+  }
+
   return (
     <>
       <section id='admin'>
         <h1>Actualités</h1>
 
-        {/* Titre du slider avec bouton sauvegarde */}
-
         <div>
-          {/* <ButtonAdd name='Ajouter une news' handleClickAdd={addNews} /> */}
-          <Link to='/admin/actualites/add'>Ajouter une actu</Link>
+          <ButtonAdd name='Ajouter une news' handleClickAdd={handleClickAdd} />
         </div>
 
         <div>
           {datas.map((data, index) => (
             <SuppOrEdit
-              handleClickSupp={e => deleteNews(data.Id)}
+              handleClickSupp={() => deleteNews(data.Id)}
+              handleClickEdit={() => handleClickEdit(data.Id)}
               key={index}
               name={`Article ${data.Title}`}
               id={data.Id}

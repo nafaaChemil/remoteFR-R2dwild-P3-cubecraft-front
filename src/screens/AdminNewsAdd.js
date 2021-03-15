@@ -62,7 +62,13 @@ export default function AdminNewsAdd() {
         onChange={event => setImage(event.target.value)}
       />
       <button onClick={addNews}>Ajouter la news</button>
-      {newsAdded ? <div>Actu ajoutée !</div> : ''}
+      {newsAdded ? (
+        <div>
+          Actu ajoutée !<Link to='/admin/actualites/'>Retourner aux actus</Link>
+        </div>
+      ) : (
+        ''
+      )}
     </div>
   )
 }
