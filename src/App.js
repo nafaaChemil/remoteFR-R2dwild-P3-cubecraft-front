@@ -1,12 +1,12 @@
 import './App.scss'
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
 
-import AdminAboutUs from './screens/AdminAboutUs'
-import AdminSlider from './screens/AdminSlider'
-import AdminNews from './screens/AdminNews'
-import AdminNewsAdd from './screens/AdminNewsAdd'
-import AdminNewsModified from './screens/AdminNewsModified'
-import NavBarAdmin from './screens/NavBarAdmin'
+import AdminAboutUs from './screens/Admin/AdminAboutUs'
+import AdminSlider from './screens/Admin/AdminSlider'
+import AdminNews from './screens/Admin/AdminNews'
+import AdminNewsAdd from './screens/Admin/AdminNewsAdd'
+import AdminNewsModified from './screens/Admin/AdminNewsModified'
+import NavBarAdmin from './screens/Admin/NavBarAdmin'
 import Home from './screens/Client/Home'
 import Concept from './screens/Client/Concept'
 
