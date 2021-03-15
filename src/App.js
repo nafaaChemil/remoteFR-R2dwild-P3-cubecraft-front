@@ -6,6 +6,12 @@ import AdminSlider from './screens/Admin/AdminSlider'
 import NavBarAdmin from './screens/Admin/NavBarAdmin'
 import Home from './screens/Client/Home'
 import Concept from './screens/Client/Concept'
+import Contact from './screens/Client/Contact'
+import News from './screens/Client/News'
+import Footer from './components/Client/Footer'
+import Particular from './screens/Client/Particular'
+import Pro from './screens/Client/Pro'
+import About from './screens/Client/About'
 
 const App = () => {
   
@@ -18,9 +24,16 @@ const App = () => {
       <Switch>
         <Route  exact path='/' component={Home} />
         <Route  path='/concept' component={Concept} />
+        <Route path='/contact' component={Contact} />
+        <Route path='/news' component={News} />
+        <Route path='/particular' component={Particular} />
+        <Route path='/pro' component={Pro} />
+        <Route paht='/about' component={About} />
         <Route path='/admin/slider'  component={AdminSlider} />
         <Route path='/admin/about'  component={AdminAboutUs} />
-      </Switch>''
+      </Switch>
+      {location.pathname.includes('admin') ? '' : <Footer />}
+      
       </div>
     </Router>
   );
