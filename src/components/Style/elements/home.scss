@@ -1,0 +1,136 @@
+.Home {
+    text-align: center;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    color: white;
+    text-shadow: 1px 1px black;
+    .home-hero-carousel{
+      position: absolute;
+      display: flex;
+      align-items: center;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .home-title{
+      letter-spacing: 1.1px;
+      font-size: 2.5rem;
+    }
+    .carousel-text{
+      margin-left: 3vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      p{
+        font-size: 5rem;
+        letter-spacing: 1.2px;
+      }
+    }
+  }
+   
+.Home-logo {
+    height: 40vmin;
+  }
+
+
+#home-concept{
+  width: 95%;
+  max-width: 1400px;
+  margin: 5vh auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h2{
+    text-align: center;
+    color: $colorSecondary;
+    margin-bottom: 5vh;
+    font-size: $typoXL;
+  }
+  a{
+    margin: 5vh 0;
+    text-decoration: none;
+  }
+}
+
+.home-concept-image{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.thumbnail-home-concept{
+  width: 45%;
+  object-fit: cover;
+}
+
+#home-produits{
+    display: flex;
+    flex-direction: column;
+    
+    max-width: 1400px;
+    width: 95%;
+    margin: 3vh auto;
+}
+.produits-pro, .produits-part{
+  display: flex;
+  align-items: center;
+}
+.img-produits{
+    object-fit: cover;
+    width: 49%;
+}
+.produits-right {
+    display: flex;
+    flex-direction: column;
+    padding: 2vh 2vw;
+    h2{
+      color: $colorSecondary;
+      font-size: $typoXL;
+      letter-spacing:1.1px;
+    }
+    p {
+      margin-bottom: 5vh;
+      margin-top: 2vh;
+      font-size: $typoS;
+      line-height: 1.5rem;
+      letter-spacing: 1px;
+      text-align: justify;
+    }
+}
+
+
+#home-actualite{
+  width: 95%;
+  max-width: 1400px;
+  margin: 5vh auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h2{
+    color: $colorSecondary;
+    font-size: $typoXL;
+    letter-spacing:1.1px;
+    margin-bottom: 3vh;
+    align-self: flex-start;
+    margin-left: 2vw;
+  }
+  .container-thumbnail-actualite{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .thumbnails-actualite{
+      width: 25%;
+      object-fit: cover;
+    }
+  }
+  a{
+    margin: 5vh auto;
+  }
+}
+.thumbnail-home-concept, .img-produits, .thumbnails-actualite{
+  box-shadow: 10px 10px 10px #0617224b;
+}
