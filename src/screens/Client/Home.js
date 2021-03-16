@@ -1,5 +1,4 @@
 import React from 'react'
-import Slider from 'react-slick'
 import { Link } from 'react-router-dom'
 
 function Home() {
@@ -35,7 +34,7 @@ function Home() {
             alt='a def'
           />
         </div>
-        <Link className='buttonHome' to=''>
+        <Link className='buttonHome' to='/concept'>
           Notre concept
         </Link>
       </section>
@@ -50,9 +49,9 @@ function Home() {
               videtur, inermis ac nudus est. tollit definitiones, nihil de
               dividendo ac
             </p>
-            <button className='buttonHome' type='button'>
+            <Link className='buttonHome' to='/pro'>
               Découvrez nos solutions
-            </button>
+            </Link>
           </div>
         </div>
         <div className='produits-part'>
@@ -64,9 +63,9 @@ function Home() {
               videtur, inermis ac nudus est. tollit definitiones, nihil de
               dividendo ac
             </p>
-            <button className='buttonHome' type='button'>
+            <Link className='buttonHome' to='/particular'>
               Découvrez nos solutions
-            </button>
+            </Link>
           </div>
           <img className='img-produits' src='images/Annexe2.jpg' alt='maison' />
         </div>
@@ -90,7 +89,7 @@ function Home() {
             alt='actu'
           />
         </div>
-        <Link className='buttonHome' to=''>
+        <Link className='buttonHome' to='/news'>
           Toute notre actualités
         </Link>
       </section>
