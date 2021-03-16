@@ -1,0 +1,40 @@
+// .navbar, .navbar_links {
+//   display:flex;
+//   flex-direction: row;
+//   li {
+//     padding:$padXL;
+//   }
+// }
+
+
+.navbar {
+    width: 100%;
+    height: 110;
+    background-color: $colorPrimary;
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+    z-index: 50;
+
+		.navbar__links {
+    	display: flex;
+    	list-style: none;
+    	align-items: center;
+    	padding: $padXL;
+
+    	li { 
+      	padding: $padXL;
+				
+    		a {
+    			text-decoration: none;
+    			color: $colorThird;
+    			font-size: $typoL;
+    			display: flex;
+    			align-items: center;
+      }
+    }
+  }
+}
+
+
+
