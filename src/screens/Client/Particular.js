@@ -1,5 +1,6 @@
 import React from 'react'
 
+<<<<<<< HEAD
 function Particular() {
   return (
     <div>
@@ -9,3 +10,10 @@ function Particular() {
 }
 
 export default Particular
+=======
+const Particular = () => {
+  return <div></div>
+}
+
+export default Particular
+>>>>>>> dev

@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import './SuppOrEdit.scss'
-
 export default function SuppOrEdit(props) {
   return (
     <div className='admin_general_Del_Edit'>

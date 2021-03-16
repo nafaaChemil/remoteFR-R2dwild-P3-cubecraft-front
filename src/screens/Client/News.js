@@ -1,5 +1,6 @@
 import React from 'react'
 
+<<<<<<< HEAD
 function News() {
   return (
     <div>
@@ -9,3 +10,10 @@ function News() {
 }
 
 export default News
+=======
+const News = () => {
+  return <div></div>
+}
+
+export default News
+>>>>>>> dev

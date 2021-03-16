@@ -1,5 +1,3 @@
-@import "../design/ui.scss";
-
 .admin_general_Add_Field{
     width: 100%;
     margin: 3vh 0;
@@ -9,6 +7,6 @@
     padding-bottom: 3px;
     border: 1px solid orange;
     button {
-        @include boutonAdd;
+        
     }
 }

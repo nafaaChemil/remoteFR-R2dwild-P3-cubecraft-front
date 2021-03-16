@@ -1,5 +1,6 @@
 import React from 'react'
 
+<<<<<<< HEAD
 function Contact() {
   return (
     <div>
@@ -8,6 +9,10 @@ function Contact() {
       </h1>
     </div>
   )
+=======
+const Contact = () => {
+  return <div></div>
+>>>>>>> dev
 }
 
 export default Contact

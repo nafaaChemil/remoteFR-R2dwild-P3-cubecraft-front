@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 import axios from 'axios'
-import './styles/Admin.scss'
 
 export default function AdminNewsModified(props) {
   const [title, setTitle] = useState('')
@@ -39,28 +38,28 @@ export default function AdminNewsModified(props) {
   }
   return (
     <div>
-      <label for='title'>Titre</label>
+      <label htmlFor='title'>Titre</label>
       <input
         type='text'
         name='title'
         value={title}
         onChange={event => setTitle(event.target.value)}
       />
-      <label for='link'>Lien</label>
+      <label htmlFor='link'>Lien</label>
       <input
         type='text'
         name='link'
         value={link}
         onChange={event => setLink(event.target.value)}
       />
-      <label for='text'>Texte</label>
+      <label htmlFor='text'>Texte</label>
       <textarea
         type='text'
         name='text'
         value={text}
         onChange={event => setText(event.target.value)}
       />
-      <label for='image'>ID de l'image</label>
+      <label htmlFor='image'>ID de l'image</label>
       <input
         type='number'
         name='image'
