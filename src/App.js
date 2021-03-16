@@ -22,8 +22,8 @@ const App = () => {
     <Router>
         <div className="App" style={{display : `${location.pathname.includes('admin') ? "flex" : "block"}`}}>
       {/* Test adress if location contain Admin we get the Nav of admin else the Nav site */}
-        {location.pathname.includes('admin') ? <NavBarAdmin/> : <nav>Nav site client</nav>}
         
+      {location.pathname.includes('admin') ? <NavBarAdmin /> : <Navbar />} 
       <Switch>
         <Route  exact path='/' component={Home} />
         <Route  path='/concept' component={Concept} />
@@ -34,36 +34,17 @@ const App = () => {
         <Route paht='/about' component={About} />
         <Route path='/admin/slider'  component={AdminSlider} />
         <Route path='/admin/about'  component={AdminAboutUs} />
-      </Switch>
-      {location.pathname.includes('admin') ? '' : <Footer />}
-      
-      <div
-        className='App'
-        style={{
-          display: `${location.pathname.includes('admin') ? 'flex' : 'block'}`
-        }}
-
-        // id={`${location.pathname.includes('admin') ? 'admin' : 'front'}`}
-      >
-        {/* Test adress if location contain Admin we get the Nav of admin else the Nav site */}
-        {location.pathname.includes('admin') ? <NavBarAdmin /> : <Navbar />}
-        <Switch>
-          <Route exact path='/' component={Home} />
-          <Route path='/concept' component={Concept} />
-          <Route path='/admin/slider' component={AdminSlider} />
-          <Route path='/admin/about' component={AdminAboutUs} />
-          <Route path='/about' component={About} />
-          <Route path='/particular' component={Particular} />
-          <Route path='/pro' component={Pro} />
-          <Route path='/news' component={News} />
-          <Route path='/contact' component={Contact} />
-          <Route exact path='/admin/actualites' component={AdminNews} />
+        <Route exact path='/admin/actualites' component={AdminNews} />
           <Route path='/admin/actualites/add' component={AdminNewsAdd} />
           <Route
             path='/admin/actualites/modif/:id'
             component={AdminNewsModified}
           />
-        </Switch>
+      </Switch>
+        
+        {/* Test adress if location contain Admin we get the Nav of admin else the Nav site */}
+        
+        {location.pathname.includes('admin') ? '' : <Footer />}
       </div>
     </Router>
   )

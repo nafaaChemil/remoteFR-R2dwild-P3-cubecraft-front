@@ -1,7 +1,7 @@
 export const FooterClient = [
   {
     id: '1',
-    linkname: 'Home',
+    linkname: 'Accueil',
     route: '/'
   },
   {

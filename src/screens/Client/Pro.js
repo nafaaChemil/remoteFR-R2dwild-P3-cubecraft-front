@@ -1,6 +1,5 @@
 import React from 'react'
 
-<<<<<<< HEAD
 function Pro() {
   return (
     <div>
@@ -10,10 +9,3 @@ function Pro() {
 }
 
 export default Pro
-=======
-const Pro = () => {
-  return <div></div>
-}
-
-export default Pro
->>>>>>> dev
