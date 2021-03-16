@@ -1,25 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types'
 
 import axios from 'axios'
 import './styles/Admin.scss'
 
-export default function AdminNewsModified(props) {
+export default function AdminNewsAdd() {
   const [title, setTitle] = useState('')
   const [link, setLink] = useState('')
   const [text, setText] = useState('')
   const [image, setImage] = useState('')
   const [newsAdded, setNewsAdded] = useState(false)
 
-  // a voir comment recuperer l'id dans react router
-  console.log(props)
-  const params = props.match.params
-  const id = params.id
-  /////
-  const editNews = async () => {
+  const addNews = async () => {
     const res = await axios
-      .put(`http://localhost:4242/news/${id}`, {
+      .post('http://localhost:4242/news/', {
         link: link,
         text: text,
         title: title,
@@ -67,19 +61,14 @@ export default function AdminNewsModified(props) {
         value={image}
         onChange={event => setImage(event.target.value)}
       />
-      <button onClick={editNews}>Modifier la news</button>
+      <button onClick={addNews}>Ajouter la news</button>
       {newsAdded ? (
         <div>
-          Actu modifiée !
-          <Link to='/admin/actualites/'>Retourner aux actus</Link>
+          Actu ajoutée !<Link to='/admin/actualites/'>Retourner aux actus</Link>
         </div>
       ) : (
         ''
       )}
     </div>
   )
-}
-
-AdminNewsModified.propTypes = {
-  match: PropTypes.object
 }
