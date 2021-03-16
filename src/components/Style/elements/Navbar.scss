@@ -6,6 +6,11 @@
 //   }
 // }
 
+	.navbar__logo h2 {
+    color: #f4f4f4;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
 
 .navbar {
     width: 100%;
@@ -30,11 +35,18 @@
     			color: $colorThird;
     			font-size: $typoL;
     			display: flex;
-    			align-items: center;
+					align-items: center;
+					&:hover{
+						color:$colorSecondary;
+					}
       }
     }
   }
 }
+
+// .navbar__linksuser:hover li a {
+// 				color: red
+// 			}
 
 
 

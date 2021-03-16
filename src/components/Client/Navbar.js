@@ -5,8 +5,8 @@ import { navbarlinks } from './Navlinks'
 const Navbar = () => {
   return (
     <nav className='navbar'>
-      <div className='navbar_logo'>
-        <img />
+      <div className='navbar__logo'>
+        <h2>High Cube</h2>
       </div>
       <ul className='navbar__links'>
         {navbarlinks.map((link, i) => (
