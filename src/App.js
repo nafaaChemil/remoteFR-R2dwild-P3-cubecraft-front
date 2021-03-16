@@ -24,6 +24,8 @@ const App = () => {
         style={{
           display: `${location.pathname.includes('admin') ? 'flex' : 'block'}`
         }}
+
+        // id={`${location.pathname.includes('admin') ? 'admin' : 'front'}`}
       >
         {/* Test adress if location contain Admin we get the Nav of admin else the Nav site */}
         {location.pathname.includes('admin') ? <NavBarAdmin /> : <Navbar />}
