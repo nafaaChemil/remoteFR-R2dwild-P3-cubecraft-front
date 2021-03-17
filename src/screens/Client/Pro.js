@@ -1,7 +1,11 @@
 import React from 'react'
 
-const Pro = () => {
-  return <div></div>
+function Pro() {
+  return (
+    <div>
+      <h1>BONJOUR</h1>
+    </div>
+  )
 }
 
 export default Pro

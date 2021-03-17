@@ -1,7 +1,11 @@
 import React from 'react'
 
-const Particular = () => {
-  return <div></div>
+function Particular() {
+  return (
+    <div>
+      <h1>ALLO</h1>
+    </div>
+  )
 }
 
 export default Particular
