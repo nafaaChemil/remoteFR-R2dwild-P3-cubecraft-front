@@ -21,6 +21,10 @@
     align-items: center;
     z-index: 50;
 
+		img {
+			width: 7%;
+		}
+
 		.navbar__links {
     	display: flex;
     	list-style: none;
