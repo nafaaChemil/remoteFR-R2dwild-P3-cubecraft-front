@@ -27,7 +27,7 @@ export default function AdminNewsModified(props) {
               title: response.data.Title,
               link: response.data.Link,
               text: response.data.Text,
-              photo_id: response.data.Photo_Id
+              photo_id: response.data.Photo_id
             })
           }
         })
