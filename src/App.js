@@ -14,6 +14,7 @@ import About from './screens/Client/About'
 import Particular from './screens/Client/Particular'
 import Pro from './screens/Client/Pro'
 import News from './screens/Client/News'
+import Footer from './components/Client/Footer'
 import Contact from './screens/Client/Contact'
 import Navbar from './components/Client/Navbar'
 import Backdrop from './components/Client/Backdrop'
@@ -29,8 +30,6 @@ const App = () => {
         style={{
           display: `${location.pathname.includes('admin') ? 'flex' : 'block'}`
         }}
-
-        // id={`${location.pathname.includes('admin') ? 'admin' : 'front'}`}
       >
         {/* Test adress if location contain Admin we get the Nav of admin else the Nav site */}
         {location.pathname.includes('admin') ? (
@@ -47,21 +46,25 @@ const App = () => {
         )}
         <Switch>
           <Route exact path='/' component={Home} />
-          <Route path='/concept' component={Concept} />
           <Route path='/admin/slider' component={AdminSlider} />
           <Route path='/admin/about' component={AdminAboutUs} />
-          <Route path='/about' component={About} />
-          <Route path='/particular' component={Particular} />
-          <Route path='/pro' component={Pro} />
-          <Route path='/news' component={News} />
-          <Route path='/contact' component={Contact} />
-          <Route exact path='/admin/actualites' component={AdminNews} />
+          <Route path='/admin/actualites' component={AdminNews} />
           <Route path='/admin/actualites/add' component={AdminNewsAdd} />
           <Route
             path='/admin/actualites/modif/:id'
             component={AdminNewsModified}
           />
+          <Route path='/concept' component={Concept} />
+          <Route path='/contact' component={Contact} />
+          <Route path='/news' component={News} />
+          <Route path='/particular' component={Particular} />
+          <Route path='/pro' component={Pro} />
+          <Route path='/about' component={About} />
         </Switch>
+
+        {/* Test adress if location contain Admin we get the Nav of admin else the Nav site */}
+
+        {location.pathname.includes('admin') ? '' : <Footer />}
       </div>
     </Router>
   )
