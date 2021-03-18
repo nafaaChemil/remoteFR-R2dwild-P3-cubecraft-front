@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import axios from 'axios'
@@ -11,7 +11,7 @@ export default function AdminNewsAdd() {
   const [newsAdded, setNewsAdded] = useState(false)
 
   const addNews = async () => {
-    const res = await axios
+    await axios
       .post('http://localhost:4242/news/', {
         link: link,
         text: text,
