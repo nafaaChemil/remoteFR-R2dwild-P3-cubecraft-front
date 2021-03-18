@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import axios from 'axios'
@@ -18,7 +18,7 @@ export default function AdminNewsAdd() {
     setFormData({ ...formData, [e.target.name]: e.target.value })
 
   const addNews = async () => {
-    const res = await axios
+    await axios
       .post('http://localhost:4242/news/', {
         ...formData
       })
