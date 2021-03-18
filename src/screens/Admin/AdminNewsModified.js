@@ -153,7 +153,6 @@ export default function AdminNewsModified(props) {
       ) : (
         ''
       )}
-      {status}
     </div>
   )
 }

@@ -4,14 +4,14 @@ import PropTypes from 'prop-types'
 
 import axios from 'axios'
 
-export default function AdminProModified(props) {
+export default function AdminPartModified(props) {
   const [productAdded, setProductAdded] = useState(false)
   const [status, setStatus] = useState(null)
   const [formData, setFormData] = useState({
     CategoryName: '',
     Price: 0,
     Description: '',
-    Particular_Pro: 0,
+    Particular_Pro: 1,
     photo_id: 1
   })
   const params = props.match.params
@@ -28,7 +28,7 @@ export default function AdminProModified(props) {
               CategoryName: response.data.CategoryName,
               Price: response.data.Price,
               Description: response.data.Description,
-              Particular_Pro: 0,
+              Particular_Pro: 1,
               photo_id: response.data.Photo_id
             })
           }
@@ -79,7 +79,7 @@ export default function AdminProModified(props) {
           CategoryName: '',
           Price: 0,
           Description: '',
-          Particular_Pro: 0,
+          Particular_Pro: 1,
           photo_id: 1
         })
       })
@@ -115,8 +115,8 @@ export default function AdminProModified(props) {
     <div>
       <h1>404 Aucun produit ne correspond à cette URL</h1>
       <br />
-      <Link to='/admin/professionnel/'>
-        Retourner aux produits pour professionnels
+      <Link to='/admin/particulier/'>
+        Retourner aux produits pour particuliers
       </Link>
     </div>
   ) : (
@@ -153,18 +153,17 @@ export default function AdminProModified(props) {
       {productAdded ? (
         <div>
           Produit modifié !
-          <Link to='/admin/professionnel/'>
-            Retourner aux produits pour professionnels
+          <Link to='/admin/particulier/'>
+            Retourner aux produits pour particuliers
           </Link>
         </div>
       ) : (
         ''
       )}
-      {status}
     </div>
   )
 }
 
-AdminProModified.propTypes = {
+AdminPartModified.propTypes = {
   match: PropTypes.object
 }
