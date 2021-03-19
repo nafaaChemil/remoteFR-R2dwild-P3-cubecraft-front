@@ -11,13 +11,13 @@ export const navbar = [
   },
   {
     id: '3',
-    linkname: 'Pages particulier',
-    route: '/admin/Pages-particulier'
+    linkname: 'Particulier',
+    route: '/admin/particulier'
   },
   {
     id: '4',
-    linkname: 'Page Professionnel',
-    route: '/admin/page-professionnel'
+    linkname: 'Professionnel',
+    route: '/admin/professionnel'
   },
   {
     id: '5',

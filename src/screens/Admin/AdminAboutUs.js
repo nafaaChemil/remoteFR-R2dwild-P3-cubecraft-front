@@ -2,9 +2,26 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import SuppOrEdit from '../../components/Admin/SuppOrEdit'
 import ButtonAdd from '../../components/Admin/ButtonAdd'
+import { useHistory } from 'react-router-dom'
 
 export default function AdminAboutUs() {
   const [datas, setDatas] = useState([''])
+  const [affiched, setAffiched] = useState(true)
+  const history = useHistory()
+
+  const deleteProfile = id => {
+    console.log({ id })
+    axios.delete(`http://localhost:4242/about/${id}`, {}).then(res => {
+      setAffiched(!affiched)
+    })
+  }
+  function AddProfile() {
+    history.push(`/admin/about/profile/`)
+  }
+
+  function modifiedProfile(id) {
+    history.push(`/admin/about/profile/${id}`)
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -12,7 +29,7 @@ export default function AdminAboutUs() {
       setDatas(resq.data)
     }
     fetchData()
-  }, [])
+  }, [affiched])
 
   return (
     <>
@@ -20,14 +37,18 @@ export default function AdminAboutUs() {
         <h1>A propos</h1>
 
         {/* Titre du slider avec bouton sauvegarde */}
-
         <div>
-          <ButtonAdd name='Ajouter un profil' />
+          <ButtonAdd name='Ajouter un profil' handleClickAdd={AddProfile} />
         </div>
 
         <div>
           {datas.map((data, index) => (
-            <SuppOrEdit key={index} name={data.FirstName}></SuppOrEdit>
+            <SuppOrEdit
+              handleClickSupp={() => deleteProfile(data.Id)}
+              handleClickEdit={() => modifiedProfile(data.Id)}
+              key={index}
+              name={data.FirstName}
+            ></SuppOrEdit>
           ))}
         </div>
       </section>

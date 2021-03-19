@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 import axios from 'axios'
 import SuppOrEdit from '../../components/Admin/SuppOrEdit'
 import ButtonAdd from '../../components/Admin/ButtonAdd'
 
-export default function AdminNews() {
+export default function AdminPart() {
   const history = useHistory()
   const [datas, setDatas] = useState([''])
   const [change, setChange] = useState(false)
-  const deleteNews = async id => {
+
+  const deleteProduct = async id => {
     const res = await axios
-      .delete(`http://localhost:4242/news/${id}`)
-      .then(function (res) {
+      .delete(`http://localhost:4242/particularPro/${id}`)
+      .then(function (response) {
         setChange(!change)
       })
       .catch(function (error) {
@@ -22,36 +23,39 @@ export default function AdminNews() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const resq = await axios.get('http://localhost:4242/news/')
-      setDatas(resq.data)
+      const resq = await axios.get('http://localhost:4242/particularPro')
+      setDatas(resq.data.filter(produit => produit.Particular_Pro))
     }
     fetchData()
   }, [change])
 
   function handleClickEdit(number) {
-    history.push(`/admin/actualites/modif/${number}`)
+    history.push(`/admin/particulier/modif/${number}`)
   }
 
   function handleClickAdd() {
-    history.push(`/admin/actualites/add`)
+    history.push(`/admin/particulier/add`)
   }
 
   return (
     <>
       <section id='admin'>
-        <h1>Actualités</h1>
+        <h1>Produits pour particuliers</h1>
 
         <div>
-          <ButtonAdd name='Ajouter une news' handleClickAdd={handleClickAdd} />
+          <ButtonAdd
+            name='Ajouter un produit'
+            handleClickAdd={handleClickAdd}
+          />
         </div>
 
         <div>
           {datas.map((data, index) => (
             <SuppOrEdit
-              handleClickSupp={() => deleteNews(data.Id)}
+              handleClickSupp={() => deleteProduct(data.Id)}
               handleClickEdit={() => handleClickEdit(data.Id)}
               key={index}
-              name={`Article ${data.Title}`}
+              name={data.CategoryName + ' ' + data.Price + '€'}
               id={data.Id}
             ></SuppOrEdit>
           ))}

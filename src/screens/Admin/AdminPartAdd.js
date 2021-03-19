@@ -1,35 +1,37 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 import axios from 'axios'
 
-export default function AdminNewsAdd() {
+export default function AdminPartAdd() {
   const [formData, setFormData] = useState({
-    title: '',
-    link: '',
-    text: '',
+    CategoryName: '',
+    Price: 0,
+    Description: '',
+    ParticularPro: 1,
     photo_id: 1
   })
 
-  const [newsAdded, setNewsAdded] = useState(false)
+  const [productAdded, setProductAdded] = useState(false)
   const [status, setStatus] = useState(null)
 
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value })
 
-  const addNews = async () => {
-    await axios
-      .post('http://localhost:4242/news/', {
+  const addProduct = async () => {
+    const res = await axios
+      .post('http://localhost:4242/particularPro/', {
         ...formData
       })
       .then(function (response) {
         if (response.status === 200) {
-          setNewsAdded(true)
+          setProductAdded(true)
           setStatus()
           setFormData({
-            title: '',
-            link: '',
-            text: '',
+            CategoryName: '',
+            Price: 0,
+            Description: '',
+            ParticularPro: 1,
             photo_id: 1
           })
         }
@@ -46,7 +48,7 @@ export default function AdminNewsAdd() {
           console.log(error.response.headers)
           if (error.response.status === 422) {
             setStatus(`ID photo incorrect`)
-            setNewsAdded(false)
+            setProductAdded(false)
           }
         } else if (error.request) {
           /*
@@ -64,25 +66,25 @@ export default function AdminNewsAdd() {
   }
   return (
     <div>
-      <label htmlFor='title'>Titre</label>
+      <label htmlFor='CategoryName'>Nom</label>
       <input
         type='text'
-        name='title'
-        value={formData.title}
+        name='CategoryName'
+        value={formData.CategoryName}
         onChange={e => onChange(e)}
       />
-      <label htmlFor='link'>Lien</label>
+      <label htmlFor='Price'>Prix</label>
       <input
-        type='text'
-        name='link'
-        value={formData.link}
+        type='number'
+        name='Price'
+        value={formData.Price}
         onChange={e => onChange(e)}
       />
-      <label htmlFor='text'>Texte</label>
+      <label htmlFor='Description'>Description</label>
       <textarea
         type='text'
-        name='text'
-        value={formData.text}
+        name='Description'
+        value={formData.Description}
         onChange={e => onChange(e)}
       />
       <label htmlFor='photo_id'>ID de l'image</label>
@@ -92,11 +94,13 @@ export default function AdminNewsAdd() {
         value={formData.photo_id}
         onChange={e => onChange(e)}
       />
-      <button onClick={addNews}>Ajouter la news</button>
-      {newsAdded ? (
+      <button onClick={addProduct}>Ajouter le produit</button>
+      {productAdded ? (
         <div>
-          Actu ajoutée !{' '}
-          <Link to='/admin/actualites/'>Retourner aux actus</Link>
+          Produit ajouté !{' '}
+          <Link to='/admin/particulier/'>
+            Retourner aux produits pour particuliers
+          </Link>
         </div>
       ) : (
         ''
