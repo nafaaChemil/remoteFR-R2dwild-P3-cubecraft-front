@@ -1,5 +1,6 @@
 import './App.scss'
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
+import { useState } from 'react'
 
 import AdminAboutUs from './screens/Admin/AdminAboutUs'
 import AdminSlider from './screens/Admin/AdminSlider'
@@ -22,10 +23,14 @@ import News from './screens/Client/News'
 import Footer from './components/Client/Footer'
 import Contact from './screens/Client/Contact'
 import Navbar from './components/Client/Navbar'
+import Backdrop from './components/Client/Backdrop'
+import SideDrawer from './components/Client/SideDrawer'
 import AdminAboutUsAdd from './screens/Admin/AdminAboutUsAdd'
 import AdminAboutUsModified from './screens/Admin/AdminAboutUsModified'
 
 const App = () => {
+  const [sideToggle, setSideToggle] = useState(false)
+
   return (
     <Router>
       <div
@@ -35,7 +40,18 @@ const App = () => {
         }}
       >
         {/* Test adress if location contain Admin we get the Nav of admin else the Nav site */}
-        {location.pathname.includes('admin') ? <NavBarAdmin /> : <Navbar />}
+        {location.pathname.includes('admin') ? (
+          <NavBarAdmin />
+        ) : (
+          <>
+            <Navbar click={() => setSideToggle(true)} />
+            <SideDrawer
+              show={sideToggle}
+              click={() => setSideToggle(false)}
+            />{' '}
+            <Backdrop show={sideToggle} click={() => setSideToggle(false)} />
+          </>
+        )}
         <Switch>
           <Route exact path='/' component={Home} />
           <Route path='/admin/slider' component={AdminSlider} />
