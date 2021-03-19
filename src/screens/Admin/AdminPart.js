@@ -5,7 +5,7 @@ import axios from 'axios'
 import SuppOrEdit from '../../components/Admin/SuppOrEdit'
 import ButtonAdd from '../../components/Admin/ButtonAdd'
 
-export default function AdminPro() {
+export default function AdminPart() {
   const history = useHistory()
   const [datas, setDatas] = useState([''])
   const [change, setChange] = useState(false)
@@ -24,23 +24,23 @@ export default function AdminPro() {
   useEffect(() => {
     const fetchData = async () => {
       const resq = await axios.get('http://localhost:4242/particularPro')
-      setDatas(resq.data.filter(produit => !produit.Particular_Pro))
+      setDatas(resq.data.filter(produit => produit.Particular_Pro))
     }
     fetchData()
   }, [change])
 
   function handleClickEdit(number) {
-    history.push(`/admin/professionnel/modif/${number}`)
+    history.push(`/admin/particulier/modif/${number}`)
   }
 
   function handleClickAdd() {
-    history.push(`/admin/professionnel/add`)
+    history.push(`/admin/particulier/add`)
   }
 
   return (
     <>
       <section id='admin'>
-        <h1>Produits pour professionnels</h1>
+        <h1>Produits pour particuliers</h1>
 
         <div>
           <ButtonAdd
