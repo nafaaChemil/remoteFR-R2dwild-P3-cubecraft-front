@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 import axios from 'axios'
 import SuppOrEdit from '../../components/Admin/SuppOrEdit'
@@ -12,7 +12,7 @@ export default function AdminNews() {
   const deleteNews = async id => {
     const res = await axios
       .delete(`http://localhost:4242/news/${id}`)
-      .then(function (response) {
+      .then(function (res) {
         setChange(!change)
       })
       .catch(function (error) {
