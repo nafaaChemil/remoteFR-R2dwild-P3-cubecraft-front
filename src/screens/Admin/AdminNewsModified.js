@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-
-import axios from 'axios'
 
 export default function AdminNewsModified(props) {
   const [newsAdded, setNewsAdded] = useState(false)
