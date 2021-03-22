@@ -1,11 +1,7 @@
-import React from 'react'
-
 function Contact() {
   return (
     <div>
-      <h1>GOOD BYE
-        
-      </h1>
+      <h1>GOOD BYE</h1>
     </div>
   )
 }

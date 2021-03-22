@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-
 import axios from 'axios'
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 export default function AdminProAdd() {
   const [formData, setFormData] = useState({
@@ -97,7 +96,7 @@ export default function AdminProAdd() {
       <button onClick={addProduct}>Ajouter le produit</button>
       {productAdded ? (
         <div>
-          Produit ajouté !{' '}
+          Produit ajouté !
           <Link to='/admin/professionnel/'>
             Retourner aux produits pour professionnels
           </Link>
