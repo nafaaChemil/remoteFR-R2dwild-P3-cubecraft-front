@@ -1,0 +1,23 @@
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { navbarlinks } from './Navlinks'
+
+export default function Navbar({ click }) {
+  return (
+    <nav className='navbar'>
+      <img src='/images/Highcubelogo.png' />
+      <ul className='navbar__links'>
+        {navbarlinks.map((link, i) => (
+          <li key={i}>
+            <Link to={link.route}>{link.linkname}</Link>
+          </li>
+        ))}
+      </ul>
+      <div className='hamburger__menu' onClick={click}>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </nav>
+  )
+}

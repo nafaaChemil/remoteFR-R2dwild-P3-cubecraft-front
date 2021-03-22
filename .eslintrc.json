@@ -26,6 +26,7 @@
 		"react/no-unescaped-entities": 1,
 		"react/no-unknown-property": 1,
 		// "react/prop-types":1,
-		"react/require-render-return": 1
+		"react/require-render-return": 1,
+		"react/prop-types": "off"
 	}
 }

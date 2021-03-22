@@ -1,0 +1,37 @@
+.concept{
+  margin: 5vh auto;
+  h2{
+    text-align: center;
+    color: $colorSecondary;
+    margin-bottom: 5vh;
+    font-size: $typoXL;
+  }
+.concept-block{
+  display: flex;
+  align-items:  center;
+  width: 95%;
+  max-width: 1400px;
+  margin: 2vh auto;
+.concept-right{
+  max-width: 650px;
+  width: 48%;
+  padding-left: 2vw;
+p{
+  font-size: $typoS;
+  line-height: 1.5rem;
+  letter-spacing: 1px;
+  text-align: justify;
+}
+.img-produits{
+  max-width: 650px;
+      height: 400px;
+      width: 48%;
+      object-fit: cover;
+    }
+  }
+}
+
+#last-cr, #first-cr{
+  padding-right: 2vw;
+  padding-left: 0;
+}

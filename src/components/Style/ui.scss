@@ -1,0 +1,20 @@
+@import 'elements/reset.scss';
+@import 'variables.scss';
+
+// Elements for components
+@import 'elements/typo.scss';
+@import 'elements/elementSpacing.scss';
+@import 'elements/ButtonAdd.scss';
+@import 'elements/SuppOrEdit.scss';
+@import 'elements/Navbar.scss';
+@import 'elements/Footer.scss';
+@import 'elements/buttonHome.scss';
+@import 'elements/Backdrop.scss';
+@import 'elements/SideDrawer.scss';
+
+// Style for screens
+@import 'screens/NavBarAdmin.scss';
+@import 'screens/Admin.scss';
+@import 'elements/home.scss';
+@import 'elements/Concept.scss';
+
