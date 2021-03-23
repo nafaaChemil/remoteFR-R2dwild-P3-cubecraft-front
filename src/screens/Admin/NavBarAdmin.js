@@ -1,8 +1,7 @@
-import React from 'react'
 import { navbar } from '../../components/Admin/navbarLink'
 import { Link } from 'react-router-dom'
 
-function NavBarAdmin() {
+export default function NavBarAdmin() {
   return (
     <div className='admin_navbarcontainer'>
       <ul className='admin_navbar_link'>
@@ -15,5 +14,3 @@ function NavBarAdmin() {
     </div>
   )
 }
-
-export default NavBarAdmin

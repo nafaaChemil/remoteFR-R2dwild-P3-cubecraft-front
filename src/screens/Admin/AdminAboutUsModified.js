@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { useState, useEffect } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 
 export default function AdminAboutUsModified() {
@@ -29,7 +29,6 @@ export default function AdminAboutUsModified() {
         Photo_id: picture
       })
       .then(res => {
-        console.log(res.data)
         setValid(!valid)
         setFirstName(firstName)
         setLastName(lastName)

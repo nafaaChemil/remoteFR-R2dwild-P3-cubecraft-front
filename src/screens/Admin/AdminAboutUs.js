@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import SuppOrEdit from '../../components/Admin/SuppOrEdit'
-import ButtonAdd from '../../components/Admin/ButtonAdd'
+import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
+
+import ButtonAdd from '../../components/Admin/ButtonAdd'
+import SuppOrEdit from '../../components/Admin/SuppOrEdit'
 
 export default function AdminAboutUs() {
   const [datas, setDatas] = useState([''])
@@ -10,7 +11,6 @@ export default function AdminAboutUs() {
   const history = useHistory()
 
   const deleteProfile = id => {
-    console.log({ id })
     axios.delete(`http://localhost:4242/about/${id}`, {}).then(res => {
       setAffiched(!affiched)
     })
@@ -35,7 +35,6 @@ export default function AdminAboutUs() {
     <>
       <section id='admin'>
         <h1>A propos</h1>
-
         {/* Titre du slider avec bouton sauvegarde */}
         <div>
           <ButtonAdd name='Ajouter un profil' handleClickAdd={AddProfile} />

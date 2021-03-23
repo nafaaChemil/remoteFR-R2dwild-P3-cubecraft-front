@@ -2,12 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { navbarlinks } from './Navlinks'
 
-const Navbar = () => {
+export default function Navbar({ click }) {
   return (
     <nav className='navbar'>
-      <div className='navbar_logo'>
-        <img />
-      </div>
+      <img src='/images/Highcubelogo.png' />
       <ul className='navbar__links'>
         {navbarlinks.map((link, i) => (
           <li key={i}>
@@ -15,14 +13,11 @@ const Navbar = () => {
           </li>
         ))}
       </ul>
-      <div className='hamburger__menu'>
+      <div className='hamburger__menu' onClick={click}>
         <div></div>
         <div></div>
         <div></div>
-        <div className='container'></div>
       </div>
     </nav>
   )
 }
-
-export default Navbar

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { useState, useEffect } from 'react'
 
 import SuppOrEdit from '../../components/Admin/SuppOrEdit'
 import ButtonAdd from '../../components/Admin/ButtonAdd'
@@ -15,7 +15,6 @@ export default function AdminSlider() {
     fetchData()
   }, [])
 
-  console.log(datas)
   return (
     <>
       <section id='admin'>
