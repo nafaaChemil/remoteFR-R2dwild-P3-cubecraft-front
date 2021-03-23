@@ -23,8 +23,8 @@ export default function AdminPart() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const resq = await axios.get('http://localhost:4242/particularPro')
-      setDatas(resq.data.filter(produit => produit.Particular_Pro))
+      const resq = await axios.get('http://localhost:4242/particularPro/part')
+      setDatas(resq.data)
     }
     fetchData()
   }, [change])
