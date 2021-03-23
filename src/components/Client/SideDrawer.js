@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { navbarlinks } from './Navlinks'
 
-export default function SideDrawer ({ show, click }) {
+export default function SideDrawer({ show, click }) {
   const sideDrawerClass = ['sidedrawer']
   if (show) {
     sideDrawerClass.push('show')
@@ -17,4 +17,4 @@ export default function SideDrawer ({ show, click }) {
       </ul>
     </div>
   )
-
+}
