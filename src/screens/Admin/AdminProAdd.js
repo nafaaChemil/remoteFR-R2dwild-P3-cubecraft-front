@@ -19,7 +19,7 @@ export default function AdminProAdd() {
 
   const addProduct = async () => {
     const res = await axios
-      .post('http://localhost:4242/particularPro/', {
+      .post('http://localhost:4242/particularPro', {
         ...formData
       })
       .then(function (response) {
