@@ -5,10 +5,9 @@ import DelOrPutSlider from '../../components/Admin/DelOrPutSlider'
 
 export default function AdminSlider() {
   const [datas, setDatas] = useState([''])
-  const [affiched, setAffiched] = useState(true)
   const [inputVisible, setInputvisible] = useState(false)
-  const [text, setText] = useState('')
   const [newWord, setNewWord] = useState('')
+  const [textModified, setTextModified] = useState('')
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,25 +19,14 @@ export default function AdminSlider() {
 
   const deleteSlider = id => {
     axios.delete(`http://localhost:4242/slider/${id}`, {}).then(res => {
-      setAffiched(!affiched)
+      setInputvisible(!inputVisible)
     })
-  }
-
-
-  function updateSlider(id) {
-    axios
-      .put(`http://localhost:4242/slider/${id}`, {
-        Word: text
-      })
-      .then(res => {
-        setInputvisible(!inputVisible)
-        setText('')
-      })
+    console.log(id)
   }
 
   function AddSlider() {
     axios
-      .post("http://localhost:4242/slider", {
+      .post('http://localhost:4242/slider', {
         Word: newWord,
         Photo_id: 1
       })
@@ -48,7 +36,6 @@ export default function AdminSlider() {
       })
   }
 
-  console.log(newWord)
   return (
     <>
       <section id='admin'>
@@ -73,13 +60,11 @@ export default function AdminSlider() {
           {datas.map((data, index) => (
             <DelOrPutSlider
               key={index}
-              name={data.Word}
               id={data.Id}
-              handleClickSupp={() => deleteSlider(data.Id)}
-              handleClickPut={() => updateSlider(data.Id)}
-              target={data.Word}
               idUpdate={data.Id}
-              setTarget={e => setText(e.target.value)}
+              text={data.Word} // Condition ternaire ?
+              setWord={e => setTextModified(e.target.value)}
+              handleClickSupp={() => deleteSlider(data.Id)}
             ></DelOrPutSlider>
           ))}
         </div>

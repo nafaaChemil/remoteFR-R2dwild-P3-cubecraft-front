@@ -1,13 +1,19 @@
-import { useState, useEffect } from 'react'
+import { useState} from 'react'
+import axios from 'axios'
 import PropTypes from 'prop-types'
 
 export default function DelOrPutSlider(props) {
-  const [text, setText] = useState(props.name)
+  const [text, setText] = useState(props.text)
+
+  function updateSlider(id, t) {
+    axios.put(`http://localhost:4242/slider/${id}`, {
+      Word: t
+    })
+  }
 
   return (
     <div className='admin_general_Del_Edit'>
       <input
-        className=''
         id={props.id}
         value={text}
         onChange={e => setText(e.target.value)}
@@ -18,7 +24,7 @@ export default function DelOrPutSlider(props) {
         <button onClick={props.handleClickSupp}>Supp</button>
         <button
           id={`btnsliderUp-${props.idUpdate}`}
-          onClick={props.handleClickPut}
+          onClick={() => updateSlider(props.id, text)}
         >
           Update
         </button>

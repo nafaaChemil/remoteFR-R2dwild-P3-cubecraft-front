@@ -63,7 +63,7 @@ const App = () => {
             path='/admin/about/profile/:id'
             component={AdminAboutUsModified}
           />
-          <Route path='/admin/actualites' component={AdminNews} />
+          <Route path='/admin/actualites/modif/:id' component={AdminNewsModified} />
           <Route path='/admin/professionnel/add' component={AdminProAdd} />
           <Route
             path='/admin/professionnel/modif/:id'
