@@ -8,7 +8,9 @@ import AdminAboutUsAdd from './screens/Admin/AdminAboutUsAdd'
 import AdminAboutUsModified from './screens/Admin/AdminAboutUsModified'
 import AdminNews from './screens/Admin/AdminNews'
 import AdminNewsAdd from './screens/Admin/AdminNewsAdd'
-import AdminNewsModified from './screens/Admin/AdminNewsModified'
+import AdminConcept from './screens/Admin/AdminConcept'
+import AdminConceptAdd from './screens/Admin/AdminConceptAdd'
+import AdminConceptModified from './screens/Admin/AdminConceptModified'
 import AdminPro from './screens/Admin/AdminPro'
 import AdminProAdd from './screens/Admin/AdminProAdd'
 import AdminProModified from './screens/Admin/AdminProModified'
@@ -51,8 +53,8 @@ const App = () => {
         )}
         <Switch>
           <Route exact path='/' component={Home} />
-          <Route path='/admin/slider' component={AdminSlider} />
           <Route path='/about' component={About} />
+          <Route path='/concept' component={Concept} />
           <Route path='/particular' component={Particular} />
           <Route path='/pro' component={Pro} />
           <Route path='/news' component={News} />
@@ -63,8 +65,14 @@ const App = () => {
             path='/admin/about/profile/:id'
             component={AdminAboutUsModified}
           />
-          <Route path='/admin/actualites/modif/:id' component={AdminNewsModified} />
+          <Route path='/admin/about/profile' component={AdminAboutUsAdd} />
+          <Route path='/admin/about' component={AdminAboutUs} />
+          <Route path='/admin/actualites' component={AdminNews} />
+          <Route path='/admin/concept/modified/:id' component={AdminConceptModified} />
+          <Route path='/admin/concept/add' component={AdminConceptAdd} />
+          <Route path='/admin/concept' component={AdminConcept} />
           <Route path='/admin/professionnel/add' component={AdminProAdd} />
+          <Route path='/admin/slider' component={AdminSlider} />
           <Route
             path='/admin/professionnel/modif/:id'
             component={AdminProModified}
@@ -76,9 +84,6 @@ const App = () => {
             component={AdminPartModified}
           />
           <Route path='/admin/particulier' component={AdminPart} />
-          <Route path='/admin/about/profile' component={AdminAboutUsAdd} />
-          <Route path='/admin/about' component={AdminAboutUs} />
-          <Route path='/concept' component={Concept} />
         </Switch>
         {/* Test adress if location contain Admin we get the Nav of admin else the Nav site */}
         {location.pathname.includes('admin') ? '' : <Footer />}
