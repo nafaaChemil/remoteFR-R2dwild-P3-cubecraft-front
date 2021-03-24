@@ -27,13 +27,8 @@ function Home() {
             src='images/Annexe3.jpg'
             alt='a def'
           />
-          <img
-            className='thumbnail-home-concept'
-            src='images/Annexe3.jpg'
-            alt='a def'
-          />
         </div>
-        <Link className='buttonHome' to='/concept'>
+        <Link className='buttonWide' to='/concept'>
           Notre concept
         </Link>
       </section>
@@ -48,7 +43,7 @@ function Home() {
               videtur, inermis ac nudus est. tollit definitiones, nihil de
               dividendo ac
             </p>
-            <Link className='buttonHome' to='/pro'>
+            <Link className='button' to='/pro'>
               Découvrez nos solutions
             </Link>
           </div>
@@ -62,7 +57,7 @@ function Home() {
               videtur, inermis ac nudus est. tollit definitiones, nihil de
               dividendo ac
             </p>
-            <Link className='buttonHome' to='/particular'>
+            <Link className='button' to='/particular'>
               Découvrez nos solutions
             </Link>
           </div>
@@ -88,7 +83,7 @@ function Home() {
             alt='actu'
           />
         </div>
-        <Link className='buttonHome' to='/news'>
+        <Link className='button' to='/news'>
           Toute notre actualités
         </Link>
       </section>

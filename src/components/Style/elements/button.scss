@@ -1,0 +1,27 @@
+.button {
+    background-color: $colorPrimary;
+    color: $colorThird;
+    border-radius: 15px;
+    padding: 2vh;
+    width: 15vw;
+    text-align: center;
+    letter-spacing:1.1px;
+    font-family: $typoSecondaire;
+}
+
+@mixin button {
+    background-color: $colorSecondary;
+    color: $colorThird;
+    border-radius: 10px;
+    padding: 2vh;
+    margin:$spaceH_XL;
+    width: 15vw;
+    text-align: center;
+    letter-spacing:1px;
+    font-family: $typoSecondaire;
+}
+
+@mixin buttonWide {
+    @include button;
+    width: 22vw;
+}
