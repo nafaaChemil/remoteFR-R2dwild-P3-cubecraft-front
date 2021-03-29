@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import ScrollingText from './ScrollingText'
+import IntroEncart from '../../components/Client/IntroEncart'
 
 function Home() {
   return (
@@ -17,44 +18,8 @@ function Home() {
           </div>
         </div>
       </div>
-      <section id='home-concept'>
-        <h2>
-          HIGH CUBE ECO DESIGN, spécialiste de la construction en conteneur
-          maritime.
-        </h2>
 
-        <div
-          className='home-concept-image part'
-          style={{
-            backgroundImage: `url("images/Annexe6.jpg")`
-          }}
-        >
-          <ul>
-            <li>
-              <h3>Vous êtes un particulier ?</h3>
-            </li>
-            <li>
-              <a href=''>Découvez nos solutions</a>
-            </li>
-          </ul>
-        </div>
-
-        <div
-          className='home-concept-image part'
-          style={{
-            backgroundImage: `url("images/Annexe6.jpg")`
-          }}
-        >
-          <ul>
-            <li>
-              <h3>Vous êtes un particulier ?</h3>
-            </li>
-            <li>
-              <a href=''>Découvrez nos solutions</a>
-            </li>
-          </ul>
-        </div>
-      </section>
+      <IntroEncart />
 
       <section id='home-produits'>
         <div className='produits-pro'>
