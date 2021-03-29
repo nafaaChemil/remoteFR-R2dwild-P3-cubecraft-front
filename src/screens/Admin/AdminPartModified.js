@@ -26,7 +26,7 @@ export default function AdminPartModified(props) {
               CategoryName: response.data.CategoryName,
               Price: response.data.Price,
               Description: response.data.Description,
-              Particular_Pro: 1,
+              Individual: 1,
               photo_id: response.data.Photo_id
             })
           }
