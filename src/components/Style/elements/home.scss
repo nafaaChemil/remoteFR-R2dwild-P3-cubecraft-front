@@ -46,15 +46,10 @@
     color: $colorPrimary;
     margin-bottom: 5vh;
   }
-  a{
-    @include buttonWide;
-  }
+  
 }
 .home-concept-image{
   @include encart_intro;
-  h3 {
-
-  }
 }
 .thumbnail-home-concept{
   width: 85%;

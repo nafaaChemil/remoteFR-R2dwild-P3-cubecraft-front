@@ -1,7 +1,7 @@
 
 // Redirect to individuals and pro pages
 @mixin encart_intro {
-  height: 630px;
+  height: 500px;
   border-radius: 35px;
   background-position: center;
   background-repeat: no-repeat;
@@ -12,10 +12,18 @@
   justify-content: flex-end;
   margin:$marginXXL;
   margin-bottom: $spaceH_XL ;
-  padding:$padXXL;
   width: 75%;
+  box-shadow: 0px 4px 30px 3px rgba(8, 26, 42, 0.1);
+  // Responsive part
+  @include sm {margin:$spaceH_XXL auto ;}
   h3 {
     color: $colorThird;
-    font-size: $typoL;
+    position: relative;
+    top:$spaceH_M;
+  }
+  a {
+    @include button;
   }
 }
+
+

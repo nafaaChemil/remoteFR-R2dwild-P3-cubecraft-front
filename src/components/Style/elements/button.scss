@@ -1,16 +1,14 @@
 @mixin button {
-    background-color: $colorSecondary;
-    color: $colorThird;
+    background-color: $colorThird;
+    color: $colorSecondary;
     border-radius: 10px;
-    padding: 2vh;
-    margin:$spaceH_XL;
-    width: 15vw;
+    padding: $spaceH_XL;
+    width: 285px;
     text-align: center;
-    letter-spacing:1px;
-    font-family: $typoSecondaire;
+    font-family: $typoPrimaire;
+    border:1px solid $colorSecondary;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-@mixin buttonWide {
-    @include button;
-    width: 22vw;
-}

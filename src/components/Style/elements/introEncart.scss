@@ -6,13 +6,15 @@
   align-items: center;
   h2{
     text-align: center;
-    color: $colorPrimary;
-    margin-bottom: 5vh;
   }
   .responsive {
     display: flex;
     width: 100%;
     justify-content: center;
+    // Mediaqueries
+    @include sm {
+      flex-direction: column;
+    }
   }
 
   ul {
@@ -22,19 +24,20 @@
       background-color: #061722b8;
       display: flex;
       width: 100%;
-      margin: -2rem;
-      padding: 2rem;
       position: relative;
       bottom: 0px;
       z-index: 1;
       border-radius: 0 0 35px 35px;
       height: 130px;
-      margin-top: -120px;
+      margin-top: -130px;
+      padding-top: $spaceH_XXL;
+
     }
     li {
       z-index: 2;
       margin-top:$spaceH_XXL;
     }
-      a{@include buttonWide;}
+
   }
 }
+

@@ -1,10 +1,13 @@
 @import 'elements/reset.scss';
 @import 'variables.scss';
+@import 'elements/elementSpacing.scss';
+@import 'elements/breakpoints.scss';
+@import 'elements/mediaQueries.scss';
+
 
 // Elements for components
 @import 'elements/typo.scss';
 @import 'elements/global.scss';
-@import 'elements/elementSpacing.scss';
 @import 'elements/ButtonAdd.scss';
 @import 'elements/SuppOrEdit.scss';
 @import 'elements/Navbar.scss';

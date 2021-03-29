@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700&display=swap');
 
 
 // Font-family
@@ -14,12 +14,17 @@ h1{
 h2 {
     font-family: $typoPrimaire;
     font-size: $typoXL;
-    color:$colorSecondary;
+    color:$colorPrimary;
+    margin-bottom:$spaceH_XXL;
+    font-weight: 400;
+    max-width: 1000px;
+    line-height:130%;
 }
 
 h3 {
     font-family: $typoPrimaire;
-    font-size: $typoXL;
+    font-size: $typoL;
+    font-weight: 300;
 }
 
 p {
