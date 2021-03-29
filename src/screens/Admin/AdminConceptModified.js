@@ -2,11 +2,10 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 
-export default function AdminAboutUsModified() {
+export default function AdminConceptModified() {
   const history = useHistory()
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
-  const [jobName, setJobName] = useState('')
+  const [title, setTitle] = useState('')
+  const [textConcept, setTextConcept] = useState('')
   const [picture, setPicture] = useState('')
   const [valid, setValid] = useState(false)
   const [datas, setDatas] = useState([])
@@ -14,7 +13,7 @@ export default function AdminAboutUsModified() {
   let { id } = useParams()
   useEffect(() => {
     const fetchData = async () => {
-      const resq = await axios.get(`http://localhost:4242/about/${id}`)
+      const resq = await axios.get(`http://localhost:4242/concept/${id}`)
       setDatas(resq.data)
     }
     fetchData()
@@ -22,22 +21,20 @@ export default function AdminAboutUsModified() {
 
   const modified = () => {
     axios
-      .put(`http://localhost:4242/about/${id}`, {
-        FirstName: firstName,
-        LastName: lastName,
-        JobName: jobName,
+      .put(`http://localhost:4242/concept/${id}`, {
+        Text: textConcept,
+        Title: title,
         Photo_id: picture
       })
       .then(res => {
         setValid(!valid)
-        setFirstName(firstName)
-        setLastName(lastName)
-        setJobName(jobName)
+        setTitle(title)
+        setTextConcept(textConcept)
         setPicture(picture)
       })
   }
   function comeBack() {
-    history.push('/admin/about')
+    history.push('/admin/concept')
   }
 
   return (
@@ -45,33 +42,23 @@ export default function AdminAboutUsModified() {
       {datas.map(data => (
         <>
           <label>
-            Prénom
+            Titre du concept
             <input
               type='text'
-              placeholder={data.FirstName}
-              name='firstname'
-              value={firstName}
-              onChange={event => setFirstName(event.target.value)}
+              placeholder={data.Title}
+              name='title'
+              value={title}
+              onChange={event => setTitle(event.target.value)}
             />
           </label>
           <label>
-            Nom
-            <input
+            Concept
+            <textarea
               type='text'
-              placeholder={data.LastName}
-              name='lastname'
-              value={lastName}
-              onChange={event => setLastName(event.target.value)}
-            />
-          </label>
-          <label>
-            Poste
-            <input
-              type='text'
-              placeholder={data.JobName}
-              name='jobname'
-              value={jobName}
-              onChange={event => setJobName(event.target.value)}
+              placeholder={data.Text}
+              name='concept'
+              value={textConcept}
+              onChange={event => setTextConcept(event.target.value)}
             />
           </label>
           <label>
@@ -93,7 +80,7 @@ export default function AdminAboutUsModified() {
         >
           Valider modification
         </button>
-        {valid ? 'Le collaborateur à été modifié' : ''}
+        {valid ? 'Le concept à été modifié' : ''}
         <button onClick={comeBack}>Retour</button>
       </div>
     </div>

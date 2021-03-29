@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-
-import axios from 'axios'
 
 export default function AdminProModified(props) {
   const [productAdded, setProductAdded] = useState(false)
@@ -11,7 +10,7 @@ export default function AdminProModified(props) {
     CategoryName: '',
     Price: 0,
     Description: '',
-    Particular_Pro: 0,
+    Individual: 0,
     photo_id: 1
   })
   const params = props.match.params
@@ -23,12 +22,11 @@ export default function AdminProModified(props) {
         .then(function (response) {
           if (response.status === 200) {
             setStatus(200)
-            console.log(response.data)
             setFormData({
               CategoryName: response.data.CategoryName,
               Price: response.data.Price,
               Description: response.data.Description,
-              Particular_Pro: 0,
+              Individual: 0,
               photo_id: response.data.Photo_id
             })
           }
@@ -79,7 +77,7 @@ export default function AdminProModified(props) {
           CategoryName: '',
           Price: 0,
           Description: '',
-          Particular_Pro: 0,
+          Individual: 0,
           photo_id: 1
         })
       })

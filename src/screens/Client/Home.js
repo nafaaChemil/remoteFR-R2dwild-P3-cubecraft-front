@@ -1,5 +1,5 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
+import ScrollingText from './ScrollingText'
 
 function Home() {
   return (
@@ -13,7 +13,7 @@ function Home() {
         <div className='home-hero-carousel'>
           <h1 className='home-title'>Une solution</h1>
           <div className='carousel-text'>
-            <p>Ecologique</p>
+            <ScrollingText />
           </div>
         </div>
       </div>

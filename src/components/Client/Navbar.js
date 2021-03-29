@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { navbarlinks } from './Navlinks'
 
-const Navbar = ({ click }) => {
+export default function Navbar({ click }) {
   return (
     <nav className='navbar'>
       <img src='/images/Highcubelogo.png' />
@@ -21,5 +21,3 @@ const Navbar = ({ click }) => {
     </nav>
   )
 }
-
-export default Navbar

@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-
 import axios from 'axios'
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 export default function AdminPartAdd() {
   const [formData, setFormData] = useState({
     CategoryName: '',
     Price: 0,
     Description: '',
-    ParticularPro: 1,
+    Individual: 1,
     photo_id: 1
   })
 
@@ -31,7 +30,7 @@ export default function AdminPartAdd() {
             CategoryName: '',
             Price: 0,
             Description: '',
-            ParticularPro: 1,
+            Individual: 1,
             photo_id: 1
           })
         }
