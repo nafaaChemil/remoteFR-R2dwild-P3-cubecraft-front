@@ -3,22 +3,31 @@
 
 
 // Font-family
-$typoSecondaire: "Roboto", sans-serif;
 $typoPrimaire: 'Noto Sans JP', sans-serif;
+$typoSecondaire: "Roboto", sans-serif;
 
-h1{
-    
+h1{ 
     font-family: $typoPrimaire;
-    font-size: $typoXL;
-    //padding:$spaceH_XL;
+    font-size: $typoXXL;
 }
 
 h2 {
     font-family: $typoPrimaire;
+    font-size: $typoXL;
+    color:$colorSecondary;
+}
+
+h3 {
+    font-family: $typoPrimaire;
+    font-size: $typoXL;
+    color:$colorSecondary;
 }
 
 p {
-    font-family: $typoPrimaire;
+    font-family: $typoSecondaire;
     line-height: 1.5rem;
-    font-size: $typoL;
+    margin-bottom: 5vh;
+    margin-top: 2vh;
+    font-size: $typoS;
+    text-align: left;
 }

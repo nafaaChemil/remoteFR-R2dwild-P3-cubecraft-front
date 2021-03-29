@@ -1,1 +1,29 @@
-
+@mixin encart_intro {
+  width: 95%;
+  height: 630px;
+  border-radius: 35px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: $spaceH_XL ;
+  ul {
+    background-color:$colorAlphaP;
+    width: 100%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 0 0 35px 35px;
+    color: $colorThird;
+    li {
+      margin-bottom: $spaceH_XXL;
+    }
+    h3{
+      color: $colorThird;
+    }
+  }
+}

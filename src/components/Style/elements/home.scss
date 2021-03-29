@@ -41,22 +41,20 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
   h2{
     text-align: center;
     color: $colorPrimary;
     margin-bottom: 5vh;
-    font-size: $typoXL;
   }
   a{
     @include buttonWide;
   }
 }
 .home-concept-image{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
+  @include encart_intro;
+  h3 {
+
+  }
 }
 .thumbnail-home-concept{
   width: 85%;
@@ -86,7 +84,6 @@
 .produits-pro {
   img {
     position: relative;
-    left: -5%;
   }
 }
 
@@ -104,17 +101,6 @@
     display: flex;
     flex-direction: column;
     padding: 2vh 2vw;
-    h2{
-      color: $colorSecondary;
-      font-size: $typoXL;
-      letter-spacing:1.1px;
-    }
-    p {
-      margin-bottom: 5vh;
-      margin-top: 2vh;
-      font-size: $typoS;
-      text-align: left;
-    }
 }
 #home-actualite{
   width: 95%;
@@ -126,19 +112,15 @@
   justify-content: center;
   height: 100vh;
   h2{
-    color: $colorSecondary;
-    font-size: $typoXL;
-    letter-spacing:1.1px;
     margin-bottom: 3vh;
     align-self: flex-start;
-    margin-left: 2vw;
   }
   .container-thumbnail-actualite{
     display: flex;
     justify-content: space-between;
     align-items: center;
     .thumbnails-actualite{
-      width: 25%;
+      width: 98%;
       object-fit: cover;
     }
   }

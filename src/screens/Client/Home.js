@@ -18,20 +18,43 @@ function Home() {
       </div>
       <section id='home-concept'>
         <h2>
-          HIGH CUBE ECO DESIGN, SPÉCIALISTE DE LA CONSTRUCTION EN CONTENEUR
-          MARITIME
+          HIGH CUBE ECO DESIGN, spécialiste de la construction en conteneur
+          maritime.
         </h2>
-        <div className='home-concept-image'>
-          <img
-            className='thumbnail-home-concept'
-            src='images/Annexe3.jpg'
-            alt='a def'
-          />
+
+        <div
+          className='home-concept-image part'
+          style={{
+            backgroundImage: `url("images/Annexe6.jpg")`
+          }}
+        >
+          <ul>
+            <li>
+              <h3>Vous êtes un particulier ?</h3>
+            </li>
+            <li>
+              <a href=''>Découvez nos solutions</a>
+            </li>
+          </ul>
         </div>
-        <Link className='buttonWide' to='/concept'>
-          Notre concept
-        </Link>
+
+        <div
+          className='home-concept-image part'
+          style={{
+            backgroundImage: `url("images/Annexe6.jpg")`
+          }}
+        >
+          <ul>
+            <li>
+              <h3>Vous êtes un particulier ?</h3>
+            </li>
+            <li>
+              <a href=''>Découvrez nos solutions</a>
+            </li>
+          </ul>
+        </div>
       </section>
+
       <section id='home-produits'>
         <div className='produits-pro'>
           <img className='img-produits' src='images/Annexe1.jpg' alt='maison' />
@@ -66,23 +89,35 @@ function Home() {
       </section>
       <section id='home-actualite'>
         <h2>Notre actualités</h2>
-        <div className='container-thumbnail-actualite'>
-          <img
-            className='thumbnails-actualite'
-            src='images/Annexe4.jpg'
-            alt='actu'
-          />
-          <img
-            className='thumbnails-actualite'
-            src='images/Annexe4.jpg'
-            alt='actu'
-          />
-          <img
-            className='thumbnails-actualite'
-            src='images/Annexe4.jpg'
-            alt='actu'
-          />
-        </div>
+        <ul className='container-thumbnail-actualite'>
+          <li>
+            <img
+              className='thumbnails-actualite'
+              src='images/Annexe4.jpg'
+              alt='actu'
+            />
+            <h3>Titre</h3>
+            <p>jkfdjfkdsjfkds jfkdsjfdsk jfkdsjfkds</p>
+          </li>
+          <li>
+            <img
+              className='thumbnails-actualite'
+              src='images/Annexe4.jpg'
+              alt='actu'
+            />
+            <h3>Titre</h3>
+            <p>jkfdjfkdsjfkds jfkdsjfdsk jfkdsjfkds</p>
+          </li>
+          <li>
+            <img
+              className='thumbnails-actualite'
+              src='images/Annexe4.jpg'
+              alt='actu'
+            />
+            <h3>Titre</h3>
+            <p>jkfdjfkdsjfkds jfkdsjfdsk jfkdsjfkds</p>
+          </li>
+        </ul>
         <Link className='button' to='/news'>
           Toute notre actualités
         </Link>
