@@ -19,7 +19,25 @@ function Home() {
         </div>
       </div>
 
-      <IntroEncart />
+      <section id='concept'>
+        <h2>
+          HIGH CUBE ECO DESIGN, spécialiste de la construction en conteneur
+          maritime.
+        </h2>
+        <div className='responsive'>
+          <IntroEncart
+            imageEncart='images/Annexe6.jpg'
+            titleH3='Vous êtes un particulier ?'
+            link='Découvez nos solutions'
+          />
+
+          <IntroEncart
+            imageEncart='images/Annexe5.jpg'
+            titleH3='Vous êtes un professionnel ?'
+            link='Découvez nos solutions'
+          />
+        </div>
+      </section>
 
       <section id='home-produits'>
         <div className='produits-pro'>
