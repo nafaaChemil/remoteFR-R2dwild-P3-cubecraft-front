@@ -1,8 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { navbarlinks } from './Navlinks'
+import { useState } from 'react'
 
-export default function Navbar({ click }) {
+export default function Navbar({ click, stateBt }) {
   return (
     <nav className='navbar'>
       <img src='/images/Highcubelogo.png' />
@@ -13,10 +14,11 @@ export default function Navbar({ click }) {
           </li>
         ))}
       </ul>
-      <div className='hamburger__menu' onClick={click}>
-        <div></div>
-        <div></div>
-        <div></div>
+
+      <div className={stateBt} onClick={click}>
+        <div className='b1'></div>
+        <div className='b2'></div>
+        <div className='b3'></div>
       </div>
     </nav>
   )
