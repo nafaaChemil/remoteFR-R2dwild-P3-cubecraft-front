@@ -7,7 +7,6 @@
     width: 100%;
     position: relative;
     color: white;
-    text-shadow: 1px 1px black;
     .home-hero-carousel{
       position: absolute;
       display: flex;
@@ -34,38 +33,19 @@
 .Home-logo {
     height: 40vmin;
   }
-#home-concept{
-  width: 95%;
-  max-width: 1400px;
-  margin: 5vh auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  h2{
-    text-align: center;
-    color: $colorSecondary;
-    margin-bottom: 5vh;
-    font-size: $typoXL;
-  }
-  a{
-    margin: 5vh 0;
-    text-decoration: none;
-  }
-}
-.home-concept-image{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
+
 .thumbnail-home-concept{
-  width: 45%;
+  width: 85%;
   object-fit: cover;
+  margin: 0 auto;
+  border: 1px solid white;
+  box-shadow: 3px 3px 50px #cfcfcf;
+  margin-bottom: $spaceH_M;
 }
 #home-produits{
     display: flex;
+    height: 100vh;
     flex-direction: column;
-    
     max-width: 1400px;
     width: 95%;
     margin: 3vh auto;
@@ -73,6 +53,23 @@
 .produits-pro, .produits-part{
   display: flex;
   align-items: center;
+  justify-content: center;
+  height: 50vh;
+  padding: $padM;
+  margin: $marginM;
+}
+
+.produits-pro {
+  img {
+    position: relative;
+  }
+}
+
+.produits-part {
+  img {
+    position: relative;
+    right: -5%;
+  }
 }
 .img-produits{
     object-fit: cover;
@@ -82,19 +79,6 @@
     display: flex;
     flex-direction: column;
     padding: 2vh 2vw;
-    h2{
-      color: $colorSecondary;
-      font-size: $typoXL;
-      letter-spacing:1.1px;
-    }
-    p {
-      margin-bottom: 5vh;
-      margin-top: 2vh;
-      font-size: $typoS;
-      line-height: 1.5rem;
-      letter-spacing: 1px;
-      text-align: justify;
-    }
 }
 #home-actualite{
   width: 95%;
@@ -103,20 +87,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  height: 100vh;
   h2{
-    color: $colorSecondary;
-    font-size: $typoXL;
-    letter-spacing:1.1px;
     margin-bottom: 3vh;
     align-self: flex-start;
-    margin-left: 2vw;
   }
   .container-thumbnail-actualite{
     display: flex;
     justify-content: space-between;
     align-items: center;
     .thumbnails-actualite{
-      width: 25%;
+      width: 98%;
       object-fit: cover;
     }
   }
@@ -124,20 +106,4 @@
     margin: 5vh auto;
   }
 }
-.thumbnail-home-concept, .img-produits, .thumbnails-actualite{
-  box-shadow: 10px 10px 10px #0617224b;
-}
-
-// @media (max-width: 960px) {
-// 	.produits-pro, .produits-part {
-// 		 background: #f4f4f4;
-//   padding: 4em 0;
-//   display: grid;
-//   grid-gap: 2em;
-//   align-items: center;
-//   grid-template-columns: minmax(1em, 1fr) repeat(2, minmax(200px, 400px)) minmax(
-//       1em,
-//       1fr
-//     );
-// 	}
-// }
+ 

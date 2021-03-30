@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import ScrollingText from './ScrollingText'
+import IntroEncart from '../../components/Client/IntroEncart'
 
 function Home() {
   return (
@@ -17,27 +18,27 @@ function Home() {
           </div>
         </div>
       </div>
-      <section id='home-concept'>
+
+      <section id='concept'>
         <h2>
-          HIGH CUBE ECO DESIGN, SPÉCIALISTE DE LA CONSTRUCTION EN CONTENEUR
-          MARITIME
+          HIGH CUBE ECO DESIGN, spécialiste de la construction en conteneur
+          maritime.
         </h2>
-        <div className='home-concept-image'>
-          <img
-            className='thumbnail-home-concept'
-            src='images/Annexe3.jpg'
-            alt='a def'
+        <div className='responsive'>
+          <IntroEncart
+            imageEncart='images/Annexe6.jpg'
+            titleH3='Vous êtes un particulier ?'
+            link='Découvez nos solutions'
           />
-          <img
-            className='thumbnail-home-concept'
-            src='images/Annexe3.jpg'
-            alt='a def'
+
+          <IntroEncart
+            imageEncart='images/Annexe5.jpg'
+            titleH3='Vous êtes un professionnel ?'
+            link='Découvez nos solutions'
           />
         </div>
-        <Link className='buttonHome' to='/concept'>
-          Notre concept
-        </Link>
       </section>
+
       <section id='home-produits'>
         <div className='produits-pro'>
           <img className='img-produits' src='images/Annexe1.jpg' alt='maison' />
@@ -49,7 +50,7 @@ function Home() {
               videtur, inermis ac nudus est. tollit definitiones, nihil de
               dividendo ac
             </p>
-            <Link className='buttonHome' to='/pro'>
+            <Link className='button' to='/pro'>
               Découvrez nos solutions
             </Link>
           </div>
@@ -63,7 +64,7 @@ function Home() {
               videtur, inermis ac nudus est. tollit definitiones, nihil de
               dividendo ac
             </p>
-            <Link className='buttonHome' to='/particular'>
+            <Link className='button' to='/particular'>
               Découvrez nos solutions
             </Link>
           </div>
@@ -72,24 +73,36 @@ function Home() {
       </section>
       <section id='home-actualite'>
         <h2>Notre actualités</h2>
-        <div className='container-thumbnail-actualite'>
-          <img
-            className='thumbnails-actualite'
-            src='images/Annexe4.jpg'
-            alt='actu'
-          />
-          <img
-            className='thumbnails-actualite'
-            src='images/Annexe4.jpg'
-            alt='actu'
-          />
-          <img
-            className='thumbnails-actualite'
-            src='images/Annexe4.jpg'
-            alt='actu'
-          />
-        </div>
-        <Link className='buttonHome' to='/news'>
+        <ul className='container-thumbnail-actualite'>
+          <li>
+            <img
+              className='thumbnails-actualite'
+              src='images/Annexe4.jpg'
+              alt='actu'
+            />
+            <h3>Titre</h3>
+            <p>jkfdjfkdsjfkds jfkdsjfdsk jfkdsjfkds</p>
+          </li>
+          <li>
+            <img
+              className='thumbnails-actualite'
+              src='images/Annexe4.jpg'
+              alt='actu'
+            />
+            <h3>Titre</h3>
+            <p>jkfdjfkdsjfkds jfkdsjfdsk jfkdsjfkds</p>
+          </li>
+          <li>
+            <img
+              className='thumbnails-actualite'
+              src='images/Annexe4.jpg'
+              alt='actu'
+            />
+            <h3>Titre</h3>
+            <p>jkfdjfkdsjfkds jfkdsjfdsk jfkdsjfkds</p>
+          </li>
+        </ul>
+        <Link className='button' to='/news'>
           Toute notre actualités
         </Link>
       </section>
