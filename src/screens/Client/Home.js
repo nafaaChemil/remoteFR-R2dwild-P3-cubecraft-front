@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import ScrollingText from './ScrollingText'
 import IntroEncart from '../../components/Client/IntroEncart'
+import EncartSite from '../../components/Client/EncartSite'
 
 function Home() {
   return (
@@ -19,24 +20,40 @@ function Home() {
         </div>
       </div>
 
+      {/* Encart intro */}
       <section id='concept'>
         <h2>
           HIGH CUBE ECO DESIGN, spécialiste de la construction en conteneur
           maritime.
         </h2>
+
         <div className='responsive'>
           <IntroEncart
             imageEncart='images/Annexe6.jpg'
             titleH3='Vous êtes un particulier ?'
-            link='Découvez nos solutions'
+            link='Découvrez nos solutions'
           />
 
           <IntroEncart
             imageEncart='images/Annexe5.jpg'
             titleH3='Vous êtes un professionnel ?'
-            link='Découvez nos solutions'
+            link='Découvrez nos solutions'
           />
         </div>
+      </section>
+
+      {/* Encart Site */}
+      <section className='responsive'>
+        <h2 className='uCenter'>Un concept avec de nombreux avantages.</h2>
+
+        <EncartSite
+          imageEncart='images/Annexe2.jpg'
+          titleH3={[`A l'origine`]}
+          texte={[
+            `Les conteneurs maritimes qui ont été conçus pour transporter des marchandises à travers le monde ont été créées por résister à tous les climats les plus rudes du monde. De l'eau salée aux températures glaciales, le container maritime est destiné à gérer le pire des pires tout en protégeant sa cargaison. Composé d'acier corten, 
+            ils résistent énormément à la corrosion ou à la rouille`
+          ]}
+        />
       </section>
 
       <section id='home-produits'>

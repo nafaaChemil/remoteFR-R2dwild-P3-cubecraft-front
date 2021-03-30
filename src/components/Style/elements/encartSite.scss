@@ -1,0 +1,36 @@
+.encart_site {
+    @include encart_intro;
+    width: 95%;
+    @include sm {
+      width: 75%;
+    }
+    max-width:$max-width-block;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding:$padXXL;
+    margin: 5vh auto;
+        &::before {
+          content: "";
+          background-color: #061722b8;
+          display: flex;
+          width: 50%;
+          max-width:700px;
+          position: absolute;
+          z-index: 1;
+          border-radius: 35px 0 0 35px;
+          height: 500px;
+          margin: -$padXXL;
+        }
+    h3,p {
+      z-index: 2;
+      margin-top:$spaceH_XXL;
+      width: 50%;
+    }
+
+    p {
+      color: $colorThird;
+    }
+  }
+
+
+
