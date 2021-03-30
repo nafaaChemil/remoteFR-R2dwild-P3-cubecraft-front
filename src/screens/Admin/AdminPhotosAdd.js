@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
 export default function AdminPhotosAdd() {
@@ -24,9 +24,6 @@ export default function AdminPhotosAdd() {
     )
     history.push('/admin/photos')
   }
-
-
-
   function comeBack() {
     history.push('/admin/photos')
   }
