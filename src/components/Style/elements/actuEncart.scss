@@ -1,0 +1,25 @@
+#actu{
+  max-width: 1400px;
+  margin: 25vh auto;
+
+  .actu_card{
+    display: flex;
+    flex-direction: row;
+    border: solid 2px red;
+    border-radius: 35px;
+   img{
+      max-width: 100%;
+      border: solid 3px blue;
+      border-radius: 35px 0 0px 35px;
+    }
+    .actu_text {
+      width: 100%;
+      border: solid 4px green;
+      text-align: center;
+      p{
+        text-align: center;
+        border: solid 4px purple;
+      }
+    }
+  }
+}

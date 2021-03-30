@@ -1,9 +1,18 @@
-function News() {
+import React from 'react'
+import ActuEncart from '../../components/Client/ActuEncart'
+import '../../components/Style/elements/actuEncart.scss'
+
+export default function News() {
   return (
-    <div>
-      <h1>A B C D</h1>
-    </div>
+    <section id='actu'>
+      <div className='responsive'>
+        <ActuEncart
+          imageEncart='images/Annexe5.jpg'
+          titleH3='Le Monde2'
+          text='Article'
+          link='Lien'
+        />
+      </div>
+    </section>
   )
 }
-
-export default News
