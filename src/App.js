@@ -15,7 +15,7 @@ import AdminPart from './screens/Admin/AdminPart'
 import AdminPartAdd from './screens/Admin/AdminPartAdd'
 import AdminPartModified from './screens/Admin/AdminPartModified'
 import AdminPhotos from './screens/Admin/AdminPhotos'
-import TestUpload from './screens/Admin/TestUpload'
+import AdminPhotosAdd from './screens/Admin/AdminPhotosAdd'
 import AdminPro from './screens/Admin/AdminPro'
 import AdminProAdd from './screens/Admin/AdminProAdd'
 import AdminProModified from './screens/Admin/AdminProModified'
@@ -81,7 +81,7 @@ const App = () => {
           />
           <Route path='/admin/particulier/add' component={AdminPartAdd} />
           <Route path='/admin/particulier' component={AdminPart} />
-          <Route path='/admin/photos/add' component={TestUpload} />
+          <Route path='/admin/photos/add' component={AdminPhotosAdd} />
           <Route path='/admin/photos' component={AdminPhotos} />
           <Route
             path='/admin/professionnel/modif/:id'

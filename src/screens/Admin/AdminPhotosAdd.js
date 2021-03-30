@@ -3,27 +3,31 @@ import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
 export default function AdminPhotosAdd() {
-  const [myImage, setMyImage] = useState([])
+  // const [myImage, setMyImage] = useState([])
   const [valid, setValid] = useState(false)
+  const [file, setFile] = useState({
+    data: '',
+    name: ''
+  })
 
   let history = useHistory()
 
-  const handleAdd = e => {
-    setMyImage(oldArray => [...oldArray, e.target.files])
-  }
+console.log(file.name)
 
   const handleSubmit = () => {
-    myImage.map(img =>
-      axios
-        .post(`http://localhost:4242/photos`, {
-          Name: `images/${img[0].name.replace(/ /g, '_')}`
-        })
-        .then(res => {
-          setValid(!valid)
-        })
-    )
+    axios.post('http://localhost:4242/photos', {
+      Name: `/images/${file.name}`
+    })
+    const data = new FormData()
+    data.append('name', file.name)
+    data.append('file', file.data)
+    axios
+      .post('http://localhost:4242/upload', data)
+      .then(res => console.log(res))
+      .catch(err => console.log(err))
     history.push('/admin/photos')
   }
+
   function comeBack() {
     history.push('/admin/photos')
   }
@@ -31,11 +35,21 @@ export default function AdminPhotosAdd() {
   return (
     <div className='container-image'>
       <div>
-        <label> image : </label>
-        <input type='file' onChange={handleAdd} />
+        <label htmlFor='file'>File</label>
+        <input
+          type='file'
+          id='file'
+          accept='image/png, image/jpeg'
+          onChange={e =>
+            setFile({
+              data: e.target.files[0],
+              name: e.target.files[0].name.replace(/ /g, '_')
+            })
+          }
+        />
       </div>
       <div className='block-select-img'>
-        <ul>
+        {/* <ul>
           {myImage.length === 0 ? (
             <li>Aucune photo</li>
           ) : (
@@ -43,7 +57,8 @@ export default function AdminPhotosAdd() {
               <li key={i}>{img[0].name.replace(/ /g, '_')}</li>
             ))
           )}
-        </ul>
+        </ul> */}
+        <p>{file.name}</p>
       </div>
       <button
         onClick={handleSubmit}
