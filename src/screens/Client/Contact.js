@@ -7,6 +7,7 @@ class Contact extends React.Component {
       firstName:'',
       lastName:'',
       email:'',
+      tel:'',
       message:'',
     };
     this.onChange = this.onChange.bind(this);
@@ -24,9 +25,14 @@ class Contact extends React.Component {
 
       render() {
         return (
-          <div className="form">
+          
+          <div className="container-form">
+            <div className="background-container">
             <div>
-              <h1 className="title-form">Nous contacter ✉️ </h1>
+              <h1 className="title-form">
+                <p className="p-form"> ✉️ Une question ? Nous sommes là !  </p>
+
+                 </h1>
             </div>
             <form on submit={this.submitForm}>
             
@@ -58,6 +64,15 @@ class Contact extends React.Component {
               </div>
 
               <div className="data-form">
+                <input placeholder="téléphone"
+                  type="tel"
+                  id="tel"
+                  name="tel"
+                  onchange={this.onChange}
+                  required value={this.state.tel} />
+              </div>
+
+              <div className="data-form">
                 <textarea placeholder="Message" className="textarea-form"
                   type="text"
                   id="message"
@@ -72,6 +87,9 @@ class Contact extends React.Component {
               </div>
             </form>
           </div>
+          </div>
+          
+        
   )
 }
 }

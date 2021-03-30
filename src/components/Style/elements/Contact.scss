@@ -1,64 +1,221 @@
-
-.title-form {
- border: solid red 2px;
-  color: #38892C;
-  text-align: center;
-  margin-bottom: 30px;
-  
-}
-.form {
-  height: 150vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border: solid yellow 2px;
+.background-container {
+  border: solid $colorPrimary 2px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
-input {
-  width: 75%;
-  height: 7vh;
-  border: solid #38892C 2px;
-  vertical-align: middle;
+.container-form {
+  width: 500px;
+  margin: auto;
   text-align: left;
-  color:#071723;
+  background-color: $colorThird ;
+
 }
 
-.data-form {
-  padding: 20px;
-  border-radius: 3px;
-  margin-bottom: 20px;
-  background: #fff;
-  font-size: 16px;
-  color:#071723;
-  outline: none;
-  height: 20px;
-  width: 50%;
-  border: solid red 2px;
+.container-form .data-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 0;
+  color: $colorSecondary;
+  padding-top: 20px;
+  height: 100px;
+
 }
 
+.p-form {
+ 
+   color: $colorSecondary;
+   text-align: center;
+   margin-top: 20vh;
+   font-size: large;
+ }
 .textarea-form {
-  height: 30vh;
-  width: 75%;
+    height: 70px;
+    border: solid $colorPrimary 2px;
+}
+
+.data-form input:not([type="submit"]), textarea {
+  flex-grow: 1;
+  border-radius: 5px;
+  background-color: $colorThird;
+  margin-right: 10px;
+  height: 30px;
+  border: solid $colorPrimary 2px;
 }
 
 .btn-form {
   border: none;
   font-weight: 500;
   font-size: 20px;
-  color: #071723; 
   cursor: pointer;
   transition: 0.2s ease-in-out;
   margin-top: 10px;
   background-color: $colorPrimary;
   color: $colorThird;
   border-radius: 15px;
-  padding: 2vh;
   width: 15vw;
   text-align: center;
   letter-spacing:1.1px;
   margin: 5vh;
 }
+    .btn-form:hover {
+      background-color: $colorSecondary;
+  }
 
-.btn-form:hover {
-  background-color: #38892C;
+
+/*
+@media only screen and (max-width: 280px) {
+.MailForm {
+  width: 200px;
+  margin: auto;
+  text-align: left;
+  background-color:rgb(43, 42, 42);
+  color: #D8F3DC;
 }
+
+.MailForm .form-data {
+display: flex;
+padding-left: 10px;
+background-color: #74c69d;
+padding-top: 10px;
+padding-bottom: 10px;
+}
+
+.MailForm .form-data input:not([type="submit"]), textarea {
+flex-grow: 1;
+border-radius: 5px;
+background-color: rgb(43, 42, 42);
+margin-right: 10px;
+height: 30px;
+width: 10px;
+}
+}
+
+@media only screen and (max-width: 320px) {
+.MailForm {
+  width: 300px;
+  margin: auto;
+  text-align: left;
+  background-color:rgb(43, 42, 42);
+  color: #D8F3DC;
+}
+
+.MailForm .form-data {
+display: flex;
+justify-content: center;
+align-items: center;
+margin: 5px 0;
+padding-top: 20px;
+height: 100px;
+}
+
+.inputAboutUs {
+background-color: #ffffff;
+border-radius: 5px;
+background-color: rgb(43, 42, 42);
+margin-right: 10px;
+height: 30px;
+width: 10px;
+}
+}
+
+@media only screen and (max-width: 420px) {
+.MailForm {
+  width: 280px;
+  margin: auto;
+  text-align: left;
+  background-color:rgb(43, 42, 42);
+  color: #D8F3DC;
+}
+
+.MailForm .form-data {
+display: flex;
+justify-content: center;
+align-items: center;
+margin: 5px 0;
+padding-top: 20px;
+height: 100px;
+}
+
+textarea {
+background-color: #ffffff;
+border-radius: 5px;
+background-color: rgb(43, 42, 42);
+margin-right: 10px;
+height: 30px;
+width: 10px;
+}
+}
+
+.envoyer {
+border-radius: 10px;
+padding: 8px 16px;
+border: none;
+margin-top: 10px;
+}
+
+.envoyer:hover {
+color: black;
+background-color: #b7e4c7;
+}
+*/
+
+
+
+
+/*
+.container-form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: solid yellow 5px;
+
+  .background-container {
+    border: solid black 5px
+    }
+
+    .title-form {
+      border: solid red 2px;
+       color: #38892C;
+       text-align: center;
+       margin-top: 50vh;
+     }
+      input {
+        width: 200px;
+        height: 7vh;
+        border: solid #38892C 2px;
+        vertical-align: middle;
+        text-align: left;
+        color:#071723;
+        margin: 10px;
+      }
+        .textarea-form {
+          height: 10vh;
+          width:200px;
+          border: solid red 3px;
+        }
+          .btn-form {
+          border: none;
+          font-weight: 500;
+          font-size: 20px;
+          color: #071723; 
+          cursor: pointer;
+          transition: 0.2s ease-in-out;
+          margin-top: 10px;
+          background-color: $colorPrimary;
+          color: $colorThird;
+          border-radius: 15px;
+          width: 15vw;
+          text-align: center;
+          letter-spacing:1.1px;
+          margin: 5vh;
+        }
+            .btn-form:hover {
+              background-color: #38892C;
+          }
+    }
+  */
