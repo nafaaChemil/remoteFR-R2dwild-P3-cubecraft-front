@@ -5,13 +5,13 @@
 		position: absolute;
 		font-family: $typoPrimaire;
     display: flex; 
-    justify-content: center;
+    justify-content: space-between;
 		padding: 1.5rem 1rem;
-    z-index: 50;
+    z-index: 400;
 
 		img {
 			width: 63px;
-			position: absolute;
+			// position: absolute;
 			left: 1vw;
 		}
 
@@ -85,7 +85,7 @@
   }
 }
 
-@media (max-width: 960px){
+@media (max-width: $breakpoint-menu){
     .navbar .navbar__links {
       display: none;
     }
@@ -98,7 +98,6 @@
     	flex-direction: column;
     	justify-content: space-between !important;
     	align-items: center;
-			z-index: 400 !important;
     	cursor: pointer;
 
     }
