@@ -48,7 +48,13 @@ const App = () => {
           <NavBarAdmin />
         ) : (
           <>
-            <Navbar click={() => setSideToggle(true)} />
+            <Navbar
+              stateBt={`hamburger__menu ${sideToggle ? 'close' : ''}`}
+              click={() =>
+                sideToggle ? setSideToggle(false) : setSideToggle(true)
+              }
+            />
+
             <SideDrawer show={sideToggle} click={() => setSideToggle(false)} />
             <Backdrop show={sideToggle} click={() => setSideToggle(false)} />
           </>
@@ -69,6 +75,14 @@ const App = () => {
           <Route path='/admin/about' component={AdminAboutUs} />
           <Route path='/admin/actualites/add' component={AdminNewsAdd} />
           <Route path='/admin/actualites' component={AdminNews} />
+          <Route
+            path='/admin/concept/modified/:id'
+            component={AdminConceptModified}
+          />
+          <Route path='/admin/concept/add' component={AdminConceptAdd} />
+          <Route path='/admin/concept' component={AdminConcept} />
+          <Route path='/admin/professionnel/add' component={AdminProAdd} />
+          <Route path='/admin/slider' component={AdminSlider} />
           <Route
             path='/admin/concept/modified/:id'
             component={AdminConceptModified}

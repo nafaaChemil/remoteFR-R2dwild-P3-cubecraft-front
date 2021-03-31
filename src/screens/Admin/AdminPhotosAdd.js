@@ -12,7 +12,7 @@ export default function AdminPhotosAdd() {
 
   let history = useHistory()
 
-console.log(file.name)
+  console.log(file.name)
 
   const handleSubmit = () => {
     axios.post('http://localhost:4242/photos', {

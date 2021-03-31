@@ -1,0 +1,14 @@
+@mixin button {
+    background-color: $colorThird;
+    color: $colorSecondary;
+    border-radius: 10px;
+    padding: $spaceH_XL;
+    width: 285px;
+    text-align: center;
+    font-family: $typoPrimaire;
+    border:1px solid $colorSecondary;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

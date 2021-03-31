@@ -7,7 +7,7 @@ export default function AdminProAdd() {
     CategoryName: '',
     Price: 0,
     Description: '',
-    ParticularPro: 0,
+    Individual: 0,
     photo_id: 1
   })
 
@@ -19,7 +19,7 @@ export default function AdminProAdd() {
 
   const addProduct = async () => {
     const res = await axios
-      .post('http://localhost:4242/particularPro/', {
+      .post('http://localhost:4242/particularPro', {
         ...formData
       })
       .then(function (response) {
@@ -30,7 +30,7 @@ export default function AdminProAdd() {
             CategoryName: '',
             Price: 0,
             Description: '',
-            ParticularPro: 0,
+            Individual: 0,
             photo_id: 1
           })
         }
