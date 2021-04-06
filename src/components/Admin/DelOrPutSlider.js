@@ -1,4 +1,4 @@
-import { useState} from 'react'
+import { useState } from 'react'
 import axios from 'axios'
 import PropTypes from 'prop-types'
 
@@ -21,12 +21,23 @@ export default function DelOrPutSlider(props) {
       />
 
       <div>
-        <button onClick={props.handleClickSupp}>Supp</button>
+        <button className='BtnAction' onClick={props.handleClickSupp}>
+          <img
+            alt='logo del'
+            className='logoBtn'
+            src='/images/logo/trash.svg'
+          />
+        </button>
         <button
+          className='BtnAction'
           id={`btnsliderUp-${props.idUpdate}`}
           onClick={() => updateSlider(props.id, text)}
         >
-          Update
+          <img
+            alt='logo edit'
+            className='logoBtn'
+            src='/images/logo/refresh.svg'
+          />
         </button>
       </div>
     </div>

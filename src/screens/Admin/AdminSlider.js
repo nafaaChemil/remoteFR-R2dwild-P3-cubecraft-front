@@ -48,15 +48,24 @@ export default function AdminSlider() {
         </div>
         <div className='addTitleSlider'>
           <h3>Ajouter un nouveau texte : </h3>
-          <input
-            type='text'
-            value={newWord}
-            onChange={e => setNewWord(e.target.value)}
-          />
-          <button onClick={AddSlider}>Ajouter</button>
+          <div className='form-group'>
+            <input
+              type='text'
+              value={newWord}
+              onChange={e => setNewWord(e.target.value)}
+            />
+            <button className='BtnAction' onClick={AddSlider}>
+              <img
+                alt='logo add'
+                className='logoBtn'
+                src='/images/logo/add.svg'
+              />
+            </button>
+          </div>
         </div>
 
         <div>
+          <h3>Vos textes :</h3>
           {datas.map((data, index) => (
             <DelOrPutSlider
               key={index}

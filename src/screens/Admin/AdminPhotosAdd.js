@@ -3,7 +3,6 @@ import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 
 export default function AdminPhotosAdd() {
-  // const [myImage, setMyImage] = useState([])
   const [valid, setValid] = useState(false)
   const [file, setFile] = useState({
     data: '',
@@ -43,7 +42,7 @@ export default function AdminPhotosAdd() {
           onChange={e =>
             setFile({
               data: e.target.files[0],
-              name: e.target.files[0].name.replace(/ /g, '_')
+              name: e.target.files[0].name.replace(/ /g, '')
             })
           }
         />

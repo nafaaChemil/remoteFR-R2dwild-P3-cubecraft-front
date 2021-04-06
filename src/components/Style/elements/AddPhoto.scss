@@ -1,0 +1,19 @@
+.Container-Image-Storage{
+    display: flex;
+    flex-wrap: wrap;
+}
+.imageInStorage{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 250px;
+    margin: 2vh 1vw;
+    .img-upload{
+        margin-bottom: 1vh;
+        width:200px;
+        object-fit: cover;
+    }
+    .BtnAction{
+        margin:2vh auto;
+    }
+}
