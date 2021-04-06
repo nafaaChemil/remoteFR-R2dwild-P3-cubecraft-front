@@ -7,7 +7,7 @@ export default function AdminPartAdd() {
     CategoryName: '',
     Price: 0,
     Description: '',
-    ParticularPro: 1,
+    Individual: 1,
     photo_id: 1
   })
 
@@ -30,7 +30,7 @@ export default function AdminPartAdd() {
             CategoryName: '',
             Price: 0,
             Description: '',
-            ParticularPro: 1,
+            Individual: 1,
             photo_id: 1
           })
         }

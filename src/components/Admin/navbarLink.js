@@ -31,6 +31,11 @@ export const navbar = [
   },
   {
     id: '7',
+    linkname: 'Photos',
+    route: '/admin/photos'
+  },
+  {
+    id: '8',
     linkname: 'Info site',
     route: '/admin/info-site'
   }
