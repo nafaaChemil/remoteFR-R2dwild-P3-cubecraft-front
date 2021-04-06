@@ -1,4 +1,29 @@
 import React from 'react';
+import nodemailer from 'nodemailer';
+import { getMaxListeners } from 'node:process';
+
+const tranporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'ingridpruvost966@gmail.com',
+    pass: 'Manoraph2'
+  }
+});
+
+const mailOptions = {
+  from: 'vindication@enron.com',
+  to: 'friendsofenron@getMaxListeners.com, enemiesofenron@getMaxListeners.com',
+  subject: 'Bonjour',
+  text: 'BRAVOOOOO INGRID'
+};
+
+transporter.sendMail(mailOptions, function(error, info){
+  if(error){
+    console.log('erreur');
+  }  else {
+    console.log('email envoyé' + info.response);
+  }
+});
 
 class Contact extends React.Component {
   constructor(props) {
