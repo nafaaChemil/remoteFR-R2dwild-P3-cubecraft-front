@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import ScrollingText from './ScrollingText'
 import IntroEncart from '../../components/Client/IntroEncart'
 import EncartSite from '../../components/Client/EncartSite'
+import EncartConcept from '../../components/Client/EncartConcept'
 
 function Home() {
   return (
@@ -21,7 +22,7 @@ function Home() {
       </div>
 
       {/* Encart intro */}
-      <section id='concept'>
+      <section className='concept'>
         <h2>
           HIGH CUBE ECO DESIGN, spécialiste de la construction en conteneur
           maritime.
@@ -56,46 +57,27 @@ function Home() {
         />
       </section>
 
-      <div id='concept'>
-        <IntroEncart
-          imageEncart='images/Annexe6.jpg'
-          titleH3='Vous êtes un particulier ?'
-          link='Découvrez nos solutions'
-        />
-      </div>
+      {/* Encart intro */}
 
-      <section id='home-produits'>
-        <div className='produits-pro'>
-          <img className='img-produits' src='images/Annexe1.jpg' alt='maison' />
-          <div className='produits-right'>
-            <h2>Professionnels</h2>
-            <p>
-              Iam in altera philosophiae parte. quae est quaerendi ac
-              disserendi, quae logikh dicitur, iste vester plane, ut mihi quidem
-              videtur, inermis ac nudus est. tollit definitiones, nihil de
-              dividendo ac
-            </p>
-            <Link className='button' to='/pro'>
-              Découvrez nos solutions
-            </Link>
-          </div>
-        </div>
-        <div className='produits-part'>
-          <div className='produits-right'>
-            <h2>Particuliers</h2>
-            <p>
-              Iam in altera philosophiae parte. quae est quaerendi ac
-              disserendi, quae logikh dicitur, iste vester plane, ut mihi quidem
-              videtur, inermis ac nudus est. tollit definitiones, nihil de
-              dividendo ac
-            </p>
-            <Link className='button' to='/particular'>
-              Découvrez nos solutions
-            </Link>
-          </div>
-          <img className='img-produits' src='images/Annexe2.jpg' alt='maison' />
-        </div>
-      </section>
+      <EncartConcept
+        imageEncart='images/Annexe6.jpg'
+        titleH3='Particulier'
+        texte={[
+          `Pour réaliser votre projet, nous recyclons des conteneurs maritimes destinés à être détruit afin de leur donner une seconde vie. En recyclant ces conteneurs, on réduit considérablement notre 
+            empreinte carbone sur la construction d'une maison.`
+        ]}
+        link='Découvrez nos solutions'
+      />
+
+      <EncartConcept
+        imageEncart='images/Annexe6.jpg'
+        titleH3='Professionnels'
+        texte={[
+          `Pour réaliser votre projet, nous recyclons des conteneurs maritimes destinés à être détruit afin de leur donner une seconde vie. En recyclant ces conteneurs, on réduit considérablement notre 
+                  empreinte carbone sur la construction d'une maison.`
+        ]}
+        link='Découvrez nos solutions'
+      />
       <section id='home-actualite'>
         <h2>Notre actualités</h2>
         <ul className='container-thumbnail-actualite'>

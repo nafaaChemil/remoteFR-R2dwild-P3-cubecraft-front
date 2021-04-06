@@ -1,18 +1,24 @@
 import React from 'react'
 
-export default function EncartConcept({ imageEncart, titleH3, link }) {
+export default function EncartConcept({ imageEncart, titleH3, texte, link }) {
   return (
-    <ul
-      style={{
-        backgroundImage: `url(${imageEncart})`
-      }}
-    >
-      <li>
-        <h3>{titleH3}</h3>
-      </li>
-      <li>
-        <a href=''>{link}</a>
-      </li>
-    </ul>
+    <section className='encart_concept'>
+      <div
+        className='responsive'
+        style={{
+          backgroundImage: `url(${imageEncart})`
+        }}
+      >
+        <ul>
+          <li>
+            <h3>{titleH3}</h3>
+            <p>{texte}</p>
+          </li>
+          <li className='Center'>
+            <a href=''>{link}</a>
+          </li>
+        </ul>
+      </div>
+    </section>
   )
 }
