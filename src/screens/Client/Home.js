@@ -56,6 +56,14 @@ function Home() {
         />
       </section>
 
+      <div id='concept'>
+        <IntroEncart
+          imageEncart='images/Annexe6.jpg'
+          titleH3='Vous êtes un particulier ?'
+          link='Découvrez nos solutions'
+        />
+      </div>
+
       <section id='home-produits'>
         <div className='produits-pro'>
           <img className='img-produits' src='images/Annexe1.jpg' alt='maison' />
