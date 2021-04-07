@@ -44,6 +44,7 @@ export default function AdminAboutUsAdd() {
         setJobName(jobName)
         setPicture(picture)
       })
+
   }
    
    
