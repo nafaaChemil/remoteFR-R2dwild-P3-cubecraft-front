@@ -6,17 +6,19 @@ import About from './screens/Client/About'
 import AdminAboutUs from './screens/Admin/AdminAboutUs'
 import AdminAboutUsAdd from './screens/Admin/AdminAboutUsAdd'
 import AdminAboutUsModified from './screens/Admin/AdminAboutUsModified'
-import AdminNews from './screens/Admin/AdminNews'
-import AdminNewsAdd from './screens/Admin/AdminNewsAdd'
 import AdminConcept from './screens/Admin/AdminConcept'
 import AdminConceptAdd from './screens/Admin/AdminConceptAdd'
 import AdminConceptModified from './screens/Admin/AdminConceptModified'
-import AdminPro from './screens/Admin/AdminPro'
-import AdminProAdd from './screens/Admin/AdminProAdd'
-import AdminProModified from './screens/Admin/AdminProModified'
+import AdminNews from './screens/Admin/AdminNews'
+import AdminNewsAdd from './screens/Admin/AdminNewsAdd'
 import AdminPart from './screens/Admin/AdminPart'
 import AdminPartAdd from './screens/Admin/AdminPartAdd'
 import AdminPartModified from './screens/Admin/AdminPartModified'
+import AdminPhotos from './screens/Admin/AdminPhotos'
+import AdminPhotosAdd from './screens/Admin/AdminPhotosAdd'
+import AdminPro from './screens/Admin/AdminPro'
+import AdminProAdd from './screens/Admin/AdminProAdd'
+import AdminProModified from './screens/Admin/AdminProModified'
 import AdminSlider from './screens/Admin/AdminSlider'
 import Backdrop from './components/Client/Backdrop'
 import Concept from './screens/Client/Concept'
@@ -61,18 +63,17 @@ const App = () => {
           <Route exact path='/' component={Home} />
           <Route path='/about' component={About} />
           <Route path='/concept' component={Concept} />
+          <Route path='/contact' component={Contact} />
+          <Route path='/news' component={News} />
           <Route path='/particular' component={Particular} />
           <Route path='/pro' component={Pro} />
-          <Route path='/news' component={News} />
-          <Route path='/contact' component={Contact} />
-          <Route exact path='/admin/actualites' component={AdminNews} />
-          <Route path='/admin/actualites/add' component={AdminNewsAdd} />
           <Route
             path='/admin/about/profile/:id'
             component={AdminAboutUsModified}
           />
           <Route path='/admin/about/profile' component={AdminAboutUsAdd} />
           <Route path='/admin/about' component={AdminAboutUs} />
+          <Route path='/admin/actualites/add' component={AdminNewsAdd} />
           <Route path='/admin/actualites' component={AdminNews} />
           <Route
             path='/admin/concept/modified/:id'
@@ -83,16 +84,26 @@ const App = () => {
           <Route path='/admin/professionnel/add' component={AdminProAdd} />
           <Route path='/admin/slider' component={AdminSlider} />
           <Route
-            path='/admin/professionnel/modif/:id'
-            component={AdminProModified}
+            path='/admin/concept/modified/:id'
+            component={AdminConceptModified}
           />
-          <Route path='/admin/professionnel' component={AdminPro} />
-          <Route path='/admin/particulier/add' component={AdminPartAdd} />
+          <Route path='/admin/concept/add' component={AdminConceptAdd} />
+          <Route path='/admin/concept' component={AdminConcept} />
           <Route
             path='/admin/particulier/modif/:id'
             component={AdminPartModified}
           />
+          <Route path='/admin/particulier/add' component={AdminPartAdd} />
           <Route path='/admin/particulier' component={AdminPart} />
+          <Route path='/admin/photos/add' component={AdminPhotosAdd} />
+          <Route path='/admin/photos' component={AdminPhotos} />
+          <Route
+            path='/admin/professionnel/modif/:id'
+            component={AdminProModified}
+          />
+          <Route path='/admin/professionnel/add' component={AdminProAdd} />
+          <Route path='/admin/professionnel' component={AdminPro} />
+          <Route path='/admin/slider' component={AdminSlider} />
         </Switch>
         {/* Test adress if location contain Admin we get the Nav of admin else the Nav site */}
         {location.pathname.includes('admin') ? '' : <Footer />}

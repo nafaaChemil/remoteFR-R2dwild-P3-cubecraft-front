@@ -9,6 +9,22 @@ export default function AdminAboutUsAdd() {
   const [jobName, setJobName] = useState('')
   const [picture, setPicture] = useState('')
   const [valid, setValid] = useState(false)
+  const [datas, setDatas] = useState([''])
+  const [display, setDisplay] = useState(true)
+
+  function displayPhotos() {
+    const fetchData = async () => {
+      const resq = await axios.get('http://localhost:4242/photos')
+      setDatas(resq.data)
+      setDisplay(!display)
+    }
+    fetchData()
+  }
+
+  const addId = id => {
+    setPicture(id)
+    setDisplay(!display)
+  }
 
   const AddProfile = () =>
     axios
@@ -60,12 +76,10 @@ export default function AdminAboutUsAdd() {
       </label>
       <label>
         Choix de la photo
-        <input
-          type='number'
-          name='picture'
-          value={picture}
-          onChange={event => setPicture(event.target.value)}
-        />
+        <input type='number' name='picture' value={picture} />
+        <button className='choice-picture' onClick={displayPhotos}>
+          Choisir
+        </button>
       </label>
       <div>
         <button
@@ -74,8 +88,23 @@ export default function AdminAboutUsAdd() {
         >
           Ajouter collaborateur
         </button>
-        {valid ? 'Un nouveau collaborateur à été ajouté' : ''}
+        <h1 style={{ display: `${valid ? 'block' : 'none'}` }}>
+          Un collaborateur a été ajouté avec succès
+        </h1>
         <button onClick={comeBack}>Retour</button>
+      </div>
+      <div style={{ display: `${display ? 'none' : 'block'}` }}>
+        {datas.map((data, index) => (
+          <>
+            <img
+              className='img-upload'
+              style={{ width: '100px' }}
+              key={index}
+              src={`${data.Name}`}
+            />
+            <button onClick={() => addId(data.Id)}>Choisir</button>
+          </>
+        ))}
       </div>
     </div>
   )

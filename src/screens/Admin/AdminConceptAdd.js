@@ -8,6 +8,22 @@ export default function AdminConceptAdd() {
   const [textConcept, setTextConcept] = useState('')
   const [picture, setPicture] = useState('')
   const [valid, setValid] = useState(false)
+  const [datas, setDatas] = useState([''])
+  const [display, setDisplay] = useState(true)
+
+  function displayPhotos() {
+    const fetchData = async () => {
+      const resq = await axios.get('http://localhost:4242/photos')
+      setDatas(resq.data)
+      setDisplay(!display)
+    }
+    fetchData()
+  }
+
+  const addId = id => {
+    setPicture(id)
+    setDisplay(!display)
+  }
 
   const AddConcept = () =>
     axios
@@ -46,14 +62,13 @@ export default function AdminConceptAdd() {
           onChange={event => setTextConcept(event.target.value)}
         />
       </label>
+
       <label>
         Choix de la photo
-        <input
-          type='number'
-          name='picture'
-          value={picture}
-          onChange={event => setPicture(event.target.value)}
-        />
+        <input type='number' name='picture' value={picture} />
+        <button className='choice-picture' onClick={displayPhotos}>
+          Choisir
+        </button>
       </label>
       <div>
         <button
@@ -64,6 +79,19 @@ export default function AdminConceptAdd() {
         </button>
         {valid ? 'Un nouveau concept à été ajouté' : ''}
         <button onClick={comeBack}>Retour</button>
+      </div>
+      <div style={{ display: `${display ? 'none' : 'block'}` }}>
+        {datas.map((data, index) => (
+          <>
+            <img
+              className='img-upload'
+              style={{ width: '100px' }}
+              key={index}
+              src={`${data.Name}`}
+            />
+            <button onClick={() => addId(data.Id)}>Choisir</button>
+          </>
+        ))}
       </div>
     </div>
   )
