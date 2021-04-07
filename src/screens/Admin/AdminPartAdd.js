@@ -8,15 +8,28 @@ export default function AdminPartAdd() {
     Price: 0,
     Description: '',
     Individual: 1,
-    photo_id: 1
+    photo_id: ''
   })
-
+  const [datas, setDatas] = useState([''])
+  const [display, setDisplay] = useState(true)
   const [productAdded, setProductAdded] = useState(false)
   const [status, setStatus] = useState(null)
 
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value })
 
+  function displayPhotos() {
+    const fetchData = async () => {
+      const resq = await axios.get('http://localhost:4242/photos')
+      setDatas(resq.data)
+      setDisplay(!display)
+    }
+    fetchData()
+  }
+  const addId = id => {
+    setFormData({ photo_id: id })
+    setDisplay(!display)
+  }
   const addProduct = async () => {
     const res = await axios
       .post('http://localhost:4242/particularPro/', {
@@ -31,7 +44,7 @@ export default function AdminPartAdd() {
             Price: 0,
             Description: '',
             Individual: 1,
-            photo_id: 1
+            photo_id: ''
           })
         }
       })
@@ -87,13 +100,24 @@ export default function AdminPartAdd() {
             />
           </div>
           <div className='form-group-add'>
-            <label htmlFor='photo_id'>ID de l'image :</label>
-            <input
-              type='number'
-              name='photo_id'
-              value={formData.photo_id}
-              onChange={e => onChange(e)}
-            />
+            <label>
+              Choix de la photo</label>
+              <input type='number' name='picture' value={formData.photo_id} />
+              <button className='choice-picture' onClick={displayPhotos}>
+                Choisir
+              </button>
+          </div>
+           <div className="container-choice-img" style={{ display: `${display ? 'none' : 'flex'}` }}>
+            {datas.map((data, index) => (
+              <div className="choicephoto-container">
+                <img
+                  className='img-upload'
+                  key={index}
+                  src={`${data.Name}`}
+                />
+                <button onClick={() => addId(data.Id)}>Choisir</button>
+              </div>
+            ))}
           </div>
           <div className='Form-group-btn'>
             <button onClick={addProduct}>Ajouter le produit</button>
@@ -110,6 +134,7 @@ export default function AdminPartAdd() {
             {status}
           </div>
         </div>
+       
       </div>
     </section>
   )

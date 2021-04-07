@@ -5,6 +5,38 @@
     input{
         padding: 4px 6px;
     }
+    .choice-picture{
+        box-shadow: none;
+        
+    }
+    .choice-picture:hover{
+        animation:none;
+    }
+    .container-choice-img{
+        display:flex;
+        align-self:center;
+        justify-content: space-between;
+        flex-wrap:wrap;
+    }
+    .choicephoto-container{
+        position: relative;
+        width:250px;
+        margin: 10px 0;
+        img{
+            width: 250px;
+            object-fit:cover;
+        }
+    }
+    .choicephoto-container button{
+        box-shadow: none;
+        position: absolute;
+        bottom: 2px;
+        right:2px;
+        z-index:10;
+        &:hover{
+            animation:none;
+        }
+    }
     button{
         padding: 10px 8px;
         box-shadow: -10px 10px 1px $colorPrimary;

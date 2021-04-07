@@ -32,40 +32,39 @@ export default function AdminPhotosAdd() {
   }
 
   return (
-    <div className='container-image'>
-      <div>
-        <label htmlFor='file'>File</label>
-        <input
-          type='file'
-          id='file'
-          accept='image/png, image/jpeg'
-          onChange={e =>
-            setFile({
-              data: e.target.files[0],
-              name: e.target.files[0].name.replace(/ /g, '')
-            })
-          }
-        />
+    <section className='AddPage'>
+      <div className='Container-Addpage'>
+      <h2>Ajouter une image </h2>
+        <div className='formulaire-admin-add'>
+          <div className='form-group-add'>
+            <label htmlFor='file'>Choisissez une image :</label>
+            <input
+              type='file'
+              id='file'
+              accept='image/png, image/jpeg'
+              onChange={e =>
+                setFile({
+                  data: e.target.files[0],
+                  name: e.target.files[0].name.replace(/ /g, '')
+                })
+              }
+            />
+          </div>
+          </div>
+          <div className='block-select-img'>
+            <p>{file.name}</p>
+          </div>
+          <div className='Form-group-btn'>
+          <button onClick={comeBack}>Retour</button>
+           <button
+            onClick={handleSubmit}
+            style={{ display: `${valid ? 'none' : 'block'}` }}
+          >
+            Sauvegarder
+          </button>
+          </div>
+
       </div>
-      <div className='block-select-img'>
-        {/* <ul>
-          {myImage.length === 0 ? (
-            <li>Aucune photo</li>
-          ) : (
-            myImage.map((img, i) => (
-              <li key={i}>{img[0].name.replace(/ /g, '_')}</li>
-            ))
-          )}
-        </ul> */}
-        <p>{file.name}</p>
-      </div>
-      <button
-        onClick={handleSubmit}
-        style={{ display: `${valid ? 'none' : 'block'}` }}
-      >
-        Envoyer
-      </button>
-      <button onClick={comeBack}>Retour</button>
-    </div>
+    </section>
   )
 }
