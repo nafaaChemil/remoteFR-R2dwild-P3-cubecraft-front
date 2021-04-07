@@ -24,7 +24,6 @@ export default function AdminPhotos() {
     }
     fetchData()
   }, [affiched])
-console.log(datas)
   return (
     <>
       <section id='admin'>
@@ -35,8 +34,13 @@ console.log(datas)
         <div>
           {datas.map((data, index) => (
             <>
-              <img className="img-upload" style={{width: "100px"}}key={index} src={`${data.Name}`} />
-              <button onClick={() => deletePhoto(data.Id)}>suppr</button>
+              <img
+                className='img-upload'
+                style={{ width: '100px' }}
+                key={index}
+                src={`${data.Name}`}
+              />
+              <button onClick={() => deletePhoto(data.Id)}>Suppr</button>
             </>
           ))}
         </div>

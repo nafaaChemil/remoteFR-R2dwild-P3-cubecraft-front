@@ -8,7 +8,7 @@ function Home() {
       <div
         className='Home'
         style={{
-          backgroundImage: `url("images/Annexe1.jpg")`
+          backgroundImage: `url("images/bureauHighCubeEcoDesign-rendufinal.png")`
         }}
       >
         <div className='home-hero-carousel'>
@@ -36,39 +36,6 @@ function Home() {
             titleH3='Vous êtes un professionnel ?'
             link='Découvez nos solutions'
           />
-        </div>
-      </section>
-
-      <section id='home-produits'>
-        <div className='produits-pro'>
-          <img className='img-produits' src='images/Annexe1.jpg' alt='maison' />
-          <div className='produits-right'>
-            <h2>Professionnels</h2>
-            <p>
-              Iam in altera philosophiae parte. quae est quaerendi ac
-              disserendi, quae logikh dicitur, iste vester plane, ut mihi quidem
-              videtur, inermis ac nudus est. tollit definitiones, nihil de
-              dividendo ac
-            </p>
-            <Link className='button' to='/pro'>
-              Découvrez nos solutions
-            </Link>
-          </div>
-        </div>
-        <div className='produits-part'>
-          <div className='produits-right'>
-            <h2>Particuliers</h2>
-            <p>
-              Iam in altera philosophiae parte. quae est quaerendi ac
-              disserendi, quae logikh dicitur, iste vester plane, ut mihi quidem
-              videtur, inermis ac nudus est. tollit definitiones, nihil de
-              dividendo ac
-            </p>
-            <Link className='button' to='/particular'>
-              Découvrez nos solutions
-            </Link>
-          </div>
-          <img className='img-produits' src='images/Annexe2.jpg' alt='maison' />
         </div>
       </section>
       <section id='home-actualite'>

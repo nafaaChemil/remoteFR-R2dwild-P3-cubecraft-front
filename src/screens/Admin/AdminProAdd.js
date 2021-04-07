@@ -8,14 +8,28 @@ export default function AdminProAdd() {
     Price: 0,
     Description: '',
     Individual: 0,
-    photo_id: 1
+    photo_id: ''
   })
-
+  const [datas, setDatas] = useState([''])
+  const [display, setDisplay] = useState(true)
   const [productAdded, setProductAdded] = useState(false)
   const [status, setStatus] = useState(null)
 
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value })
+
+  function displayPhotos() {
+    const fetchData = async () => {
+      const resq = await axios.get('http://localhost:4242/photos')
+      setDatas(resq.data)
+      setDisplay(!display)
+    }
+    fetchData()
+  }
+  const addId = id => {
+    setFormData({ photo_id: id })
+    setDisplay(!display)
+  }
 
   const addProduct = async () => {
     const res = await axios
@@ -31,7 +45,7 @@ export default function AdminProAdd() {
             Price: 0,
             Description: '',
             Individual: 0,
-            photo_id: 1
+            photo_id: ''
           })
         }
       })
@@ -86,13 +100,13 @@ export default function AdminProAdd() {
         value={formData.Description}
         onChange={e => onChange(e)}
       />
-      <label htmlFor='photo_id'>ID de l'image</label>
-      <input
-        type='number'
-        name='photo_id'
-        value={formData.photo_id}
-        onChange={e => onChange(e)}
-      />
+      <label>
+        Choix de la photo
+        <input type='number' name='picture' value={formData.photo_id} />
+        <button className='choice-picture' onClick={displayPhotos}>
+          Choisir
+        </button>
+      </label>
       <button onClick={addProduct}>Ajouter le produit</button>
       {productAdded ? (
         <div>
@@ -105,6 +119,19 @@ export default function AdminProAdd() {
         ''
       )}
       {status}
+      <div style={{ display: `${display ? 'none' : 'block'}` }}>
+        {datas.map((data, index) => (
+          <>
+            <img
+              className='img-upload'
+              style={{ width: '100px' }}
+              key={index}
+              src={`${data.Name}`}
+            />
+            <button onClick={() => addId(data.Id)}>Choisir</button>
+          </>
+        ))}
+      </div>
     </div>
   )
 }
