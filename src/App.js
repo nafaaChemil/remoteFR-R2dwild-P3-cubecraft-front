@@ -11,6 +11,7 @@ import AdminConceptAdd from './screens/Admin/AdminConceptAdd'
 import AdminConceptModified from './screens/Admin/AdminConceptModified'
 import AdminNews from './screens/Admin/AdminNews'
 import AdminNewsAdd from './screens/Admin/AdminNewsAdd'
+import AdminNewsModified from './screens/Admin/AdminNewsModified'
 import AdminPart from './screens/Admin/AdminPart'
 import AdminPartAdd from './screens/Admin/AdminPartAdd'
 import AdminPartModified from './screens/Admin/AdminPartModified'
@@ -74,6 +75,10 @@ const App = () => {
           <Route path='/admin/about/profile' component={AdminAboutUsAdd} />
           <Route path='/admin/about' component={AdminAboutUs} />
           <Route path='/admin/actualites/add' component={AdminNewsAdd} />
+          <Route
+            path='/admin/actualites/modif/:id'
+            component={AdminNewsModified}
+          />
           <Route path='/admin/actualites' component={AdminNews} />
           <Route
             path='/admin/concept/modified/:id'

@@ -25,7 +25,7 @@ export default function AdminAboutUs() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const resq = await axios.get('http://localhost:4242/about')
+      const resq = await axios.get('http://localhost:4242/about/')
       setDatas(resq.data)
     }
     fetchData()
