@@ -46,7 +46,7 @@ export default function AdminAboutUs() {
               handleClickSupp={() => deleteProfile(data.Id)}
               handleClickEdit={() => modifiedProfile(data.Id)}
               key={index}
-              name={data.FirstName}
+              name={data.FirstName + '  ' + data.LastName}
             ></SuppOrEdit>
           ))}
         </div>

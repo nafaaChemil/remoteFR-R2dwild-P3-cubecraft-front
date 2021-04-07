@@ -26,11 +26,8 @@ export default function AdminAboutUsAdd() {
     setDisplay(!display)
   }
 
-
   const AddProfile = () => {
-
-     console.log("hello")
-      axios
+    axios
       .post('http://localhost:4242/about', {
         FirstName: firstName,
         LastName: lastName,
@@ -45,14 +42,12 @@ export default function AdminAboutUsAdd() {
         setPicture(picture)
       })
   }
-   
-   
+
   function comeBack() {
     history.push('/admin/about')
   }
 
   return (
-
     <section className='AddPage'>
       <div className='Container-Addpage'>
         <h2>Ajouter un collaborateur </h2>
@@ -74,10 +69,10 @@ export default function AdminAboutUsAdd() {
               value={lastName}
               onChange={event => setLastName(event.target.value)}
             />
-          </div>  
+          </div>
           <div className='form-group-add'>
             <label htmlFor='picture'>Poste : </label>
-           <input
+            <input
               type='text'
               name='jobname'
               value={jobName}
@@ -85,26 +80,23 @@ export default function AdminAboutUsAdd() {
             />
           </div>
           <div className='form-group-add'>
-                  <label>
-                  Choix de la photos</label>
-                  <input type='number' name='picture' value={picture} />
-                  <button className='choice-picture' onClick={displayPhotos}>
-                    Choisir
-                  </button>
-      
+            <label>Choix de la photos</label>
+            <input type='number' name='picture' value={picture} />
+            <button className='choice-picture' onClick={displayPhotos}>
+              Choisir
+            </button>
           </div>
-            <div className="container-choice-img" style={{ display: `${display ? 'none' : 'flex'}` }}>
-              {datas.map((data, index) => (
-                <div className="choicephoto-container">
-                  <img
-                    className='img-upload'
-                    key={index}
-                    src={`${data.Name}`}
-                  />
-                  <button onClick={() => addId(data.Id)}>Choisir</button>
-                </div>
-              ))}
-            </div>
+          <div
+            className='container-choice-img'
+            style={{ display: `${display ? 'none' : 'flex'}` }}
+          >
+            {datas.map((data, index) => (
+              <div className='choicephoto-container'>
+                <img className='img-upload' key={index} src={`${data.Name}`} />
+                <button onClick={() => addId(data.Id)}>Choisir</button>
+              </div>
+            ))}
+          </div>
           <div className='Form-group-btn'>
             <button onClick={comeBack}>Retour</button>
             {valid ? 'Un nouveau collaborateur à été ajouté' : ''}
@@ -114,22 +106,9 @@ export default function AdminAboutUsAdd() {
             >
               Ajouter collaborateur
             </button>
-            
           </div>
         </div>
-        
       </div>
     </section>
-  
-
-    
-      
-     
-      
-
-      
-
-      
-
   )
 }

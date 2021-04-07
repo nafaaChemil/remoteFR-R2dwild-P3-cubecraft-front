@@ -52,69 +52,64 @@ export default function AdminSlider() {
   }
 
   return (
-   
-      <section id='admin'>
-        <h1>Slider </h1>
+    <section id='admin'>
+      <h1>Slider </h1>
 
-        <div>
-          <h3>Titre :</h3>
-          <div className="form-group">
+      <div>
+        <h3>Titre :</h3>
+        <div className='form-group'>
           <input type='text' />
-          <button
-          className='BtnAction'
-        >
-          <img
-            alt='logo edit'
-            className='logoBtn'
-            src='/images/logo/save.svg'
-          />
-        </button>
-          </div>
-        </div>
-        <div className='addTitleSlider'>
-          <h3>Ajouter un nouveau texte : </h3>
-          <div className='form-group'>
-            <input
-              type='text'
-              value={newWord}
-              onChange={e => setNewWord(e.target.value)}
+          <button className='BtnAction'>
+            <img
+              alt='logo edit'
+              className='logoBtn'
+              src='/images/logo/save.svg'
             />
-            <button className='BtnAction' onClick={AddSlider}>
-              <img
-                alt='logo add'
-                className='logoBtn'
-                src='/images/logo/add.svg'
-              />
-            </button>
-          </div>
+          </button>
         </div>
+      </div>
+      <div className='addTitleSlider'>
+        <h3>Ajouter un nouveau texte : </h3>
+        <div className='form-group'>
+          <input
+            type='text'
+            value={newWord}
+            onChange={e => setNewWord(e.target.value)}
+          />
+          <button className='BtnAction' onClick={AddSlider}>
+            <img
+              alt='logo add'
+              className='logoBtn'
+              src='/images/logo/add.svg'
+            />
+          </button>
+        </div>
+      </div>
 
-        <div className="">
-          <h3>Changer l'image de fond : </h3>
-          <div className='form-group'>
+      <div className=''>
+        <h3>Changer l'image de fond : </h3>
+        <div className='form-group'>
           <input type='number' name='picture' value={picture} />
           <button className='choice-picture' onClick={displayPhotos}>
             Choisir
           </button>
-          </div>
-         <div className="container-choice-img" style={{ display: `${display ? 'none' : 'flex'}` }}>
+        </div>
+        <div
+          className='container-choice-img'
+          style={{ display: `${display ? 'none' : 'flex'}` }}
+        >
           {infos.map((info, index) => (
-            <div className="choicephoto-container">
-              <img
-                className='img-upload'
-                key={index}
-                src={`${info.Name}`}
-              />
+            <div className='choicephoto-container'>
+              <img className='img-upload' key={index} src={`${info.Name}`} />
               <button onClick={() => addId(info.Id)}>Choisir</button>
             </div>
           ))}
         </div>
-        </div>
+      </div>
 
-        <div>
-          <h3>Vos textes :</h3>
+      <div>
+        <h3>Vos textes :</h3>
         <div style={{ display: `${display ? 'block' : 'none'}` }}>
-
           {datas.map((data, index) => (
             <DelOrPutSlider
               key={index}
@@ -126,8 +121,7 @@ export default function AdminSlider() {
             ></DelOrPutSlider>
           ))}
         </div>
-        </div>
-      </section>
-   
+      </div>
+    </section>
   )
 }
