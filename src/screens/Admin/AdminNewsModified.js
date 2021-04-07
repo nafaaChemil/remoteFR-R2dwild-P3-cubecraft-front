@@ -31,12 +31,7 @@ export default function AdminNewsModified(props) {
           }
         })
         .catch(error => {
-          // Error 😨
           if (error.response) {
-            /*
-             * The request was made and the server responded with a
-             * status code that falls out of the range of 2xx
-             */
             console.log(error.response.data)
             console.log(error.response.status)
             console.log(error.response.headers)
@@ -45,14 +40,8 @@ export default function AdminNewsModified(props) {
               setNewsAdded(false)
             }
           } else if (error.request) {
-            /*
-             * The request was made but no response was received, `error.request`
-             * is an instance of XMLHttpRequest in the browser and an instance
-             * of http.ClientRequest in Node.js
-             */
             console.log(error.request)
           } else {
-            // Something happened in setting up the request and triggered an Error
             console.log('Error', error.message)
           }
           console.log(error.config)
@@ -80,12 +69,7 @@ export default function AdminNewsModified(props) {
         })
       })
       .catch(error => {
-        // Error 😨
         if (error.response) {
-          /*
-           * The request was made and the server responded with a
-           * status code that falls out of the range of 2xx
-           */
           console.log(error.response.data)
           console.log(error.response.status)
           console.log(error.response.headers)
@@ -94,14 +78,8 @@ export default function AdminNewsModified(props) {
             setNewsAdded(false)
           }
         } else if (error.request) {
-          /*
-           * The request was made but no response was received, `error.request`
-           * is an instance of XMLHttpRequest in the browser and an instance
-           * of http.ClientRequest in Node.js
-           */
           console.log(error.request)
         } else {
-          // Something happened in setting up the request and triggered an Error
           console.log('Error', error.message)
         }
         console.log(error.config)
@@ -114,7 +92,11 @@ export default function AdminNewsModified(props) {
       <Link to='/admin/actualites/'>Retourner aux actus</Link>
     </div>
   ) : (
-    <div>
+    <section className='AddPage'>
+    <div className='Container-Addpage'>
+    <h2>Modifier une actualitée</h2>
+    <div className='formulaire-admin-add'>
+    <div className='form-group-add'>
       <label htmlFor='title'>Titre</label>
       <input
         type='text'
@@ -122,6 +104,8 @@ export default function AdminNewsModified(props) {
         value={formData.title}
         onChange={e => onChange(e)}
       />
+      </div>
+      <div className='form-group-add'>
       <label htmlFor='link'>Lien</label>
       <input
         type='text'
@@ -129,6 +113,8 @@ export default function AdminNewsModified(props) {
         value={formData.link}
         onChange={e => onChange(e)}
       />
+      </div>
+      <div className='form-group-add'>
       <label htmlFor='text'>Texte</label>
       <textarea
         type='text'
@@ -136,6 +122,8 @@ export default function AdminNewsModified(props) {
         value={formData.text}
         onChange={e => onChange(e)}
       />
+      </div>
+      <div className='form-group-add'>
       <label htmlFor='photo_id'>ID de l'image</label>
       <input
         type='number'
@@ -143,16 +131,21 @@ export default function AdminNewsModified(props) {
         value={formData.photo_id}
         onChange={e => onChange(e)}
       />
+      </div>
+      <div className='Form-group-btn'>
       <button onClick={editNews}>Modifier la news</button>
       {newsAdded ? (
-        <div>
-          Actu modifiée !
-          <Link to='/admin/actualites/'>Retourner aux actus</Link>
+        <div className='popupMessage'>
+          <p>Actu modifiée !</p>
+          <Link className='Backlink' to='/admin/actualites/'>Retourner aux actus</Link>
         </div>
       ) : (
         ''
       )}
+      </div>
     </div>
+    </div>
+    </section>
   )
 }
 

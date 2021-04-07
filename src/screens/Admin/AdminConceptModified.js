@@ -38,11 +38,16 @@ export default function AdminConceptModified() {
   }
 
   return (
-    <div>
+    <section className='AddPage'>
+    <div className='Container-Addpage'>
+    <h2>Modifier un concept </h2>
+    <div className='formulaire-admin-add'>
       {datas.map(data => (
         <>
+        <div className='form-group-add'>
           <label>
             Titre du concept
+            </label>
             <input
               type='text'
               placeholder={data.Title}
@@ -50,19 +55,25 @@ export default function AdminConceptModified() {
               value={title}
               onChange={event => setTitle(event.target.value)}
             />
-          </label>
+        </div>      
+        <div className='form-group-add'>
           <label>
             Concept
+            </label>
             <textarea
               type='text'
               placeholder={data.Text}
               name='concept'
               value={textConcept}
+              cols="30"
+              rows="15"
               onChange={event => setTextConcept(event.target.value)}
             />
-          </label>
+          </div>
+          <div className='form-group-add'>
           <label>
             Choix de la photo
+            </label>
             <input
               type='number'
               placeholder={data.Photo_id}
@@ -70,10 +81,10 @@ export default function AdminConceptModified() {
               value={picture}
               onChange={event => setPicture(event.target.value)}
             />
-          </label>
+          </div>
         </>
       ))}
-      <div>
+      <div className='Form-group-btn'>
         <button
           onClick={modified}
           style={{ display: `${valid ? 'none' : 'block'}` }}
@@ -84,5 +95,7 @@ export default function AdminConceptModified() {
         <button onClick={comeBack}>Retour</button>
       </div>
     </div>
+    </div>
+  </section>
   )
 }

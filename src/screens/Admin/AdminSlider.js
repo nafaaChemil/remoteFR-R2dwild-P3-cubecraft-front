@@ -8,27 +8,42 @@ export default function AdminSlider() {
   const [inputVisible, setInputvisible] = useState(false)
   const [newWord, setNewWord] = useState('')
   const [textModified, setTextModified] = useState('')
+  const [display, setDisplay] = useState(true)
+  const [picture, setPicture] = useState('')
+  const [infos, setInfos] = useState([''])
 
+  function displayPhotos() {
+    const fetchData = async () => {
+      const res = await axios.get('http://localhost:4242/photos')
+      setInfos(res.data)
+      setDisplay(!display)
+    }
+    fetchData()
+  }
   useEffect(() => {
     const fetchData = async () => {
       const resq = await axios.get(`http://localhost:4242/slider`)
       setDatas(resq.data)
     }
     fetchData()
-  }, [inputVisible])
+  }, [inputVisible, display])
+
+  const addId = id => {
+    setPicture(id)
+    setDisplay(!display)
+  }
 
   const deleteSlider = id => {
     axios.delete(`http://localhost:4242/slider/${id}`, {}).then(res => {
       setInputvisible(!inputVisible)
     })
-    console.log(id)
   }
 
   function AddSlider() {
     axios
       .post('http://localhost:4242/slider', {
         Word: newWord,
-        Photo_id: 1
+        Photo_id: picture
       })
       .then(res => {
         setInputvisible(!inputVisible)
@@ -37,26 +52,69 @@ export default function AdminSlider() {
   }
 
   return (
-    <>
+   
       <section id='admin'>
         <h1>Slider </h1>
 
         <div>
           <h3>Titre :</h3>
+          <div className="form-group">
           <input type='text' />
-          <button>Save</button>
+          <button
+          className='BtnAction'
+        >
+          <img
+            alt='logo edit'
+            className='logoBtn'
+            src='/images/logo/save.svg'
+          />
+        </button>
+          </div>
         </div>
         <div className='addTitleSlider'>
           <h3>Ajouter un nouveau texte : </h3>
-          <input
-            type='text'
-            value={newWord}
-            onChange={e => setNewWord(e.target.value)}
-          />
-          <button onClick={AddSlider}>Ajouter</button>
+          <div className='form-group'>
+            <input
+              type='text'
+              value={newWord}
+              onChange={e => setNewWord(e.target.value)}
+            />
+            <button className='BtnAction' onClick={AddSlider}>
+              <img
+                alt='logo add'
+                className='logoBtn'
+                src='/images/logo/add.svg'
+              />
+            </button>
+          </div>
+        </div>
+
+        <div className="">
+          <h3>Changer l'image de fond : </h3>
+          <div className='form-group'>
+          <input type='number' name='picture' value={picture} />
+          <button className='choice-picture' onClick={displayPhotos}>
+            Choisir
+          </button>
+          </div>
+         <div className="container-choice-img" style={{ display: `${display ? 'none' : 'flex'}` }}>
+          {infos.map((info, index) => (
+            <div className="choicephoto-container">
+              <img
+                className='img-upload'
+                key={index}
+                src={`${info.Name}`}
+              />
+              <button onClick={() => addId(info.Id)}>Choisir</button>
+            </div>
+          ))}
+        </div>
         </div>
 
         <div>
+          <h3>Vos textes :</h3>
+        <div style={{ display: `${display ? 'block' : 'none'}` }}>
+
           {datas.map((data, index) => (
             <DelOrPutSlider
               key={index}
@@ -68,7 +126,8 @@ export default function AdminSlider() {
             ></DelOrPutSlider>
           ))}
         </div>
+        </div>
       </section>
-    </>
+   
   )
 }
