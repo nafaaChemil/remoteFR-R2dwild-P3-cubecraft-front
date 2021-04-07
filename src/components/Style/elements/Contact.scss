@@ -1,223 +1,137 @@
-.background-container {
-  border: solid $colorPrimary 2px;
-  border-radius: 3px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
-.container-form {
-  width: 500px;
-  margin: auto;
-  padding-bottom: 10px;
-  padding-top: 105px;
-  text-align: left;
-  background-color: $colorThird ;
-
-}
-
-.container-form .data-form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 5px 0;
-  color: $colorSecondary;
-  padding-top: 20px;
-  height: 100px;
-
-}
-
-.p-form {
-   color: $colorSecondary;
-   text-align: center;
-   margin-top: 20vh;
-   font-size: $typoL;
- }
-.textarea-form {
-    height: 70px;
-    border: solid $colorPrimary 2px;
-}
-
-.data-form input:not([type="submit"]), textarea {
-  flex-grow: 1;
-  border-radius: 5px;
-  background-color: $colorThird;
-  margin-right: 10px;
-  height: 30px;
-  border: solid $colorPrimary 2px;
-}
-
-.btn-form {
+* {
+  padding: 0;
   border: none;
-  font-weight: 500;
-  font-size: 20px;
-  cursor: pointer;
-  transition: 0.2s ease-in-out;
-  margin-top: 10px;
-  background-color: $colorPrimary;
-  color: $colorThird;
-  border-radius: 15px;
-  width: 15vw;
+  outline: none;
+}
+
+hr {
+  border: solid $colorSecondary 0.3px;
+}
+
+.Contact {
+  
+  margin: 3rem auto 0;
+  max-width: 50%;
+  max-width: 350px;
+  border: 1px solid $colorPrimary;
+  border-radius: 5px;
+  background: $colorThird;
+  padding: 0 30px 10px;
+  box-shadow: 0px 4px 10px rgba(51, 51, 51, 0.637);
+  
+}
+.title-form {
+  margin-top: 35px;
   text-align: center;
-  letter-spacing:1.1px;
-  margin: 5vh;
+  color: $colorPrimary;
 }
-    .btn-form:hover {
-      background-color: $colorSecondary;
-  }
-
-
-/*
-@media only screen and (max-width: 280px) {
-.MailForm {
-  width: 200px;
-  margin: auto;
-  text-align: left;
-  background-color:rgb(43, 42, 42);
-  color: #D8F3DC;
+.form-content {
+  display: grid;
+  grid-template-rows: repeat(4, 1fr) 105px;
 }
-
-.MailForm .form-data {
-display: flex;
-padding-left: 10px;
-background-color: #74c69d;
-padding-top: 10px;
-padding-bottom: 10px;
-}
-
-.MailForm .form-data input:not([type="submit"]), textarea {
-flex-grow: 1;
-border-radius: 5px;
-background-color: rgb(43, 42, 42);
-margin-right: 10px;
-height: 30px;
-width: 10px;
-}
-}
-
-@media only screen and (max-width: 320px) {
-.MailForm {
-  width: 300px;
-  margin: auto;
-  text-align: left;
-  background-color:rgb(43, 42, 42);
-  color: #D8F3DC;
-}
-
-.MailForm .form-data {
-display: flex;
-justify-content: center;
-align-items: center;
-margin: 5px 0;
-padding-top: 20px;
-height: 100px;
-}
-
-.inputAboutUs {
-background-color: #ffffff;
-border-radius: 5px;
-background-color: rgb(43, 42, 42);
-margin-right: 10px;
-height: 30px;
-width: 10px;
-}
-}
-
-@media only screen and (max-width: 420px) {
-.MailForm {
-  width: 280px;
-  margin: auto;
-  text-align: left;
-  background-color:rgb(43, 42, 42);
-  color: #D8F3DC;
-}
-
-.MailForm .form-data {
-display: flex;
-justify-content: center;
-align-items: center;
-margin: 5px 0;
-padding-top: 20px;
-height: 100px;
-}
-
+input,
 textarea {
-background-color: #ffffff;
-border-radius: 5px;
-background-color: rgb(43, 42, 42);
-margin-right: 10px;
-height: 30px;
-width: 10px;
-}
+  background: none;
+  font-size: 1.1rem;
+  border-bottom: 1px solid $colorBack;
+  color: $colorPrimary;
 }
 
-.envoyer {
-border-radius: 10px;
-padding: 8px 16px;
-border: none;
-margin-top: 10px;
+input,
+.email-content,
+textarea {
+  width: 90%;
+  margin: 0 auto;
+}
+input {
+  padding: 24px 0 12px;
 }
 
-.envoyer:hover {
-color: black;
-background-color: #b7e4c7;
+
+#not-mail {
+  display: none;
+  position: absolute;
+  top: 4px;
+  color: #ff4d4d;
+  right: 0;
+  transform-origin: 50% 50%;
 }
-*/
 
+.form-btn {
+    background-color: $colorThird;
+    color: $colorPrimary;
+    border-radius: 10px;
+    padding: $spaceH_XL;
+    width: 285px;
+    text-align: center;
+    font-family: $typoPrimaire;
+    border:1px solid $colorPrimary;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@keyframes dongle {
+  0% {
+    transform: translate(0px, 0px);
+  }
+  10% {
+    transform: translate(-10px, 0px);
+  }
+  20% {
+    transform: translate(10px, 0px);
+  }
+  30% {
+    transform: translate(-10px, 0px);
+  }
+  40% {
+    transform: translate(10px, 0px);
+  }
+  50% {
+    transform: translate(-10px, 0px);
+  }
+  60% {
+    transform: translate(10px, 0px);
+  }
+  70% {
+    transform: translate(-10px, 0px);
+  }
+  80% {
+    transform: translate(10px, 0px);
+  }
+  90% {
+    transform: translate(-10px, 0px);
+  }
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+textarea {
+  resize: none;
+  padding: 24px 0;
+}
+.button {
+  background-color: $colorThird;
+    color: $colorSecondary;
+    border-radius: 10px;
+    padding: $spaceH_XL;
+    width: 285px;
+    text-align: center;
+    font-family: $typoPrimaire;
+    border:1px solid $colorSecondary;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.button:hover {
+  letter-spacing: 2px;
+}
 
-
-
-/*
-.container-form {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: solid yellow 5px;
-
-  .background-container {
-    border: solid black 5px
-    }
-
-    .title-form {
-      border: solid red 2px;
-       color: #38892C;
-       text-align: center;
-       margin-top: 50vh;
-     }
-      input {
-        width: 200px;
-        height: 7vh;
-        border: solid #38892C 2px;
-        vertical-align: middle;
-        text-align: left;
-        color:#071723;
-        margin: 10px;
-      }
-        .textarea-form {
-          height: 10vh;
-          width:200px;
-          border: solid red 3px;
-        }
-          .btn-form {
-          border: none;
-          font-weight: 500;
-          font-size: 20px;
-          color: #071723; 
-          cursor: pointer;
-          transition: 0.2s ease-in-out;
-          margin-top: 10px;
-          background-color: $colorPrimary;
-          color: $colorThird;
-          border-radius: 15px;
-          width: 15vw;
-          text-align: center;
-          letter-spacing:1.1px;
-          margin: 5vh;
-        }
-            .btn-form:hover {
-              background-color: #38892C;
-          }
-    }
-  */
+.form-message {
+  margin-top: 10px;
+  padding: 12px;
+  opacity: 0;
+  transition: 0.2s ease;
+  color: black;
+  border-radius: 4px;
+  box-shadow: 0 0 2px rgba(51, 51, 51, 0.3);
+}

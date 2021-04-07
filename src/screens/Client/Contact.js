@@ -1,121 +1,93 @@
-import React from 'react';
-import nodemailer from 'nodemailer';
-import { getMaxListeners } from 'node:process';
+import React, { useState } from "react";
+import emailjs from 'emailjs-com';
 
-const tranporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: 'ingridpruvost966@gmail.com',
-    pass: 'Manoraph2'
-  }
-});
 
-const mailOptions = {
-  from: 'vindication@enron.com',
-  to: 'friendsofenron@getMaxListeners.com, enemiesofenron@getMaxListeners.com',
-  subject: 'Bonjour',
-  text: 'BRAVOOOOO INGRID'
-};
+export default function Contact() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  
+  function sendEmail(e) {
+    e.preventDefault();
+    emailjs.sendForm('my.gmail', 'template_qforei9', e.target, 'user_fELVRdb1kJc5SzL1ge2Br')
+    .then((result) => {
+      console.log(result.text);
+  }, (error) => {
+      console.log(error.text);
+  });
+}
 
-transporter.sendMail(mailOptions, function(error, info){
-  if(error){
-    console.log('erreur');
-  }  else {
-    console.log('email envoyé' + info.response);
-  }
-});
+  function handleSubmit(e) {
+  e.preventDefault();
+  alert('Merci pour votre message');
 
-class Contact extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      firstName:'',
-      lastName:'',
-      email:'',
-      tel:'',
-      message:'',
-    };
-    this.onChange = this.onChange.bind(this);
-    this.submitForm = this.submitForm.bind(this);
-  }
-    onChange(e) {
-      this.setState({
-        [e.target.name]: e.target.value
-      });
+}
+    
+
+  return (
+    <div className="Contact">
+      <div>
+        <h1 className="title-form">Nous contacter</h1>
+      </div>
+    
+      <form onSubmit={sendEmail} className="form">
+        <div className="form-group">
+          <input placeholder="Nom / Raison sociale *"
+            type="text"
+            id="firstName"
+            className="firstName"
+            required />
+        </div>
+        <hr />
+
+        <div className="form-group">
+          <input placeholder="Prénom"
+            type="text"
+            id="lastName"
+            className="lastName"
+            />
+        </div>
+        <hr />
+
+        <div className="form-group">
+            <input placeholder="Email *"
+              type="email"
+              id="email"
+              className="email"
+              required />
+        </div>
+        <hr />
+
+        <div className="form-group">
+            <input placeholder="Téléphone"
+              type="text"
+              id="phone"
+              className="phone"
+              id="phone"
+               />
+        </div>
+        <hr />
+
+        <div className="form-group">
+            <textarea placeholder="Message *"
+              id="message"
+              required
+              className="form-textarea"
+               />
+        </div>
+        <hr />
+
+        <div className="form-group">
+          <button /*onClick={handleSubmit}*/
+            type="submit"
+            className="form-btn">Envoyer</button>
+        </div>
+
+      </form>
+    </div>
+    );
     }
-    submitForm(e) {
-      e.preventDefault();
-      alert("Message envoyé");
-      }
 
-      render() {
-        return (
-          
-          <div className="container-form">
-            <div className="background-container">
-            <div>
-              <h1 className="title-form">
-                <p className="p-form"> ✉️ Une question ? Nous sommes là !  </p>
 
-                 </h1>
-            </div>
-            <form on submit={this.submitForm}>
-            
-              <div className="data-form">
-                <input placeholder="Nom"
-                  type="text"
-                  id="lastName"
-                  name="lastName"
-                  onchange={this.onChange}
-                  required value={this.state.lastName} />
-              </div>
-
-              <div className='data-form'>
-                <input placeholder="Prénom"
-                  type='text'
-                  id="firstName"
-                  name="firstName"
-                  onchange={this.onChange}
-                  required value={this.state.firstName}/>
-              </div>
-
-              <div className="data-form">
-                <input placeholder="Email"
-                  type="email"
-                  id="email"
-                  name="email"
-                  onchange={this.onChange}
-                  required value={this.state.email} />
-              </div>
-
-              <div className="data-form">
-                <input placeholder="téléphone"
-                  type="tel"
-                  id="tel"
-                  name="tel"
-                  onchange={this.onChange}
-                  required value={this.state.tel} />
-              </div>
-
-              <div className="data-form">
-                <textarea placeholder="Message" className="textarea-form"
-                  type="text"
-                  id="message"
-                  name="message"
-                  onchange={this.onChange}
-                  required value={this.state.message}
-                />
-                </div>
-
-              <div>
-                <input className="btn-form" type="submit" value="Envoyer" />
-              </div>
-            </form>
-          </div>
-          </div>
-          
-        
-  )
-}
-}
-export default Contact
