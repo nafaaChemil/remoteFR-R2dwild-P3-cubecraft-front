@@ -41,11 +41,16 @@ export default function AdminAboutUsModified() {
   }
 
   return (
-    <div>
+    <section className='AddPage'>
+    <div className='Container-Addpage'>
+    <h2>Modifier un profil </h2>
+    <div className='formulaire-admin-add'>
       {datas.map(data => (
         <>
+        <div className='form-group-add'>
           <label>
-            Prénom
+            Prénom :
+            </label>
             <input
               type='text'
               placeholder={data.FirstName}
@@ -53,9 +58,11 @@ export default function AdminAboutUsModified() {
               value={firstName}
               onChange={event => setFirstName(event.target.value)}
             />
-          </label>
+          </div>
+          <div className='form-group-add'>
           <label>
-            Nom
+            Nom :
+            </label>
             <input
               type='text'
               placeholder={data.LastName}
@@ -63,9 +70,11 @@ export default function AdminAboutUsModified() {
               value={lastName}
               onChange={event => setLastName(event.target.value)}
             />
-          </label>
+          </div>
+          <div className='form-group-add'>
           <label>
-            Poste
+            Poste :
+            </label>
             <input
               type='text'
               placeholder={data.JobName}
@@ -73,9 +82,11 @@ export default function AdminAboutUsModified() {
               value={jobName}
               onChange={event => setJobName(event.target.value)}
             />
-          </label>
+          </div>
+          <div className='form-group-add'>
           <label>
-            Choix de la photo
+            Choix de la photo :
+            </label>
             <input
               type='number'
               placeholder={data.Photo_id}
@@ -83,10 +94,11 @@ export default function AdminAboutUsModified() {
               value={picture}
               onChange={event => setPicture(event.target.value)}
             />
-          </label>
+
+          </div>
         </>
       ))}
-      <div>
+      <div className='Form-group-btn'>
         <button
           onClick={modified}
           style={{ display: `${valid ? 'none' : 'block'}` }}
@@ -97,5 +109,7 @@ export default function AdminAboutUsModified() {
         <button onClick={comeBack}>Retour</button>
       </div>
     </div>
+    </div>
+    </section>
   )
 }

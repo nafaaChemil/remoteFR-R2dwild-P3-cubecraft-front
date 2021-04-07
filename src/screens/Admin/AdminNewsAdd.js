@@ -52,45 +52,59 @@ export default function AdminNewsAdd() {
   }
 
   return (
-    <div className="AddPage">
-      <label htmlFor='title'>Titre</label>
-      <input
-        type='text'
-        name='title'
-        value={formData.title}
-        onChange={e => onChange(e)}
-      />
-      <label htmlFor='link'>Lien</label>
-      <input
-        type='text'
-        name='link'
-        value={formData.link}
-        onChange={e => onChange(e)}
-      />
-      <label htmlFor='text'>Texte</label>
-      <textarea
-        type='text'
-        name='text'
-        value={formData.text}
-        onChange={e => onChange(e)}
-      />
-      <label htmlFor='photo_id'>ID de l'image</label>
-      <input
-        type='number'
-        name='photo_id'
-        value={formData.photo_id}
-        onChange={e => onChange(e)}
-      />
-      <button onClick={addNews}>Ajouter la news</button>
-      {newsAdded ? (
-        <div>
-          Actu ajoutée !{' '}
-          <Link to='/admin/actualites/'>Retourner aux actus</Link>
+    <section className="AddPage">
+    <div className="Container-Addpage">
+      <h2>Ajouter une actualité</h2>
+      <div className='form-group-add'>
+        <label htmlFor='title'>Titre :</label>
+        <input
+          type='text'
+          name='title'
+          value={formData.title}
+          onChange={e => onChange(e)}
+        />
+      </div>
+      <div className='form-group-add'>
+        <label htmlFor='link'>Lien :</label>
+        <input
+          type='text'
+          name='link'
+          value={formData.link}
+          onChange={e => onChange(e)}
+        />
+      </div>
+      <div className='form-group-add'>
+        <label htmlFor='text'>Texte :</label>
+        <textarea
+          type='text'
+          name='text'
+          value={formData.text}
+          onChange={e => onChange(e)}
+        />
+      </div>
+      <div className='form-group-add'>
+        <label htmlFor='photo_id'>ID de l'image :</label>
+        <input
+          type='number'
+          name='photo_id'
+          value={formData.photo_id}
+          onChange={e => onChange(e)}
+        />
+      </div>
+      <div className='Form-group-btn' >
+        <button onClick={addNews}>Ajouter la news</button>
+        {newsAdded ? (
+          <div className="popupMessage">
+           <p> Actu ajoutée !</p>
+            <Link className="Backlink" to='/admin/actualites/'>Retourner aux actus</Link>
+          </div>
+        ) : (
+          ''
+        )}
+        {status}
         </div>
-      ) : (
-        ''
-      )}
-      {status}
     </div>
+    </section>
+
   )
 }

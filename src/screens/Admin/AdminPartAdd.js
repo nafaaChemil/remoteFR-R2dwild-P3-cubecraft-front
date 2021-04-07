@@ -53,54 +53,54 @@ export default function AdminPartAdd() {
       })
   }
   return (
-    <section className="AddPage">
-    <div className="Container-Addpage">
-    <h2>Ajouter un article Pro</h2>
-    <div className="formulaire-admin-add">
-      <div className='form-group-add'>
-            <label htmlFor='CategoryName'>Nom</label>
+    <section className='AddPage'>
+      <div className='Container-Addpage'>
+        <h2>Ajouter un article particulier</h2>
+        <div className='formulaire-admin-add'>
+          <div className='form-group-add'>
+            <label htmlFor='CategoryName'>Nom :</label>
             <input
               type='text'
               name='CategoryName'
               value={formData.CategoryName}
               onChange={e => onChange(e)}
             />
-      </div>
-      <div className='form-group-add'>
-            <label htmlFor='Price'>Prix</label>
+          </div>
+          <div className='form-group-add'>
+            <label htmlFor='Price'>Prix :</label>
             <input
               type='number'
               name='Price'
               value={formData.Price}
               onChange={e => onChange(e)}
             />
-      </div>
-      <div className='form-group-add'>
-        <label htmlFor='Description'>Description</label>
-        <textarea
-          type='text'
-          name='Description'
-          value={formData.Description}
-          onChange={e => onChange(e)}
-          cols='40'
-          rows="15"
-        />
-      </div>
-        <div className='form-group-add'>
-          <label htmlFor='photo_id'>ID de l'image</label>
-          <input
-            type='number'
-            name='photo_id'
-            value={formData.photo_id}
-            onChange={e => onChange(e)}
-          />
-      </div>
-      <div className='Form-group-btn'>
-          <button onClick={addProduct}>Ajouter le produit</button>
+          </div>
+          <div className='form-group-add'>
+            <label htmlFor='Description'>Description :</label>
+            <textarea
+              type='text'
+              name='Description'
+              value={formData.Description}
+              onChange={e => onChange(e)}
+              cols='40'
+              rows='15'
+            />
+          </div>
+          <div className='form-group-add'>
+            <label htmlFor='photo_id'>ID de l'image :</label>
+            <input
+              type='number'
+              name='photo_id'
+              value={formData.photo_id}
+              onChange={e => onChange(e)}
+            />
+          </div>
+          <div className='Form-group-btn'>
+            <button onClick={addProduct}>Ajouter le produit</button>
             {productAdded ? (
-              <div className="popupMessage">
+              <div className='popupMessage'>
                 <p>Produit ajouté !</p>
-                <Link className="Backlink" to='/admin/particulier/'>
+                <Link className='Backlink' to='/admin/particulier/'>
                   Retourner aux produits pour particuliers
                 </Link>
               </div>
@@ -108,9 +108,9 @@ export default function AdminPartAdd() {
               ''
             )}
             {status}
+          </div>
+        </div>
       </div>
-    </div>
-    </div>
     </section>
   )
 }

@@ -36,7 +36,7 @@ export default function DelOrPutSlider(props) {
           <img
             alt='logo edit'
             className='logoBtn'
-            src='/images/logo/refresh.svg'
+            src='/images/logo/save.svg'
           />
         </button>
       </div>

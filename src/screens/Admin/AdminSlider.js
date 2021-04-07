@@ -43,8 +43,18 @@ export default function AdminSlider() {
 
         <div>
           <h3>Titre :</h3>
+          <div className="form-group">
           <input type='text' />
-          <button>Save</button>
+          <button
+          className='BtnAction'
+        >
+          <img
+            alt='logo edit'
+            className='logoBtn'
+            src='/images/logo/save.svg'
+          />
+        </button>
+          </div>
         </div>
         <div className='addTitleSlider'>
           <h3>Ajouter un nouveau texte : </h3>
