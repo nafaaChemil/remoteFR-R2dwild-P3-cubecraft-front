@@ -1,24 +1,41 @@
 #actu{
   max-width: 1400px;
   margin: 25vh auto;
+  .responsive {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
 
   .actu_card{
     display: flex;
-    flex-direction: row;
     border: solid 2px red;
     border-radius: 35px;
+    margin: 2rem;
    img{
       max-width: 100%;
+      height: 25rem;
+      width: 50rem;
       border: solid 3px blue;
       border-radius: 35px 0 0px 35px;
     }
     .actu_text {
       width: 100%;
       border: solid 4px green;
-      text-align: center;
+      display: flex;
+      display: flex;
+      flex-direction: column;
+      align-items: left;
+      justify-content: space-around;
+      padding-top: 2rem;
+      margin-left: 3rem;
+      margin-right: 3rem;
       p{
         text-align: center;
         border: solid 4px purple;
+        text-align: left;
+        margin-bottom: 1rem;
+        
       }
     }
   }
