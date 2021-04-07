@@ -31,17 +31,24 @@ export default function AdminPhotos() {
         <div>
           <ButtonAdd name='Ajouter une photo' handleClickAdd={AddPhoto} />
         </div>
-        <div>
+        <div className="Container-Image-Storage">
           {datas.map((data, index) => (
-            <>
-              <img
-                className='img-upload'
-                style={{ width: '100px' }}
-                key={index}
-                src={`${data.Name}`}
-              />
-              <button onClick={() => deletePhoto(data.Id)}>Suppr</button>
-            </>
+
+            <div className="imageInStorage">
+              <img className="img-upload" key={index} src={`${data.Name}`} />
+              <button className="BtnAction" onClick={() => deletePhoto(data.Id)}><img alt="logo add" className="logoBtn" src="/images/logo/trash.svg"/></button>
+            </div>
+// =======
+//             <>
+//               <img
+//                 className='img-upload'
+//                 style={{ width: '100px' }}
+//                 key={index}
+//                 src={`${data.Name}`}
+//               />
+//               <button onClick={() => deletePhoto(data.Id)}>Suppr</button>
+//             </>
+// >>>>>>> dev
           ))}
         </div>
       </section>
