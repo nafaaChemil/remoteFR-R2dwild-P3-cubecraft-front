@@ -6,6 +6,8 @@ import PropTypes from 'prop-types'
 export default function AdminNewsModified(props) {
   const [newsAdded, setNewsAdded] = useState(false)
   const [status, setStatus] = useState(null)
+  const [datas, setDatas] = useState([''])
+  const [display, setDisplay] = useState(true)
   const [formData, setFormData] = useState({
     title: '',
     link: '',
@@ -14,6 +16,19 @@ export default function AdminNewsModified(props) {
   })
   const params = props.match.params
   const id = params.id
+
+  function displayPhotos() {
+    const fetchPhoto = async () => {
+      const resq = await axios.get('http://localhost:4242/photos')
+      setDatas(resq.data)
+      setDisplay(!display)
+    }
+    fetchPhoto()
+  }
+  const addId = id => {
+    setFormData({ photo_id: id })
+    setDisplay(!display)
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -93,58 +108,69 @@ export default function AdminNewsModified(props) {
     </div>
   ) : (
     <section className='AddPage'>
-    <div className='Container-Addpage'>
-    <h2>Modifier une actualitée</h2>
-    <div className='formulaire-admin-add'>
-    <div className='form-group-add'>
-      <label htmlFor='title'>Titre</label>
-      <input
-        type='text'
-        name='title'
-        value={formData.title}
-        onChange={e => onChange(e)}
-      />
-      </div>
-      <div className='form-group-add'>
-      <label htmlFor='link'>Lien</label>
-      <input
-        type='text'
-        name='link'
-        value={formData.link}
-        onChange={e => onChange(e)}
-      />
-      </div>
-      <div className='form-group-add'>
-      <label htmlFor='text'>Texte</label>
-      <textarea
-        type='text'
-        name='text'
-        value={formData.text}
-        onChange={e => onChange(e)}
-      />
-      </div>
-      <div className='form-group-add'>
-      <label htmlFor='photo_id'>ID de l'image</label>
-      <input
-        type='number'
-        name='photo_id'
-        value={formData.photo_id}
-        onChange={e => onChange(e)}
-      />
-      </div>
-      <div className='Form-group-btn'>
-      <button onClick={editNews}>Modifier la news</button>
-      {newsAdded ? (
-        <div className='popupMessage'>
-          <p>Actu modifiée !</p>
-          <Link className='Backlink' to='/admin/actualites/'>Retourner aux actus</Link>
+      <div className='Container-Addpage'>
+        <h2>Modifier une actualitée</h2>
+        <div className='formulaire-admin-add'>
+          <div className='form-group-add'>
+            <label htmlFor='title'>Titre</label>
+            <input
+              type='text'
+              name='title'
+              value={formData.title}
+              onChange={e => onChange(e)}
+            />
+          </div>
+          <div className='form-group-add'>
+            <label htmlFor='link'>Lien</label>
+            <input
+              type='text'
+              name='link'
+              value={formData.link}
+              onChange={e => onChange(e)}
+            />
+          </div>
+          <div className='form-group-add'>
+            <label htmlFor='text'>Texte</label>
+            <textarea
+              type='text'
+              name='text'
+              value={formData.text}
+              onChange={e => onChange(e)}
+            />
+          </div>
+          <div className='form-group-add'>
+            <label>Choix de la photo</label>
+            <input type='number' name='picture' value={formData.photo_id} />
+            <button className='choice-picture' onClick={displayPhotos}>
+              Choisir
+            </button>
+          </div>
+          <div
+            className='container-choice-img'
+            style={{ display: `${display ? 'none' : 'flex'}` }}
+          >
+            {datas.map((data, index) => (
+              <div className='choicephoto-container'>
+                <img className='img-upload' key={index} src={`${data.Name}`} />
+                <button onClick={() => addId(data.Id)}>Choisir</button>
+              </div>
+            ))}
+          </div>
+          <div className='Form-group-btn'>
+            <button onClick={editNews}>Modifier la news</button>
+            {newsAdded ? (
+              <div className='popupMessage'>
+                <p>Actu modifiée !</p>
+                <Link className='Backlink' to='/admin/actualites/'>
+                  Retourner aux actus
+                </Link>
+              </div>
+            ) : (
+              ''
+            )}
+          </div>
         </div>
-      ) : (
-        ''
-      )}
       </div>
-    </div>
-    </div>
     </section>
   )
 }

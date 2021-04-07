@@ -68,76 +68,73 @@ export default function AdminProAdd() {
   }
 
   return (
-    <section className="AddPage">
-      <div className="Container-Addpage">
+    <section className='AddPage'>
+      <div className='Container-Addpage'>
         <h2>Ajouter un article Pro</h2>
-          <div className="formulaire-admin-add">
-            <div className='form-group-add'>
-                  <label htmlFor='CategoryName'>Nom</label>
-                  <input
-                    type='text'
-                    name='CategoryName'
-                    value={formData.CategoryName}
-                    onChange={e => onChange(e)}
-                  />
-            </div>
-            <div className='form-group-add'>
-                  <label htmlFor='Price'>Prix</label>
-                  <input
-                    type='number'
-                    name='Price'
-                    value={formData.Price}
-                    onChange={e => onChange(e)}
-                  />
-            </div>
-            <div className='form-group-add'>
-              <label htmlFor='Description'>Description</label>
-              <textarea
-                type='text'
-                name='Description'
-                value={formData.Description}
-                onChange={e => onChange(e)}
-                cols='40'
-                rows="15"
-              />
-            </div>
-            <div className='form-group-add'>
-                <label>
-                Choix de la photo</label>
-                <input type='number' name='picture' value={formData.photo_id} />
-                <button className='choice-picture' onClick={displayPhotos}>
-                  Choisir
-                </button>
-            </div>
-            <div className="container-choice-img" style={{ display: `${display ? 'none' : 'flex'}` }}>
-            {datas.map((data, index) => (
-              <div  className="choicephoto-container">
-                <img
-                  className='img-upload'
-                  key={index}
-                  src={`${data.Name}`}
-                />
-                <button onClick={() => addId(data.Id)}>Choisir</button>
-              </div >
-            ))}
-            </div>
-            <div className='Form-group-btn'>
-                <button onClick={addProduct}>Ajouter le produit</button>
-                  {productAdded ? (
-                    <div className="popupMessage">
-                      <p>Produit ajouté !</p>
-                      <Link className="Backlink" to='/admin/professionnel/'>
-                        Retourner aux produits pour professionnels
-                      </Link>
-                    </div>
-                  ) : (
-                    ''
-                  )}
-                  {status}
-            </div>
+        <div className='formulaire-admin-add'>
+          <div className='form-group-add'>
+            <label htmlFor='CategoryName'>Nom</label>
+            <input
+              type='text'
+              name='CategoryName'
+              value={formData.CategoryName}
+              onChange={e => onChange(e)}
+            />
           </div>
-          
+          <div className='form-group-add'>
+            <label htmlFor='Price'>Prix</label>
+            <input
+              type='number'
+              name='Price'
+              value={formData.Price}
+              onChange={e => onChange(e)}
+            />
+          </div>
+          <div className='form-group-add'>
+            <label htmlFor='Description'>Description</label>
+            <textarea
+              type='text'
+              name='Description'
+              value={formData.Description}
+              onChange={e => onChange(e)}
+              cols='40'
+              rows='15'
+            />
+          </div>
+          <div className='form-group-add'>
+            <label>Choix de la photo</label>
+            <input type='number' name='picture' value={formData.photo_id} />
+            <button className='choice-picture' onClick={displayPhotos}>
+              Choisir
+            </button>
+          </div>
+          <div
+            className='container-choice-img'
+            style={{ display: `${display ? 'none' : 'flex'}` }}
+          >
+            {datas.map((data, index) => (
+              <div className='choicephoto-container'>
+                <img className='img-upload' key={index} src={`${data.Name}`} />
+                <button onClick={() => addId(data.Id)}>Choisir</button>
+              </div>
+            ))}
+          </div>
+          <div className='Form-group-btn'>
+            <button onClick={addProduct}>Ajouter le produit</button>
+            {productAdded ? (
+              <div className='popupMessage'>
+                <p>Produit ajouté !</p>
+                <Link className='Backlink' to='/admin/professionnel/'>
+                  Retourner aux produits pour professionnels
+                </Link>
+              </div>
+            ) : (
+              ''
+            )}
+            {status}
+          </div>
         </div>
+      </div>
     </section>
   )
 }

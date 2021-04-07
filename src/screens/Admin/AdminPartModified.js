@@ -6,6 +6,8 @@ import PropTypes from 'prop-types'
 export default function AdminPartModified(props) {
   const [productAdded, setProductAdded] = useState(false)
   const [status, setStatus] = useState(null)
+  const [display, setDisplay] = useState(true)
+  const [datas, setDatas] = useState([''])
   const [formData, setFormData] = useState({
     CategoryName: '',
     Price: 0,
@@ -13,6 +15,19 @@ export default function AdminPartModified(props) {
     Particular_Pro: 1,
     photo_id: 1
   })
+
+  function displayPhotos() {
+    const fetchPhoto = async () => {
+      const resq = await axios.get('http://localhost:4242/photos')
+      setDatas(resq.data)
+      setDisplay(!display)
+    }
+    fetchPhoto()
+  }
+  const addId = id => {
+    setFormData({ photo_id: id })
+    setDisplay(!display)
+  }
   const params = props.match.params
   const id = params.id
   useEffect(() => {
@@ -97,63 +112,72 @@ export default function AdminPartModified(props) {
     </div>
   ) : (
     <section className='AddPage'>
-    <div className='Container-Addpage'>
-    <h2>Modifier un article particulier</h2>
-    <div className='formulaire-admin-add'>
-      <div className='form-group-add'>
-        <label htmlFor='CategoryName'>Nom</label>
-        <input
-          type='text'
-          name='CategoryName'
-          value={formData.CategoryName}
-          onChange={e => onChange(e)}
-        />
-      </div>
-      <div className='form-group-add'>
-        <label htmlFor='Price'>Prix</label>
-        <input
-          type='number'
-          name='Price'
-          value={formData.Price}
-          onChange={e => onChange(e)}
-        />
-      </div>
-      <div className='form-group-add'>
-        <label htmlFor='Description'>Description</label>
-        <textarea
-          type='text'
-          cols="45"
-          rows="15"
-          name='Description'
-          value={formData.Description}
-          onChange={e => onChange(e)}
-        />
-      </div>
-      <div className='form-group-add'>
-        <label htmlFor='photo_id'>ID de l'image</label>
-        <input
-          type='number'
-          name='photo_id'
-          value={formData.photo_id}
-          onChange={e => onChange(e)}
-        />
-      </div>
-      <div className='Form-group-btn'>
-      <button onClick={editProduct}>Modifier le produit</button>
-      
-      {productAdded ? (
-        <div className='popupMessage'>
-          <p>Produit modifié !</p>
-          <Link className='Backlink' to='/admin/particulier/'>
-            Retourner aux produits pour particuliers
-          </Link>
+      <div className='Container-Addpage'>
+        <h2>Modifier un article particulier</h2>
+        <div className='formulaire-admin-add'>
+          <div className='form-group-add'>
+            <label htmlFor='CategoryName'>Nom</label>
+            <input
+              type='text'
+              name='CategoryName'
+              value={formData.CategoryName}
+              onChange={e => onChange(e)}
+            />
+          </div>
+          <div className='form-group-add'>
+            <label htmlFor='Price'>Prix</label>
+            <input
+              type='number'
+              name='Price'
+              value={formData.Price}
+              onChange={e => onChange(e)}
+            />
+          </div>
+          <div className='form-group-add'>
+            <label htmlFor='Description'>Description</label>
+            <textarea
+              type='text'
+              cols='45'
+              rows='15'
+              name='Description'
+              value={formData.Description}
+              onChange={e => onChange(e)}
+            />
+          </div>
+          <div className='form-group-add'>
+            <label>Choix de la photo</label>
+            <input type='number' name='picture' value={formData.photo_id} />
+            <button className='choice-picture' onClick={displayPhotos}>
+              Choisir
+            </button>
+          </div>
+          <div
+            className='container-choice-img'
+            style={{ display: `${display ? 'none' : 'flex'}` }}
+          >
+            {datas.map((data, index) => (
+              <div className='choicephoto-container'>
+                <img className='img-upload' key={index} src={`${data.Name}`} />
+                <button onClick={() => addId(data.Id)}>Choisir</button>
+              </div>
+            ))}
+          </div>
+          <div className='Form-group-btn'>
+            <button onClick={editProduct}>Modifier le produit</button>
+
+            {productAdded ? (
+              <div className='popupMessage'>
+                <p>Produit modifié !</p>
+                <Link className='Backlink' to='/admin/particulier/'>
+                  Retourner aux produits pour particuliers
+                </Link>
+              </div>
+            ) : (
+              ''
+            )}
+          </div>
         </div>
-      ) : (
-        ''
-      )}
       </div>
-      </div>
-    </div>
     </section>
   )
 }
