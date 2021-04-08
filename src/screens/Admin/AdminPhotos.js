@@ -12,8 +12,8 @@ export default function AdminPhotos() {
   function AddPhoto() {
     history.push(`/admin/photos/add`)
   }
-  const deletePhoto = id => {
-    axios.delete(`http://localhost:4242/photos/${id}`, {}).then(res => {
+  const deletePhoto = (id, name) => {
+    axios.delete(`http://localhost:4242/photos/${id}/${name.replace("/images/","")}`, {}).then(res => {
       setAffiched(!affiched)
     })
   }
@@ -24,6 +24,8 @@ export default function AdminPhotos() {
     }
     fetchData()
   }, [affiched])
+
+  
   return (
     <>
       <section id='admin'>
@@ -36,7 +38,7 @@ export default function AdminPhotos() {
 
             <div className="imageInStorage">
               <img className="img-upload" key={index} src={`${data.Name}`} />
-              <button className="BtnAction" onClick={() => deletePhoto(data.Id)}><img alt="logo add" className="logoBtn" src="/images/logo/trash.svg"/></button>
+              <button className="BtnAction" onClick={() => deletePhoto(data.Id, data.Name)}><img alt="logo add" className="logoBtn" src="/images/logo/trash.svg"/></button>
             </div>
 // =======
 //             <>
