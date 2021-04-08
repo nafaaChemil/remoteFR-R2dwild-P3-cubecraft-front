@@ -5,11 +5,10 @@
 }
 
 hr {
-  border: solid $colorSecondary 0.3px;
+  border: solid $colorPrimary 1px;
 }
 
 .Contact {
-  
   margin: 3rem auto 0;
   max-width: 50%;
   max-width: 350px;
@@ -23,46 +22,20 @@ hr {
 .title-form {
   margin-top: 35px;
   text-align: center;
-  color: $colorPrimary;
-}
-.form-content {
-  display: grid;
-  grid-template-rows: repeat(4, 1fr) 105px;
-}
-input,
-textarea {
-  background: none;
-  font-size: 1.1rem;
-  border-bottom: 1px solid $colorBack;
-  color: $colorPrimary;
+  color: $colorSecondary;
 }
 
-input,
-.email-content,
-textarea {
-  width: 90%;
-  margin: 0 auto;
-}
 input {
   padding: 24px 0 12px;
 }
 
-
-#not-mail {
-  display: none;
-  position: absolute;
-  top: 4px;
-  color: #ff4d4d;
-  right: 0;
-  transform-origin: 50% 50%;
-}
-
 .form-btn {
     background-color: $colorThird;
-    color: $colorPrimary;
+    color: $colorSecondary;
     border-radius: 10px;
     padding: $spaceH_XL;
-    width: 285px;
+    width: 100%;
+    height: 20px;
     text-align: center;
     font-family: $typoPrimaire;
     border:1px solid $colorPrimary;
@@ -70,68 +43,10 @@ input {
     justify-content: center;
     align-items: center;
 }
-@keyframes dongle {
-  0% {
-    transform: translate(0px, 0px);
-  }
-  10% {
-    transform: translate(-10px, 0px);
-  }
-  20% {
-    transform: translate(10px, 0px);
-  }
-  30% {
-    transform: translate(-10px, 0px);
-  }
-  40% {
-    transform: translate(10px, 0px);
-  }
-  50% {
-    transform: translate(-10px, 0px);
-  }
-  60% {
-    transform: translate(10px, 0px);
-  }
-  70% {
-    transform: translate(-10px, 0px);
-  }
-  80% {
-    transform: translate(10px, 0px);
-  }
-  90% {
-    transform: translate(-10px, 0px);
-  }
-  100% {
-    transform: translate(0px, 0px);
-  }
-}
+
 textarea {
   resize: none;
   padding: 24px 0;
 }
-.button {
-  background-color: $colorThird;
-    color: $colorSecondary;
-    border-radius: 10px;
-    padding: $spaceH_XL;
-    width: 285px;
-    text-align: center;
-    font-family: $typoPrimaire;
-    border:1px solid $colorSecondary;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.button:hover {
-  letter-spacing: 2px;
-}
 
-.form-message {
-  margin-top: 10px;
-  padding: 12px;
-  opacity: 0;
-  transition: 0.2s ease;
-  color: black;
-  border-radius: 4px;
-  box-shadow: 0 0 2px rgba(51, 51, 51, 0.3);
-}
+

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import emailjs from 'emailjs-com';
 
 
-export default function Contact() {
+const Contact = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phone, setPhone] = useState("");
@@ -11,20 +11,17 @@ export default function Contact() {
   
   function sendEmail(e) {
     e.preventDefault();
-    emailjs.sendForm('my.gmail', 'template_qforei9', e.target, 'user_fELVRdb1kJc5SzL1ge2Br')
+    emailjs.sendForm('my.gmail', 'template_qforei9', e.target,
+    'user_fELVRdb1kJc5SzL1ge2Br')
     .then((result) => {
-      console.log(result.text);
-  }, (error) => {
-      console.log(error.text);
-  });
-}
-
-  function handleSubmit(e) {
+      console.log(result.text) 
+      });
+  }
+  
+function handleSubmit(e) {
   e.preventDefault();
-  alert('Merci pour votre message');
-
+  alert('merci pour votre message');
 }
-    
 
   return (
     <div className="Contact">
@@ -33,6 +30,7 @@ export default function Contact() {
       </div>
     
       <form onSubmit={sendEmail} className="form">
+
         <div className="form-group">
           <input placeholder="Nom / Raison sociale *"
             type="text"
@@ -43,6 +41,7 @@ export default function Contact() {
         <hr />
 
         <div className="form-group">
+          
           <input placeholder="Prénom"
             type="text"
             id="lastName"
@@ -52,6 +51,7 @@ export default function Contact() {
         <hr />
 
         <div className="form-group">
+          
             <input placeholder="Email *"
               type="email"
               id="email"
@@ -90,4 +90,4 @@ export default function Contact() {
     );
     }
 
-
+export default Contact;
