@@ -27,7 +27,7 @@ export default function AdminPartAdd() {
     fetchData()
   }
   const addId = id => {
-    setFormData({ photo_id: id })
+    setFormData({ ...formData, photo_id: id })
     setDisplay(!display)
   }
   const addProduct = async () => {
@@ -100,21 +100,19 @@ export default function AdminPartAdd() {
             />
           </div>
           <div className='form-group-add'>
-            <label>
-              Choix de la photo</label>
-              <input type='number' name='picture' value={formData.photo_id} />
-              <button className='choice-picture' onClick={displayPhotos}>
-                Choisir
-              </button>
+            <label>Choix de la photo</label>
+            <input type='number' name='picture' value={formData.photo_id} />
+            <button className='choice-picture' onClick={displayPhotos}>
+              Choisir
+            </button>
           </div>
-           <div className="container-choice-img" style={{ display: `${display ? 'none' : 'flex'}` }}>
+          <div
+            className='container-choice-img'
+            style={{ display: `${display ? 'none' : 'flex'}` }}
+          >
             {datas.map((data, index) => (
-              <div className="choicephoto-container">
-                <img
-                  className='img-upload'
-                  key={index}
-                  src={`${data.Name}`}
-                />
+              <div className='choicephoto-container'>
+                <img className='img-upload' key={index} src={`${data.Name}`} />
                 <button onClick={() => addId(data.Id)}>Choisir</button>
               </div>
             ))}
@@ -134,7 +132,6 @@ export default function AdminPartAdd() {
             {status}
           </div>
         </div>
-       
       </div>
     </section>
   )
