@@ -77,13 +77,6 @@ export default function AdminProModified(props) {
         if (response.status === 200) {
           setProductAdded(true)
           setStatus(null)
-          setFormData({
-            CategoryName: '',
-            Price: 0,
-            Description: '',
-            Individual: 0,
-            photo_id: 1
-          })
         }
       })
       .catch(error => {
