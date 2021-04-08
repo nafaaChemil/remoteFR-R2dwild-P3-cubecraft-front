@@ -10,7 +10,7 @@ function Home() {
       <div
         className='Home'
         style={{
-          backgroundImage: `url("images/Annexe1.jpg")`
+          backgroundImage: `url("images/bureauHighCubeEcoDesign-rendufinal.png")`
         }}
       >
         <div className='home-hero-carousel'>

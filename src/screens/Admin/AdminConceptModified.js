@@ -9,15 +9,34 @@ export default function AdminConceptModified() {
   const [picture, setPicture] = useState('')
   const [valid, setValid] = useState(false)
   const [datas, setDatas] = useState([])
+  const [infos, setInfos] = useState([])
+  const [display, setDisplay] = useState(true)
+
+  function displayPhotos() {
+    const fetchPhoto = async () => {
+      const resq = await axios.get('http://localhost:4242/photos')
+      setInfos(resq.data)
+      setDisplay(!display)
+    }
+    fetchPhoto()
+  }
 
   let { id } = useParams()
   useEffect(() => {
     const fetchData = async () => {
       const resq = await axios.get(`http://localhost:4242/concept/${id}`)
       setDatas(resq.data)
+      setTitle(resq.data[0].Title)
+      setTextConcept(resq.data[0].Text)
+      setPicture(resq.data[0].Photo_id)
     }
     fetchData()
   }, [])
+
+  const addId = id => {
+    setPicture(id)
+    setDisplay(!display)
+  }
 
   const modified = () => {
     axios
@@ -38,51 +57,68 @@ export default function AdminConceptModified() {
   }
 
   return (
-    <div>
-      {datas.map(data => (
-        <>
-          <label>
-            Titre du concept
-            <input
-              type='text'
-              placeholder={data.Title}
-              name='title'
-              value={title}
-              onChange={event => setTitle(event.target.value)}
-            />
-          </label>
-          <label>
-            Concept
-            <textarea
-              type='text'
-              placeholder={data.Text}
-              name='concept'
-              value={textConcept}
-              onChange={event => setTextConcept(event.target.value)}
-            />
-          </label>
-          <label>
-            Choix de la photo
-            <input
-              type='number'
-              placeholder={data.Photo_id}
-              name='picture'
-              value={picture}
-              onChange={event => setPicture(event.target.value)}
-            />
-          </label>
-        </>
-      ))}
-      <div>
-        <button
-          onClick={modified}
-          style={{ display: `${valid ? 'none' : 'block'}` }}
-        >
-          Valider modification
-        </button>
-        {valid ? 'Le concept à été modifié' : ''}
-        <button onClick={comeBack}>Retour</button>
+    <section className='AddPage'>
+      <div className='Container-Addpage'>
+        <h2>Modifier un concept </h2>
+        <div className='formulaire-admin-add'>
+          {datas.map(data => (
+            <>
+              <div className='form-group-add'>
+                <label>Titre du concept</label>
+                <input
+                  type='text'
+                  name='title'
+                  value={title}
+                  onChange={event => setTitle(event.target.value)}
+                />
+              </div>
+              <div className='form-group-add'>
+                <label>Concept</label>
+                <textarea
+                  type='text'
+                  name='concept'
+                  value={textConcept}
+                  cols='30'
+                  rows='15'
+                  onChange={event => setTextConcept(event.target.value)}
+                />
+              </div>
+              <div className='form-group-add'>
+                <label>Choix de la photo</label>
+                <input type='number' name='picture' value={picture} />
+                <button className='choice-picture' onClick={displayPhotos}>
+                  Choisir
+                </button>
+              </div>
+              <div
+                className='container-choice-img'
+                style={{ display: `${display ? 'none' : 'flex'}` }}
+              >
+                {infos.map((info, index) => (
+                  <div className='choicephoto-container'>
+                    <img
+                      className='img-upload'
+                      key={index}
+                      src={`${info.Name}`}
+                    />
+                    <button onClick={() => addId(info.Id)}>Choisir</button>
+                  </div>
+                ))}
+              </div>
+            </>
+          ))}
+          <div className='Form-group-btn'>
+            <button
+              onClick={modified}
+              style={{ display: `${valid ? 'none' : 'block'}` }}
+            >
+              Valider modification
+            </button>
+            {valid ? 'Le concept à été modifié' : ''}
+            <button onClick={comeBack}>Retour</button>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   )
 }
