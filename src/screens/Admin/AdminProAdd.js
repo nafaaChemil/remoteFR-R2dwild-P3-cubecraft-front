@@ -27,7 +27,7 @@ export default function AdminProAdd() {
     fetchData()
   }
   const addId = id => {
-    setFormData({ photo_id: id })
+    setFormData({ ...formData, photo_id: id })
     setDisplay(!display)
   }
 

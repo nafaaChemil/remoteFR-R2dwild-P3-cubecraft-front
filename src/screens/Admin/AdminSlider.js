@@ -14,7 +14,6 @@ export default function AdminSlider() {
   const [infos, setInfos] = useState([''])
   const [updatedOk, setUpdatedOk ] = useState("")
 
-
   function displayPhotos() {
     const fetchData = async () => {
       const res = await axios.get('http://localhost:4242/photos')
@@ -33,32 +32,27 @@ export default function AdminSlider() {
 
     fetchData()
   }, [inputVisible, display])
-
-  
-
   const addId = id => {
     setPicture(id)
     setDisplay(!display)
   }
-
   const deleteSlider = id => {
     axios.delete(`http://localhost:4242/slider/${id}`, {}).then(res => {
       setInputvisible(!inputVisible)
     })
   }
-
   function AddSlider() {
     axios
       .post('http://localhost:4242/slider', {
         Word: newWord,
-        Photo_id: picture
+        Photo_id: 1
       })
       .then(res => {
         setInputvisible(!inputVisible)
         setNewWord('')
       })
   }
-const updateTitle = async () => {
+  const updateTitle = async () => {
     const res = await axios
       .put(`http://localhost:4242/title/1`, {
         Title : title
@@ -68,7 +62,7 @@ const updateTitle = async () => {
       })
   }
 
-console.log(title)
+
   return (
     <section id='admin'>
       <h1>Slider </h1>
@@ -118,6 +112,7 @@ console.log(title)
           <button className='choice-picture' onClick={displayPhotos}>
             Choisir
           </button>
+        
         </div>
         <div
           className='container-choice-img'
