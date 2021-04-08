@@ -25,7 +25,7 @@ export default function AdminAboutUs() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const resq = await axios.get('http://localhost:4242/about')
+      const resq = await axios.get('http://localhost:4242/about/')
       setDatas(resq.data)
     }
     fetchData()
@@ -46,7 +46,7 @@ export default function AdminAboutUs() {
               handleClickSupp={() => deleteProfile(data.Id)}
               handleClickEdit={() => modifiedProfile(data.Id)}
               key={index}
-              name={data.FirstName}
+              name={data.FirstName + '  ' + data.LastName}
             ></SuppOrEdit>
           ))}
         </div>
