@@ -50,6 +50,7 @@ const App = () => {
         ) : (
           <>
             <Navbar
+              positionNav={location.pathname == '/' ? 'absolute' : 'relative'}
               stateBt={`hamburger__menu ${sideToggle ? 'close' : ''}`}
               click={() =>
                 sideToggle ? setSideToggle(false) : setSideToggle(true)
