@@ -5,7 +5,8 @@
 }
 
 hr {
-  border: solid $colorPrimary 1px;
+  border: solid $colorSecondary 1px;
+
 }
 
 .Contact {
@@ -20,9 +21,12 @@ hr {
   
 }
 .title-form {
-  margin-top: 35px;
+  margin-top: 70px;
+  margin-bottom: 35px;
   text-align: center;
   color: $colorSecondary;
+  font-family: $typoPrimaire;
+  font-size: $typoXL;
 }
 
 input {
@@ -35,18 +39,16 @@ input {
     border-radius: 10px;
     padding: $spaceH_XL;
     width: 100%;
-    height: 20px;
-    text-align: center;
+    
     font-family: $typoPrimaire;
-    border:1px solid $colorPrimary;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    border:1px solid $colorSecondary;
+    
 }
 
 textarea {
   resize: none;
   padding: 24px 0;
+  font-family: $typoPrimaire;
 }
 
 

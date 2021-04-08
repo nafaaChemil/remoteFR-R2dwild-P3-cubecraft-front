@@ -28,7 +28,7 @@ const Contact = () => {
   return (
     <div className="Contact">
       <div>
-        <h1 className="title-form">Nous contacter</h1>
+        <h1 className="title-form">Plus d'infos ?</h1>
       </div>
     
       <form onSubmit={sendEmail} className="form">
@@ -88,7 +88,7 @@ const Contact = () => {
         <div className="form-group">
           <input 
             type="submit"
-            value='Send'
+            value='Envoyer'
             className="form-btn"></input>
         </div>
 
