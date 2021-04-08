@@ -12,10 +12,15 @@ export default function AdminPhotos() {
   function AddPhoto() {
     history.push(`/admin/photos/add`)
   }
-  const deletePhoto = id => {
-    axios.delete(`http://localhost:4242/photos/${id}`, {}).then(res => {
-      setAffiched(!affiched)
-    })
+  const deletePhoto = (id, name) => {
+    axios
+      .delete(
+        `http://localhost:4242/photos/${id}/${name.replace('/images/', '')}`,
+        {}
+      )
+      .then(res => {
+        setAffiched(!affiched)
+      })
   }
   useEffect(() => {
     const fetchData = async () => {
@@ -24,6 +29,7 @@ export default function AdminPhotos() {
     }
     fetchData()
   }, [affiched])
+
   return (
     <>
       <section id='admin'>
@@ -38,7 +44,7 @@ export default function AdminPhotos() {
                 <img className='img-upload' key={index} src={`${data.Name}`} />
                 <button
                   className='BtnAction'
-                  onClick={() => deletePhoto(data.Id)}
+                  onClick={() => deletePhoto(data.Id, data.Name)}
                 >
                   <img
                     alt='logo add'
