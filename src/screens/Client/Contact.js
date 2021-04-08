@@ -10,19 +10,21 @@ const Contact = () => {
   const [message, setMessage] = useState("");
   
   function sendEmail(e) {
+
     e.preventDefault();
+
+    console.log('sending email')
+    console.log(e)
+
     emailjs.sendForm('my.gmail', 'template_qforei9', e.target,
     'user_fELVRdb1kJc5SzL1ge2Br')
     .then((result) => {
+      console.log('result')
       console.log(result.text) 
       });
+      alert('Merci pour votre message');
   }
   
-function handleSubmit(e) {
-  e.preventDefault();
-  alert('merci pour votre message');
-}
-
   return (
     <div className="Contact">
       <div>
@@ -34,8 +36,9 @@ function handleSubmit(e) {
         <div className="form-group">
           <input placeholder="Nom / Raison sociale *"
             type="text"
-            id="firstName"
-            className="firstName"
+            id="lastName"
+            className="lasttName"
+            name="last_name"
             required />
         </div>
         <hr />
@@ -44,8 +47,9 @@ function handleSubmit(e) {
           
           <input placeholder="Prénom"
             type="text"
-            id="lastName"
-            className="lastName"
+            id="firstName"
+            name="user_firstname"
+            className="firstName"
             />
         </div>
         <hr />
@@ -54,6 +58,7 @@ function handleSubmit(e) {
           
             <input placeholder="Email *"
               type="email"
+              name="user_email"
               id="email"
               className="email"
               required />
@@ -73,6 +78,7 @@ function handleSubmit(e) {
         <div className="form-group">
             <textarea placeholder="Message *"
               id="message"
+              name='message'
               required
               className="form-textarea"
                />
@@ -80,9 +86,10 @@ function handleSubmit(e) {
         <hr />
 
         <div className="form-group">
-          <button /*onClick={handleSubmit}*/
+          <input 
             type="submit"
-            className="form-btn">Envoyer</button>
+            value='Send'
+            className="form-btn"></input>
         </div>
 
       </form>
