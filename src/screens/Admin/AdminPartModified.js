@@ -77,13 +77,6 @@ export default function AdminPartModified(props) {
       .then(function (response) {
         setProductAdded(true)
         setStatus(null)
-        setFormData({
-          CategoryName: '',
-          Price: 0,
-          Description: '',
-          Particular_Pro: 1,
-          photo_id: 1
-        })
       })
       .catch(error => {
         if (error.response) {
