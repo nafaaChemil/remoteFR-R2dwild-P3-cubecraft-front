@@ -7,11 +7,11 @@ export default function CardTeam({
   description
 }) {
   return (
-    <ul>
-      <li>{imagePlayer}</li>
-      <li>{nameH2}</li>
-      <li>{positionH3}</li>
-      <li>{description}</li>
-    </ul>
+    <div className='player'>
+      <img src={imagePlayer} />
+      <h2>{nameH2}</h2>
+      <h3>{positionH3}</h3>
+      <p>{description}</p>
+    </div>
   )
 }

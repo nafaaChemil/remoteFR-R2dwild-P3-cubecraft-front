@@ -1,5 +1,5 @@
 #team{
-	max-width: 900px;
+	max-width: 80%;
   margin: 5vh auto;
   display: flex;
   flex-direction: column;
@@ -11,15 +11,19 @@
     display: flex;
     width: 100%;
 		flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
     // Mediaqueries
     @include sm {
       flex-direction: column;
     }
 	}
-ul {
+.player {
 	@include encart_intro;
-	width: 200px;
+	width: 25%;
+
+	img {
+		width: 45%;
+	}
 	&::after {
       content: "";
       background-color: #061722b8;
