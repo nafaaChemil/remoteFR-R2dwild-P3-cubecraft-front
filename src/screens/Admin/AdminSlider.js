@@ -12,7 +12,7 @@ export default function AdminSlider() {
   const [display, setDisplay] = useState(true)
   const [picture, setPicture] = useState('')
   const [infos, setInfos] = useState([''])
-  const [updatedOk, setUpdatedOk ] = useState("")
+  const [updatedOk, setUpdatedOk] = useState('')
 
   function displayPhotos() {
     const fetchData = async () => {
@@ -55,37 +55,34 @@ export default function AdminSlider() {
   const updateTitle = async () => {
     const res = await axios
       .put(`http://localhost:4242/title/1`, {
-        Title : title
+        Title: title
       })
       .then(res => {
         setUpdatedOk('Titre mise à jour')
       })
   }
 
-
   return (
     <section id='admin'>
       <h1>Slider </h1>
 
-
-        <div>
-          <h3>Titre :</h3>
-          <div className="form-group">
-          <input value={title} type='text' onChange={e => setTitle(e.target.value)}/>
-          <button
-          onClick={updateTitle}
-          className='BtnAction'
-        >
-          <img
-            alt='logo edit'
-            className='logoBtn'
-            src='/images/logo/save.svg'
+      <div>
+        <h3>Titre :</h3>
+        <div className='form-group'>
+          <input
+            value={title}
+            type='text'
+            onChange={e => setTitle(e.target.value)}
           />
-        </button>
-        {updatedOk ? <p className="updateTitle">{updatedOk}</p> : "" }
+          <button onClick={updateTitle} className='BtnAction'>
+            <img
+              alt='logo edit'
+              className='logoBtn'
+              src='/images/logo/save.svg'
+            />
+          </button>
+          {updatedOk ? <p className='updateTitle'>{updatedOk}</p> : ''}
         </div>
-
-        
       </div>
       <div className='addTitleSlider'>
         <h3>Ajouter un nouveau texte : </h3>
@@ -112,7 +109,6 @@ export default function AdminSlider() {
           <button className='choice-picture' onClick={displayPhotos}>
             Choisir
           </button>
-        
         </div>
         <div
           className='container-choice-img'
