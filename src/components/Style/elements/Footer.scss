@@ -1,7 +1,8 @@
 .footer {
   width: 100%;
-  background-color: $colorPrimary;
+  background-color: $colorAlphaP;
   padding: 5vh 0 ;
+  font-family: $typoPrimaire;
   .footer_container{
     display: flex; 
     max-width: 1400px;
@@ -53,9 +54,11 @@
         line-height: 2rem;
         letter-spacing: 1px;
         border-bottom: 1px solid transparent;
-        transition: all .5s ease-in;
+        transition: background .2s ease-in;
         &:hover{
-          border-color: red;
+          color:$colorSecondary;
+						background: $colorAlphaS;
+						border-radius: 5px;
         }
       }
   }
