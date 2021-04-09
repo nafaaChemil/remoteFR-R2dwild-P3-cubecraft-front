@@ -1,8 +1,19 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import CardTeam from '../../components/Client/CardTeam'
 import EncartSite from '../../components/Client/EncartSite'
 
 function About() {
+  const [datas, setDatas] = useState([''])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const resq = await axios.get(`http://localhost:4242/about/detail`)
+      setDatas(resq.data)
+    }
+    fetchData()
+  }, [])
+  console.log(datas)
   return (
     <div className='about'>
       <section id='presentation'>
@@ -15,7 +26,7 @@ function About() {
             écologiques quel que soit votre projet : maison économique,
             écologique, confortable, logement étudiant, logements sociaux,
             piscine, cabane de jardin et bien plus encore !
-
+              
             Notre bureau d’étude, High Cube Eco Design, est spécialisé dans le
             domaine du bâtiment et de la construction de maison container. Il
             saura donc, répondre parfaitement à votre demande. Notre équipe
@@ -35,42 +46,18 @@ function About() {
       <section id='team'>
         <h2>Présentation de l'équipe highcube</h2>
         <div className='encart'>
-          <CardTeam
-            imagePlayer='images/mrpatate.jpg'
-            nameH2='Tolgay Yildiz'
-            positionH3="CEO - Fondateur, Directeur du bureau d'étude"
-            description='Diplômé en Génie Civil, Tolgay est responsable la gestion du projet et de la relation clientèle'
-          />
-          <CardTeam
-            imagePlayer='images/mrpatate.jpg'
-            nameH2='Ali Ozcan'
-            positionH3='COO - Directeur Usine'
-            description="Fort de 25 ans d'expérience dans le BTP, Ali est en charge de la transformation et l'aménagement des containers maritimes "
-          />
-          <CardTeam
-            imagePlayer='images/mrpatate.jpg'
-            nameH2='Salim Ousseni'
-            positionH3='CTO - Ingénieur Structure'
-            description="Diplômé en Génie Civil, Salim supervise l'étude structure et métré"
-          />
-          <CardTeam
-            imagePlayer='images/mrpatate.jpg'
-            nameH2='Soufiane Boulal'
-            positionH3='CSO - Responsable Commercial'
-            description="Diplômé en marketing, Soufiane pilote le développement commercial et la prépration d'événement pour Highcube "
-          />
-          <CardTeam
-            imagePlayer='images/mrpatate.jpg'
-            nameH2='Christelle Mathias'
-            positionH3='Architecte HMONP'
-            description='Christelle nous aide dans les démarches de dépôt de permis de construire et le développement de visite virtuelle en 3D'
-          />
-          <CardTeam
-            imagePlayer='images/mrpatate.jpg'
-            nameH2='Bet Owega'
-            positionH3="Bureau d'étude thermique"
-            description='Nous collaborons avec Bet Owega pour les attestations Bbio et la sélection de matériaux innovants et écologique'
-          />
+          {datas.map((info, index) => (
+            <>
+              <CardTeam
+                imagePlayer={info.Name}
+                key={index}
+                FirstName={info.FirstName}
+                LastName={info.LastName}
+                Position={info.JobName}
+                Description={info.Description}
+              />
+            </>
+          ))}
         </div>
       </section>
     </div>

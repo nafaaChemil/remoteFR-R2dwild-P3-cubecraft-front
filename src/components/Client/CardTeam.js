@@ -2,16 +2,20 @@ import React from 'react'
 
 export default function CardTeam({
   imagePlayer,
-  nameH2,
-  positionH3,
-  description
+  FirstName,
+  LastName,
+  Position,
+  Description
 }) {
   return (
     <div className='player'>
       <img src={imagePlayer} />
-      <h2>{nameH2}</h2>
-      <h3>{positionH3}</h3>
-      <p>{description}</p>
+      <h2>
+        <span>{FirstName} </span>
+        <span> {LastName}</span>
+      </h2>
+      <h3>{Position}</h3>
+      <p>{Description}</p>
     </div>
   )
 }
