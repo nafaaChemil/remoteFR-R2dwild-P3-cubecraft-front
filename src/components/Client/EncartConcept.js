@@ -1,8 +1,6 @@
 import React from 'react'
-import { useState } from 'react'
 
 export default function EncartConcept({ imageEncart, titleH3, texte, link }) {
-  const [visible, setVisible] = useState(true)
   return (
     <section className='encart_concept'>
       <div

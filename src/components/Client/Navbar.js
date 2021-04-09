@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { navbarlinks } from './Navlinks'
-import { useState } from 'react'
 
 export default function Navbar({ click, stateBt }) {
   return (
