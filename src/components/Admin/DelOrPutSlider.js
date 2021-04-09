@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 
 export default function DelOrPutSlider(props) {
   const [text, setText] = useState(props.text)
-  console.log('composant', props.text, text)
   function updateSlider(id, t) {
     axios.put(`http://localhost:4242/slider/${id}`, {
       Word: t
