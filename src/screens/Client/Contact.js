@@ -8,21 +8,17 @@ const Contact = () => {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [valid, setValid] = useState(false);
   
   function sendEmail(e) {
-
     e.preventDefault();
-
     console.log('sending email')
-    console.log(e)
-
     emailjs.sendForm('my.gmail', 'template_qforei9', e.target,
     'user_fELVRdb1kJc5SzL1ge2Br')
     .then((result) => {
       console.log('result')
-      console.log(result.text) 
+      setValid(!valid)
       });
-      alert('Merci pour votre message');
   }
   
   return (
@@ -66,11 +62,10 @@ const Contact = () => {
         <hr />
 
         <div className="form-group">
-            <input placeholder="Téléphone"
-              type="text"
+            <input type="tel" pattern="[0-9]" size="10" placeholder="Téléphone "
               id="phone"
               className="phone"
-              id="phone"
+              
                />
         </div>
         <hr />
@@ -81,20 +76,24 @@ const Contact = () => {
               name='message'
               required
               className="form-textarea"
+              maxLength="150"
                />
         </div>
         <hr />
 
         <div className="form-group">
-          <input 
+          <input className="input-form" 
             type="submit"
             value='Envoyer'
-            className="form-btn"></input>
+            className="form-btn"
+            >
+            </input>
         </div>
 
       </form>
+     {valid && <p>Message envoyé</p>}
     </div>
     );
     }
-
+  
 export default Contact;
