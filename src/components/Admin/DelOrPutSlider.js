@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 
 export default function DelOrPutSlider(props) {
   const [text, setText] = useState(props.text)
-
   function updateSlider(id, t) {
     axios.put(`http://localhost:4242/slider/${id}`, {
       Word: t
@@ -15,7 +14,7 @@ export default function DelOrPutSlider(props) {
     <div className='admin_general_Del_Edit'>
       <input
         id={props.id}
-        value={text}
+        value={text || text === '' ? text : props.text}
         onChange={e => setText(e.target.value)}
         type='text'
       />
