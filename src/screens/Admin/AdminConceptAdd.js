@@ -43,9 +43,9 @@ export default function AdminConceptAdd() {
   }
 
   return (
-    <section className='AddPage'>
+    <section className='AddPage' id='admin'>
       <div className='Container-Addpage'>
-        <h2>Ajouter un concept </h2>
+        <h1>Concept: Ajouter un concept </h1>
         <div className='formulaire-admin-add'>
           <div className='form-group-add'>
             <label htmlFor='title'>Titre du concept :</label>

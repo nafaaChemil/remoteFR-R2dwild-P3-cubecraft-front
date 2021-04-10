@@ -25,9 +25,9 @@ export default function AdminSlider() {
   useEffect(() => {
     const fetchData = async () => {
       const resq = await axios.get(`http://localhost:4242/slider`)
-      const title = await axios.get(`http://localhost:4242/title`)
+      // const title = await axios.get(`http://localhost:4242/title`)
       setDatas(resq.data)
-      setTitle(title.data[0].Title)
+      // setTitle(title.data[0].Title)
     }
 
     fetchData()

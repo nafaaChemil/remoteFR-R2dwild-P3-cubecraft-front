@@ -5,7 +5,9 @@ import { navbarlinks } from './Navlinks'
 export default function Navbar({ click, stateBt }) {
   return (
     <nav className='navbar'>
-      <img src='/images/Highcubelogo.png' />
+      <Link to='/'>
+        <img src='/images/Highcubelogo.png' />
+      </Link>
       <ul className='navbar__links'>
         {navbarlinks.map((link, i) => (
           <li key={i}>

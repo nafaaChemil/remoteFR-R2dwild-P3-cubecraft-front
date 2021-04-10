@@ -66,9 +66,9 @@ export default function AdminPartAdd() {
       })
   }
   return (
-    <section className='AddPage'>
+    <section className='AddPage' id='admin'>
       <div className='Container-Addpage'>
-        <h2>Ajouter un article particulier</h2>
+        <h1>Particulier : Ajouter un article</h1>
         <div className='formulaire-admin-add'>
           <div className='form-group-add'>
             <label htmlFor='CategoryName'>Nom :</label>

@@ -16,7 +16,7 @@ export default function Pro() {
 
   return (
     <div>
-      <h1>Pro</h1>
+      <h2 className='uCenter'>Professionnels</h2>
 
       {datas.map((data, index) => (
         <EncartSite
