@@ -156,7 +156,7 @@ export default function AdminProModified(props) {
                   'insertdatetime media table paste wordcount'
                 ],
                 toolbar:
-                  'undo redo | formatselect | bold italic | \
+                  'undo redo | formatselect | \
                 alignleft aligncenter alignright | \
                 bullist numlist outdent indent | help'
               }}
