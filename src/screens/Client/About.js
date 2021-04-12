@@ -5,7 +5,6 @@ import EncartConcept from '../../components/Client/EncartConcept'
 
 function About() {
   const [datas, setDatas] = useState([''])
-
   useEffect(() => {
     const fetchData = async () => {
       const resq = await axios.get(`http://localhost:4242/about/detail`)
