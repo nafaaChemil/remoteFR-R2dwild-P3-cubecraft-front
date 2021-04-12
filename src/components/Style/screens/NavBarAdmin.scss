@@ -1,13 +1,11 @@
 .admin_navbarcontainer {
 background-color: $colorPrimary;
 width: 30%;
-height: 100vh;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
+min-height: 100vh;
 .admin_navbar_link{
+    margin-top: 50%;
     height: 50%;
+    max-height: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;

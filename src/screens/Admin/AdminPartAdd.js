@@ -8,15 +8,28 @@ export default function AdminPartAdd() {
     Price: 0,
     Description: '',
     Individual: 1,
-    photo_id: 1
+    photo_id: ''
   })
-
+  const [datas, setDatas] = useState([''])
+  const [display, setDisplay] = useState(true)
   const [productAdded, setProductAdded] = useState(false)
   const [status, setStatus] = useState(null)
 
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value })
 
+  function displayPhotos() {
+    const fetchData = async () => {
+      const resq = await axios.get('http://localhost:4242/photos')
+      setDatas(resq.data)
+      setDisplay(!display)
+    }
+    fetchData()
+  }
+  const addId = id => {
+    setFormData({ ...formData, photo_id: id })
+    setDisplay(!display)
+  }
   const addProduct = async () => {
     const res = await axios
       .post('http://localhost:4242/particularPro/', {
@@ -31,17 +44,12 @@ export default function AdminPartAdd() {
             Price: 0,
             Description: '',
             Individual: 1,
-            photo_id: 1
+            photo_id: ''
           })
         }
       })
       .catch(error => {
-        // Error 😨
         if (error.response) {
-          /*
-           * The request was made and the server responded with a
-           * status code that falls out of the range of 2xx
-           */
           console.log(error.response.data)
           console.log(error.response.status)
           console.log(error.response.headers)
@@ -50,61 +58,81 @@ export default function AdminPartAdd() {
             setProductAdded(false)
           }
         } else if (error.request) {
-          /*
-           * The request was made but no response was received, `error.request`
-           * is an instance of XMLHttpRequest in the browser and an instance
-           * of http.ClientRequest in Node.js
-           */
           console.log(error.request)
         } else {
-          // Something happened in setting up the request and triggered an Error
           console.log('Error', error.message)
         }
         console.log(error.config)
       })
   }
   return (
-    <div>
-      <label htmlFor='CategoryName'>Nom</label>
-      <input
-        type='text'
-        name='CategoryName'
-        value={formData.CategoryName}
-        onChange={e => onChange(e)}
-      />
-      <label htmlFor='Price'>Prix</label>
-      <input
-        type='number'
-        name='Price'
-        value={formData.Price}
-        onChange={e => onChange(e)}
-      />
-      <label htmlFor='Description'>Description</label>
-      <textarea
-        type='text'
-        name='Description'
-        value={formData.Description}
-        onChange={e => onChange(e)}
-      />
-      <label htmlFor='photo_id'>ID de l'image</label>
-      <input
-        type='number'
-        name='photo_id'
-        value={formData.photo_id}
-        onChange={e => onChange(e)}
-      />
-      <button onClick={addProduct}>Ajouter le produit</button>
-      {productAdded ? (
-        <div>
-          Produit ajouté !{' '}
-          <Link to='/admin/particulier/'>
-            Retourner aux produits pour particuliers
-          </Link>
+    <section className='AddPage' id='admin'>
+      <div className='Container-Addpage'>
+        <h1>Particulier : Ajouter un article</h1>
+        <div className='formulaire-admin-add'>
+          <div className='form-group-add'>
+            <label htmlFor='CategoryName'>Nom :</label>
+            <input
+              type='text'
+              name='CategoryName'
+              value={formData.CategoryName}
+              onChange={e => onChange(e)}
+            />
+          </div>
+          <div className='form-group-add'>
+            <label htmlFor='Price'>Prix :</label>
+            <input
+              type='number'
+              name='Price'
+              value={formData.Price}
+              onChange={e => onChange(e)}
+            />
+          </div>
+          <div className='form-group-add'>
+            <label htmlFor='Description'>Description :</label>
+            <textarea
+              type='text'
+              name='Description'
+              value={formData.Description}
+              onChange={e => onChange(e)}
+              cols='40'
+              rows='15'
+            />
+          </div>
+          <div className='form-group-add'>
+            <label>Choix de la photo</label>
+            <input type='number' name='picture' value={formData.photo_id} />
+            <button className='choice-picture' onClick={displayPhotos}>
+              Choisir
+            </button>
+          </div>
+          <div
+            className='container-choice-img'
+            style={{ display: `${display ? 'none' : 'flex'}` }}
+          >
+            {datas.map((data, index) => (
+              <div className='choicephoto-container'>
+                <img className='img-upload' key={index} src={`${data.Name}`} />
+                <button onClick={() => addId(data.Id)}>Choisir</button>
+              </div>
+            ))}
+          </div>
+          <div className='Form-group-btn'>
+            <button onClick={addProduct}>Ajouter le produit</button>
+            {productAdded ? (
+              <div className='popupMessage'>
+                <p>Produit ajouté !</p>
+                <Link className='Backlink' to='/admin/particulier/'>
+                  Retourner aux produits pour particuliers
+                </Link>
+              </div>
+            ) : (
+              ''
+            )}
+            {status}
+          </div>
         </div>
-      ) : (
-        ''
-      )}
-      {status}
-    </div>
+      </div>
+    </section>
   )
 }

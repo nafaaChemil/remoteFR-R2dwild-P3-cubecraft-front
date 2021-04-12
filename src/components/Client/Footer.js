@@ -12,6 +12,7 @@ function Footer() {
       const resq = await axios.get('http://localhost:4242/contact')
       setDatas(resq.data)
     }
+
     fetchData()
   }, [])
 
@@ -20,8 +21,8 @@ function Footer() {
       <div className='footer_container'>
         <div className='coordonnees'>
           <p id='coord-1'>{datas[0].Adress}</p>
-          <p id='coord-2'>{datas[0].Adress}</p>
-          <p id='coord-3'>{datas[0].Adress}</p>
+          <p id='coord-2'>{datas[0].Cp}</p>
+          <p id='coord-3'>{datas[0].City}</p>
         </div>
         <div className='footer_reseaux'>
           <i className='fab fa-facebook ico-social'></i>
