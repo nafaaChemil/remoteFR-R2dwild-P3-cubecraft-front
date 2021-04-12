@@ -1,6 +1,8 @@
 import axios from 'axios'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Editor } from '@tinymce/tinymce-react'
+import ApiKey from './Apikey'
 
 export default function AdminNewsAdd() {
   const [formData, setFormData] = useState({
@@ -13,9 +15,14 @@ export default function AdminNewsAdd() {
   const [display, setDisplay] = useState(true)
   const [newsAdded, setNewsAdded] = useState(false)
   const [status, setStatus] = useState(null)
+  const [test, setTest] = useState('')
 
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value })
+
+  const handleEditorChange = (content, editor) => {
+    setFormData({ ...formData, text: content })
+  }
 
   function displayPhotos() {
     const fetchData = async () => {
@@ -89,11 +96,27 @@ export default function AdminNewsAdd() {
         </div>
         <div className='form-group-add'>
           <label htmlFor='text'>Texte :</label>
-          <textarea
-            type='text'
+          <Editor
+            apiKey={ApiKey}
             name='text'
-            value={formData.text}
-            onChange={e => onChange(e)}
+            onEditorChange={handleEditorChange}
+            init={{
+              height: 500,
+              menubar: false,
+              quickbars_image_toolbar:
+                'alignleft aligncenter alignright | rotateleft rotateright | imageoptions',
+              plugins: [
+                'advlist autolink lists link image',
+                'charmap print preview anchor help',
+                'searchreplace visualblocks code',
+                'a_tinymce_plugin',
+                'insertdatetime media table paste wordcount'
+              ],
+              toolbar:
+                'undo redo | formatselect | \
+                alignleft aligncenter alignright | \
+                bullist numlist outdent indent | help'
+            }}
           />
         </div>
         <div className='form-group-add'>
