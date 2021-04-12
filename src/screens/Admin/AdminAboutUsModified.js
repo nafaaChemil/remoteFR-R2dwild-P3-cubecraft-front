@@ -11,6 +11,7 @@ export default function AdminAboutUsModified() {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [jobName, setJobName] = useState('')
+  const [description, setDescription] = useState('')
   const [picture, setPicture] = useState('')
   const [valid, setValid] = useState(false)
   const [datas, setDatas] = useState([])
@@ -25,6 +26,7 @@ export default function AdminAboutUsModified() {
       setFirstName(resq.data[0].FirstName)
       setLastName(resq.data[0].LastName)
       setJobName(resq.data[0].JobName)
+      setDescription(resq.data[0].Description)
       setPicture(resq.data[0].Photo_id)
     }
     fetchData()
@@ -38,6 +40,7 @@ export default function AdminAboutUsModified() {
       setFirstName(firstName)
       setLastName(lastName)
       setJobName(jobName)
+      setDescription(description)
       setPicture(picture)
     }
     fetchPhoto()
@@ -54,6 +57,7 @@ export default function AdminAboutUsModified() {
         FirstName: firstName,
         LastName: lastName,
         JobName: jobName,
+        Description: description,
         Photo_id: picture
       })
       .then(res => {
@@ -61,6 +65,7 @@ export default function AdminAboutUsModified() {
         setFirstName(firstName)
         setLastName(lastName)
         setJobName(jobName)
+        setDescription(description)
         setPicture(picture)
       })
   }
@@ -98,6 +103,15 @@ export default function AdminAboutUsModified() {
                   name='jobname'
                   value={jobName}
                   onChange={event => setJobName(event.target.value)}
+                />
+              </div>
+              <div className='form-group-add'>
+                <label>Description :</label>
+                <input
+                  type='text'
+                  name='description'
+                  value={description}
+                  onChange={event => setDescription(event.target.value)}
                 />
               </div>
               <div className='form-group-add'>

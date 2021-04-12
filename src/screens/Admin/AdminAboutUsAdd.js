@@ -11,6 +11,7 @@ export default function AdminAboutUsAdd() {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [jobName, setJobName] = useState('')
+  const [description, setDescription] = useState('')
   const [picture, setPicture] = useState('')
   const [valid, setValid] = useState(false)
   const [datas, setDatas] = useState([''])
@@ -36,6 +37,7 @@ export default function AdminAboutUsAdd() {
         FirstName: firstName,
         LastName: lastName,
         JobName: jobName,
+        Description: description,
         Photo_id: picture
       })
       .then(res => {
@@ -43,6 +45,7 @@ export default function AdminAboutUsAdd() {
         setFirstName(firstName)
         setLastName(lastName)
         setJobName(jobName)
+        setDescription(description)
         setPicture(picture)
       })
   }
@@ -78,6 +81,15 @@ export default function AdminAboutUsAdd() {
               name='jobname'
               value={jobName}
               onChange={event => setJobName(event.target.value)}
+            />
+          </div>
+          <div className='form-group-add'>
+            <label htmlFor='picture'>Description : </label>
+            <input
+              type='text'
+              name='description'
+              value={description}
+              onChange={event => setDescription(event.target.value)}
             />
           </div>
           <div className='form-group-add'>
