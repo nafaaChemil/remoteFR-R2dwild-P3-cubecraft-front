@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import CardTeam from '../../components/Client/CardTeam'
-import EncartSite from '../../components/Client/EncartSite'
+import EncartConcept from '../../components/Client/EncartConcept'
 
 function About() {
   const [datas, setDatas] = useState([''])
@@ -18,7 +18,7 @@ function About() {
     <div className='about'>
       <section id='presentation'>
         <div>
-          <EncartSite
+          <EncartConcept
             imageEncart='images/Annexe2.jpg'
             titleH3={[`Qui sommes-nous`]}
             texte={[
