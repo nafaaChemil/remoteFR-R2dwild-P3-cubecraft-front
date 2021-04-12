@@ -102,7 +102,7 @@ export default function AdminNewsAdd() {
             onEditorChange={handleEditorChange}
             init={{
               height: 500,
-              menubar: true,
+              menubar: false,
               quickbars_image_toolbar:
                 'alignleft aligncenter alignright | rotateleft rotateright | imageoptions',
               plugins: [
@@ -113,7 +113,7 @@ export default function AdminNewsAdd() {
                 'insertdatetime media table paste wordcount'
               ],
               toolbar:
-                'undo redo | formatselect | bold italic | \
+                'undo redo | formatselect | \
                 alignleft aligncenter alignright | \
                 bullist numlist outdent indent | help'
             }}
