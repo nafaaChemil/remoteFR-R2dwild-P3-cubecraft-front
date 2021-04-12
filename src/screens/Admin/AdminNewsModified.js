@@ -2,6 +2,8 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import { Editor } from '@tinymce/tinymce-react'
+import ApiKey from './Apikey'
 
 export default function AdminNewsModified(props) {
   const [newsAdded, setNewsAdded] = useState(false)
@@ -14,6 +16,7 @@ export default function AdminNewsModified(props) {
     text: '',
     photo_id: 1
   })
+  const [initialValue, setInitialValue] = useState('')
   const params = props.match.params
   const id = params.id
 
@@ -30,6 +33,10 @@ export default function AdminNewsModified(props) {
     setDisplay(!display)
   }
 
+  const handleEditorChange = (content, editor) => {
+    setFormData({ ...formData, text: content })
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       const resq = await axios
@@ -43,6 +50,7 @@ export default function AdminNewsModified(props) {
               text: response.data.Text,
               photo_id: response.data.Photo_id
             })
+            setInitialValue(response.data.Text)
           }
         })
         .catch(error => {
@@ -131,11 +139,28 @@ export default function AdminNewsModified(props) {
           </div>
           <div className='form-group-add'>
             <label htmlFor='text'>Texte</label>
-            <textarea
-              type='text'
+            <Editor
+              initialValue={initialValue}
+              apiKey={ApiKey}
               name='text'
-              value={formData.text}
-              onChange={e => onChange(e)}
+              onEditorChange={handleEditorChange}
+              init={{
+                height: 500,
+                menubar: true,
+                quickbars_image_toolbar:
+                  'alignleft aligncenter alignright | rotateleft rotateright | imageoptions',
+                plugins: [
+                  'advlist autolink lists link image',
+                  'charmap print preview anchor help',
+                  'searchreplace visualblocks code',
+                  'a_tinymce_plugin',
+                  'insertdatetime media table paste wordcount'
+                ],
+                toolbar:
+                  'undo redo | formatselect | bold italic | \
+                alignleft aligncenter alignright | \
+                bullist numlist outdent indent | help'
+              }}
             />
           </div>
           <div className='form-group-add'>

@@ -1,11 +1,14 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
+import { Editor } from '@tinymce/tinymce-react'
+import ApiKey from './Apikey'
 
 export default function AdminConceptModified() {
   const history = useHistory()
   const [title, setTitle] = useState('')
   const [textConcept, setTextConcept] = useState('')
+  const [textConceptSd, setTextConceptSd] = useState('')
   const [picture, setPicture] = useState('')
   const [valid, setValid] = useState(false)
   const [datas, setDatas] = useState([])
@@ -21,6 +24,7 @@ export default function AdminConceptModified() {
     fetchPhoto()
   }
 
+  console.log(textConcept)
   let { id } = useParams()
   useEffect(() => {
     const fetchData = async () => {
@@ -41,7 +45,7 @@ export default function AdminConceptModified() {
   const modified = () => {
     axios
       .put(`http://localhost:4242/concept/${id}`, {
-        Text: textConcept,
+        Text: textConceptSd,
         Title: title,
         Photo_id: picture
       })
@@ -54,6 +58,10 @@ export default function AdminConceptModified() {
   }
   function comeBack() {
     history.push('/admin/concept')
+  }
+
+  const handleEditorChange = (content, editor) => {
+    setTextConceptSd(content)
   }
 
   return (
@@ -74,13 +82,28 @@ export default function AdminConceptModified() {
               </div>
               <div className='form-group-add'>
                 <label>Concept</label>
-                <textarea
-                  type='text'
-                  name='concept'
-                  value={textConcept}
-                  cols='30'
-                  rows='15'
-                  onChange={event => setTextConcept(event.target.value)}
+                <Editor
+                  apiKey={ApiKey}
+                  name='text'
+                  onEditorChange={handleEditorChange}
+                  initialValue={textConcept}
+                  init={{
+                    height: 500,
+                    menubar: true,
+                    quickbars_image_toolbar:
+                      'alignleft aligncenter alignright | rotateleft rotateright | imageoptions',
+                    plugins: [
+                      'advlist autolink lists link image',
+                      'charmap print preview anchor help',
+                      'searchreplace visualblocks code',
+                      'a_tinymce_plugin',
+                      'insertdatetime media table paste wordcount'
+                    ],
+                    toolbar:
+                      'undo redo | formatselect | bold italic | \
+                alignleft aligncenter alignright | \
+                bullist numlist outdent indent | help'
+                  }}
                 />
               </div>
               <div className='form-group-add'>
