@@ -9,9 +9,12 @@ export default function CardTeam({
 }) {
   return (
     <div className='player'>
-      <div className='card-header'>
-        <img src={imagePlayer} />
-      </div>
+      <div
+        className='card-header'
+        style={{
+          backgroundImage: `url(${imagePlayer})`
+        }}
+      ></div>
       <div className='card-content'>
         <h2>
           <span>{FirstName} </span>

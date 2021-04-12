@@ -16,6 +16,7 @@ function About() {
   console.log(datas)
   return (
     <div className='about'>
+      <h2 className='uCenter'>A propos</h2>
       <section id='presentation'>
         <div>
           <EncartConcept

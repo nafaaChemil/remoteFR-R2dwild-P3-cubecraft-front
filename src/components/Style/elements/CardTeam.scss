@@ -17,14 +17,22 @@
       flex-direction: column;
     }
 	}
+
+  
 .player {
 	@include encart_intro;
-	width: 280px;
-
+  justify-content: flex-start;
+  height: auto;
+  padding:$padXXL;
+	width:$widthCardPlayer;
 	.card-header {
-		img {
-			width: 100%;
-		}
+			width:$widthCardPlayer;
+      
+      background-size: cover;
+      height:250px;
+      margin:-$padXXL 0 0 0;
+			border-radius: 35px 35px 0 0;
+      
 	}
 
 	h3{
