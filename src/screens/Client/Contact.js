@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import emailjs from 'emailjs-com';
 
+import MapLeaflet from "../../components/Client/Map.js"
+
 
 const Contact = () => {
   const [firstName, setFirstName] = useState("");
@@ -22,6 +24,7 @@ const Contact = () => {
   }
   
   return (
+    <>
     <div className="Contact">
       <div>
         <h1 className="title-form">Plus d'infos ?</h1>
@@ -93,6 +96,8 @@ const Contact = () => {
       </form>
      {valid && <p>Message envoyé</p>}
     </div>
+    <MapLeaflet/>
+    </>
     );
     }
   
