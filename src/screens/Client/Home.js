@@ -1,7 +1,5 @@
-import { Link } from 'react-router-dom'
 import ScrollingText from './ScrollingText'
 import IntroEncart from '../../components/Client/IntroEncart'
-import EncartSite from '../../components/Client/EncartSite'
 import EncartConcept from '../../components/Client/EncartConcept'
 
 function Home() {
@@ -32,29 +30,17 @@ function Home() {
           <IntroEncart
             imageEncart='images/Annexe6.jpg'
             titleH3='Vous êtes un particulier ?'
-            link='Découvrez nos solutions'
+            link='Dévouvrez nos solutions'
+            target='particular'
           />
 
           <IntroEncart
             imageEncart='images/Annexe5.jpg'
             titleH3='Vous êtes un professionnel ?'
             link='Découvrez nos solutions'
+            target='pro'
           />
         </div>
-      </section>
-
-      {/* Encart Site */}
-      <section className='responsive'>
-        <h2 className='uCenter'>Un concept avec de nombreux avantages.</h2>
-
-        <EncartSite
-          imageEncart='images/Annexe2.jpg'
-          titleH3={[`A l'origine`]}
-          texte={[
-            `Les conteneurs maritimes qui ont été conçus pour transporter des marchandises à travers le monde ont été créées por résister à tous les climats les plus rudes du monde. De l'eau salée aux températures glaciales, le container maritime est destiné à gérer le pire des pires tout en protégeant sa cargaison. Composé d'acier corten, 
-            ils résistent énormément à la corrosion ou à la rouille`
-          ]}
-        />
       </section>
 
       {/* Encart intro */}
@@ -78,40 +64,9 @@ function Home() {
         ]}
         link='Découvrez nos solutions'
       />
-      <section id='home-actualite'>
-        <h2>Notre actualités</h2>
-        <ul className='container-thumbnail-actualite'>
-          <li>
-            <img
-              className='thumbnails-actualite'
-              src='images/Annexe4.jpg'
-              alt='actu'
-            />
-            <h3>Titre</h3>
-            <p>jkfdjfkdsjfkds jfkdsjfdsk jfkdsjfkds</p>
-          </li>
-          <li>
-            <img
-              className='thumbnails-actualite'
-              src='images/Annexe4.jpg'
-              alt='actu'
-            />
-            <h3>Titre</h3>
-            <p>jkfdjfkdsjfkds jfkdsjfdsk jfkdsjfkds</p>
-          </li>
-          <li>
-            <img
-              className='thumbnails-actualite'
-              src='images/Annexe4.jpg'
-              alt='actu'
-            />
-            <h3>Titre</h3>
-            <p>jkfdjfkdsjfkds jfkdsjfdsk jfkdsjfkds</p>
-          </li>
-        </ul>
-        <Link className='button' to='/news'>
-          Toute notre actualités
-        </Link>
+
+      <section className='concept'>
+        <h2>Suivez-nous sur les réseaux</h2>
       </section>
     </div>
   )

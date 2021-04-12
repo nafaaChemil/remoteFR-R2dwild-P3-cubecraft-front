@@ -57,9 +57,9 @@ export default function AdminConceptModified() {
   }
 
   return (
-    <section className='AddPage'>
+    <section className='AddPage' id='admin'>
       <div className='Container-Addpage'>
-        <h2>Modifier un concept </h2>
+        <h1>Concept: Modifier un concept </h1>
         <div className='formulaire-admin-add'>
           {datas.map(data => (
             <>

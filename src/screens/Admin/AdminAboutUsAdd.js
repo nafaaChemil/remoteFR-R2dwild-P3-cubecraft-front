@@ -4,6 +4,10 @@ import { useHistory } from 'react-router-dom'
 
 export default function AdminAboutUsAdd() {
   const history = useHistory()
+  const comeBack = () => {
+    history.goBack()
+  }
+
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [jobName, setJobName] = useState('')
@@ -41,17 +45,13 @@ export default function AdminAboutUsAdd() {
         setJobName(jobName)
         setPicture(picture)
       })
-
-  }
-
-  function comeBack() {
-    history.push('/admin/about')
   }
 
   return (
-    <section className='AddPage'>
+    <section className='AddPage' id='admin'>
       <div className='Container-Addpage'>
-        <h2>Ajouter un collaborateur </h2>
+        <h1>A propos: Ajouter un collaborateur</h1>
+
         <div className='formulaire-admin-add'>
           <div className='form-group-add'>
             <label htmlFor='title'>Prénom :</label>

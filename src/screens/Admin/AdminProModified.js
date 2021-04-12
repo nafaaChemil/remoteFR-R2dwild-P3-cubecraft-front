@@ -105,9 +105,10 @@ export default function AdminProModified(props) {
       </Link>
     </div>
   ) : (
-    <section className='AddPage'>
+    <section className='AddPage' id='admin'>
       <div className='Container-Addpage'>
-        <h2>Modifier un article professionnel</h2>
+        <h1>Professionnel : Modifier un article</h1>
+
         <div className='formulaire-admin-add'>
           <div className='form-group-add'>
             <label htmlFor='CategoryName'>Nom</label>

@@ -16,7 +16,7 @@ export default function Particular() {
 
   return (
     <div>
-      <h1>Particuliers</h1>
+      <h2 className='uCenter'>Particuliers</h2>
 
       {datas.map((data, index) => (
         <EncartSite
