@@ -27,7 +27,6 @@
 	width:$widthCardPlayer;
 	.card-header {
 			width:$widthCardPlayer;
-      
       background-size: cover;
       height:250px;
       margin:-$padXXL 0 0 0;
@@ -36,7 +35,12 @@
 	}
 
 	h3{
+		margin-top: $spaceH_M;
 		color: $colorSecondary;
+	}
+
+	h4 {
+		margin-top: $spaceH_XXL;
 	}
 	
     li {
