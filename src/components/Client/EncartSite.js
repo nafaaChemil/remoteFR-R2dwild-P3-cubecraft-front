@@ -8,6 +8,9 @@ export default function EncartSite({
   price,
   link
 }) {
+  function createMarkup() {
+  return {__html: texte};
+}
   return (
     <div
       className='encart_site'
@@ -16,8 +19,7 @@ export default function EncartSite({
       }}
     >
       <h3>{titleH3}</h3>
-      <p>{texte}</p>
-
+      <div className="tinyelement" style={{color :"white !important"}} dangerouslySetInnerHTML={createMarkup()} />
       {price && <p>{price}€/m2</p>}
       {link && <Link to={link}>{link}</Link>}
     </div>

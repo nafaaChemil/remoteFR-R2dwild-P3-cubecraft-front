@@ -1,6 +1,8 @@
 import axios from 'axios'
 import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import { Editor } from '@tinymce/tinymce-react'
+import ApiKey from './Apikey'
 
 export default function AdminConceptAdd() {
   const history = useHistory()
@@ -42,10 +44,14 @@ export default function AdminConceptAdd() {
     history.push('/admin/concept')
   }
 
+  const handleEditorChange = (content, editor) => {
+    setTextConcept(content)
+  }
+  console.log(textConcept)
   return (
-    <section className='AddPage'>
+    <section className='AddPage' id='admin'>
       <div className='Container-Addpage'>
-        <h2>Ajouter un concept </h2>
+        <h1>Concept: Ajouter un concept </h1>
         <div className='formulaire-admin-add'>
           <div className='form-group-add'>
             <label htmlFor='title'>Titre du concept :</label>
@@ -58,13 +64,27 @@ export default function AdminConceptAdd() {
           </div>
           <div className='form-group-add'>
             <label htmlFor='concept'>Concept :</label>
-            <textarea
-              type='text'
-              name='concept'
-              value={textConcept}
-              cols='40'
-              rows='15'
-              onChange={event => setTextConcept(event.target.value)}
+            <Editor
+              apiKey={ApiKey}
+              name='text'
+              onEditorChange={handleEditorChange}
+              init={{
+                height: 500,
+                menubar: false,
+                quickbars_image_toolbar:
+                  'alignleft aligncenter alignright | rotateleft rotateright | imageoptions',
+                plugins: [
+                  'advlist autolink lists link image',
+                  'charmap print preview anchor help',
+                  'searchreplace visualblocks code',
+                  'a_tinymce_plugin',
+                  'insertdatetime media table paste wordcount'
+                ],
+                toolbar:
+                  'undo redo | formatselect | \
+                alignleft aligncenter alignright | \
+                bullist numlist outdent indent | help'
+              }}
             />
           </div>
           <div className='form-group-add'>

@@ -4,9 +4,14 @@ import { useHistory, useParams } from 'react-router-dom'
 
 export default function AdminAboutUsModified() {
   const history = useHistory()
+  const comeBack = () => {
+    history.goBack()
+  }
+
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [jobName, setJobName] = useState('')
+  const [description, setDescription] = useState('')
   const [picture, setPicture] = useState('')
   const [valid, setValid] = useState(false)
   const [datas, setDatas] = useState([])
@@ -21,6 +26,7 @@ export default function AdminAboutUsModified() {
       setFirstName(resq.data[0].FirstName)
       setLastName(resq.data[0].LastName)
       setJobName(resq.data[0].JobName)
+      setDescription(resq.data[0].Description)
       setPicture(resq.data[0].Photo_id)
     }
     fetchData()
@@ -34,6 +40,7 @@ export default function AdminAboutUsModified() {
       setFirstName(firstName)
       setLastName(lastName)
       setJobName(jobName)
+      setDescription(description)
       setPicture(picture)
     }
     fetchPhoto()
@@ -50,6 +57,7 @@ export default function AdminAboutUsModified() {
         FirstName: firstName,
         LastName: lastName,
         JobName: jobName,
+        Description: description,
         Photo_id: picture
       })
       .then(res => {
@@ -57,17 +65,16 @@ export default function AdminAboutUsModified() {
         setFirstName(firstName)
         setLastName(lastName)
         setJobName(jobName)
+        setDescription(description)
         setPicture(picture)
       })
   }
-  function comeBack() {
-    history.push('/admin/about')
-  }
 
   return (
-    <section className='AddPage'>
+    <section className='AddPage' id='admin'>
       <div className='Container-Addpage'>
-        <h2>Modifier un profil </h2>
+        <h1>A propos: Modifier un profil</h1>
+
         <div className='formulaire-admin-add'>
           {datas.map(data => (
             <>
@@ -96,6 +103,15 @@ export default function AdminAboutUsModified() {
                   name='jobname'
                   value={jobName}
                   onChange={event => setJobName(event.target.value)}
+                />
+              </div>
+              <div className='form-group-add'>
+                <label>Description :</label>
+                <input
+                  type='text'
+                  name='description'
+                  value={description}
+                  onChange={event => setDescription(event.target.value)}
                 />
               </div>
               <div className='form-group-add'>

@@ -17,27 +17,28 @@
       flex-direction: column;
     }
 	}
+
+  
 .player {
 	@include encart_intro;
-	width: 25%;
-
-	img {
-		width: 45%;
+  justify-content: flex-start;
+  height: auto;
+  padding:$padXXL;
+	width:$widthCardPlayer;
+	.card-header {
+			width:$widthCardPlayer;
+      
+      background-size: cover;
+      height:250px;
+      margin:-$padXXL 0 0 0;
+			border-radius: 35px 35px 0 0;
+      
 	}
-	&::after {
-      content: "";
-      background-color: #061722b8;
-      display: flex;
-      width: 100%;
-      position: relative;
-      bottom: 0px;
-      z-index: 1;
-      border-radius: 0 0 35px 35px;
-      height: 130px;
-      margin-top: -130px;
-      padding-top: $spaceH_XXL;
 
-    }
+	h3{
+		color: $colorSecondary;
+	}
+	
     li {
       z-index: 2;
       margin-top:$spaceH_XXL;

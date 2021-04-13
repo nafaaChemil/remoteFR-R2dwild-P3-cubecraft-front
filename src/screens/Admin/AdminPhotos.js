@@ -33,7 +33,7 @@ export default function AdminPhotos() {
   return (
     <>
       <section id='admin'>
-        <h1>Photo</h1>
+        <h1>Photos</h1>
         <div>
           <ButtonAdd name='Ajouter une photo' handleClickAdd={AddPhoto} />
         </div>

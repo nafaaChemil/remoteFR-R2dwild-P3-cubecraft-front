@@ -1,12 +1,18 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
+import { Editor } from '@tinymce/tinymce-react'
+import ApiKey from './Apikey'
 
 export default function AdminConceptModified() {
   const history = useHistory()
   const [title, setTitle] = useState('')
   const [textConcept, setTextConcept] = useState('')
+
+  const [textConceptSd, setTextConceptSd] = useState('')
   const [picture, setPicture] = useState('')
+  const [pictureId, setPictureId] = useState('')
+
   const [valid, setValid] = useState(false)
   const [datas, setDatas] = useState([])
   const [infos, setInfos] = useState([])
@@ -21,45 +27,58 @@ export default function AdminConceptModified() {
     fetchPhoto()
   }
 
+  console.log(textConcept)
   let { id } = useParams()
+
   useEffect(() => {
     const fetchData = async () => {
-      const resq = await axios.get(`http://localhost:4242/concept/${id}`)
+      const resq = await axios.get(
+        `http://localhost:4242/concept/details/${id}`
+      )
       setDatas(resq.data)
       setTitle(resq.data[0].Title)
       setTextConcept(resq.data[0].Text)
-      setPicture(resq.data[0].Photo_id)
+      setPicture(resq.data[0].Name)
+      setPictureId(resq.data[0].Photo_Id)
+      console.log(resq.data)
     }
     fetchData()
   }, [])
 
-  const addId = id => {
-    setPicture(id)
+  // useEffect(() => {}, [picture])
+
+  const addId = (id, name) => {
+    setPicture(name)
+    setPictureId(id)
     setDisplay(!display)
   }
 
   const modified = () => {
     axios
       .put(`http://localhost:4242/concept/${id}`, {
-        Text: textConcept,
+        Text: textConceptSd,
         Title: title,
-        Photo_id: picture
+        Photo_id: pictureId
       })
       .then(res => {
         setValid(!valid)
         setTitle(title)
         setTextConcept(textConcept)
-        setPicture(picture)
+        setPictureId(pictureId)
       })
   }
   function comeBack() {
-    history.push('/admin/concept')
+    history.goBack()
+  }
+
+  const handleEditorChange = (content, editor) => {
+    setTextConceptSd(content)
   }
 
   return (
-    <section className='AddPage'>
+    <section className='AddPage' id='admin'>
       <div className='Container-Addpage'>
-        <h2>Modifier un concept </h2>
+        <h1>Concept: Modifier un concept </h1>
         <div className='formulaire-admin-add'>
           {datas.map(data => (
             <>
@@ -74,21 +93,37 @@ export default function AdminConceptModified() {
               </div>
               <div className='form-group-add'>
                 <label>Concept</label>
-                <textarea
-                  type='text'
-                  name='concept'
-                  value={textConcept}
-                  cols='30'
-                  rows='15'
-                  onChange={event => setTextConcept(event.target.value)}
+                <Editor
+                  apiKey={ApiKey}
+                  name='text'
+                  onEditorChange={handleEditorChange}
+                  initialValue={textConcept}
+                  init={{
+                    height: 500,
+                    menubar: false,
+                    quickbars_image_toolbar:
+                      'alignleft aligncenter alignright | rotateleft rotateright | imageoptions',
+                    plugins: [
+                      'advlist autolink lists link image',
+                      'charmap print preview anchor help',
+                      'searchreplace visualblocks code',
+                      'a_tinymce_plugin',
+                      'insertdatetime media table paste wordcount'
+                    ],
+                    toolbar:
+                      'undo redo | formatselect | \
+                alignleft aligncenter alignright | \
+                bullist numlist outdent indent | help'
+                  }}
                 />
               </div>
               <div className='form-group-add'>
                 <label>Choix de la photo</label>
-                <input type='number' name='picture' value={picture} />
+                {/* <input type='number' name='picture' value={picture} /> */}
                 <button className='choice-picture' onClick={displayPhotos}>
                   Choisir
                 </button>
+                <img src={picture} alt='' width='200px' />
               </div>
               <div
                 className='container-choice-img'
@@ -101,7 +136,9 @@ export default function AdminConceptModified() {
                       key={index}
                       src={`${info.Name}`}
                     />
-                    <button onClick={() => addId(info.Id)}>Choisir</button>
+                    <button onClick={() => addId(info.Id, info.Name)}>
+                      Choisir
+                    </button>
                   </div>
                 ))}
               </div>

@@ -4,9 +4,14 @@ import { useHistory } from 'react-router-dom'
 
 export default function AdminAboutUsAdd() {
   const history = useHistory()
+  const comeBack = () => {
+    history.goBack()
+  }
+
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [jobName, setJobName] = useState('')
+  const [description, setDescription] = useState('')
   const [picture, setPicture] = useState('')
   const [valid, setValid] = useState(false)
   const [datas, setDatas] = useState([''])
@@ -32,6 +37,7 @@ export default function AdminAboutUsAdd() {
         FirstName: firstName,
         LastName: lastName,
         JobName: jobName,
+        Description: description,
         Photo_id: picture
       })
       .then(res => {
@@ -39,19 +45,16 @@ export default function AdminAboutUsAdd() {
         setFirstName(firstName)
         setLastName(lastName)
         setJobName(jobName)
+        setDescription(description)
         setPicture(picture)
       })
-
-  }
-
-  function comeBack() {
-    history.push('/admin/about')
   }
 
   return (
-    <section className='AddPage'>
+    <section className='AddPage' id='admin'>
       <div className='Container-Addpage'>
-        <h2>Ajouter un collaborateur </h2>
+        <h1>A propos: Ajouter un collaborateur</h1>
+
         <div className='formulaire-admin-add'>
           <div className='form-group-add'>
             <label htmlFor='title'>Prénom :</label>
@@ -78,6 +81,15 @@ export default function AdminAboutUsAdd() {
               name='jobname'
               value={jobName}
               onChange={event => setJobName(event.target.value)}
+            />
+          </div>
+          <div className='form-group-add'>
+            <label htmlFor='picture'>Description : </label>
+            <input
+              type='text'
+              name='description'
+              value={description}
+              onChange={event => setDescription(event.target.value)}
             />
           </div>
           <div className='form-group-add'>
