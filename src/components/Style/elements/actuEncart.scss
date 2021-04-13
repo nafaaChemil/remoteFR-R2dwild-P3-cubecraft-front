@@ -1,22 +1,37 @@
 #actu{
-  max-width: 1400px;
-  margin: 25vh auto;
+  max-width: $max-width-block;
+  margin:0 auto;
   .responsive {
     width: 100%;
     display: flex;
     flex-direction: column;
-    @media (max-width: 960px){
+    @media (max-width: $breakpoint-menu){
+      .actu_card {
+        .imgActu {
+          width: 25vw;
+          display: block;
+          height: 100%;
+          border-radius: 35px 0 0 35px;
+          background-size: cover;
+          background-position: center;
+        }
+      }
+    }
+    @media (max-width: $breakpoint-tablet){
       .actu_card {
         display: flex;
         flex-direction: column;
         align-items: center;
-        
-        img{
+        li {
           width: 100%;
-          height: 100%;
-          border-radius: 35px;
         }
-
+        
+        .imgActu {
+          width: 100%;
+          background-size: cover;
+          background-position: center;
+          border-radius: 35px 35px 0 0;
+        }
       }
     }
   }
@@ -24,16 +39,23 @@
   .actu_card{
     display: flex;
     border-radius: 35px;
-    margin: 2rem;
-    box-shadow: 1px 1px 12px #2B3641;
-    img{
-      width: 100%;
+    margin: $marginXXL;
+    box-shadow: 0px 4px 30px 3px rgba(8, 26, 42, 0.1);
+    .imgActu {
+      width: 23vw;
+      display: block;
       height: 100%;
-      border-radius: 35px 0 0px 35px;
+      min-height: 27vh;
+      border-radius: 35px 0 0 35px;
+      background-size: cover;
+      background-position: center;
     }
     .actu_text {
       width: 90%;
       margin: 3rem;
+      a{
+        color: $colorSecondary;
+      }
     }
   }
 }

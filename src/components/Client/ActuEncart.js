@@ -4,7 +4,12 @@ export default function ActuEncart({ imageEncart, titleH3, text, link }) {
   return (
     <ul className='actu_card'>
       <li>
-        <img src={imageEncart}></img>
+        <div
+          className='imgActu'
+          style={{
+            backgroundImage: `url(${imageEncart})`
+          }}
+        ></div>
       </li>
       <ul className='actu_text'>
         <li>

@@ -1,7 +1,6 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import ActuEncart from '../../components/Client/ActuEncart'
-import '../../components/Style/elements/actuEncart.scss'
 
 export default function News() {
   const [datas, setDatas] = useState([''])
@@ -14,11 +13,12 @@ export default function News() {
   }, [])
   return (
     <section id='actu'>
+      <h2 className='uCenter'>Actualités.</h2>
       <div className='responsive'>
         {datas.map((data, index) => (
           <ActuEncart
             key={index}
-            imageEncart={'images/Annexe5.jpg'}
+            imageEncart='images/Annexe6.jpg'
             titleH3={data.Title}
             text={data.Text}
             link={data.Link}
