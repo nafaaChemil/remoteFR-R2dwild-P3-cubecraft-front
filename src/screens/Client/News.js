@@ -24,19 +24,6 @@ export default function News() {
             link={data.Link}
           />
         ))}
-        <ActuEncart
-          imageEncart='images/Annexe4.jpg'
-          titleH3='Journal'
-          text='
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-          sodales leo eu libero luctus finibus. Aliquam id eleifend felis. 
-          Pellentesqiquam lacinia, 
-          lectus sit amet porta iaculis, nisi elit tincidunt purus, nec 
-          suscipit velit lacus in nibh. Interdum et malesuada fames ac ante 
-          ipsum primis in faucibus. In libero odio, consequat nec sodales ac, 
-          feugiat non velit.'
-          link='Lien'
-        />
       </div>
     </section>
   )
