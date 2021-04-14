@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import ActuEncart from '../../components/Client/ActuEncart'
 import CardTeam from '../../components/Client/CardTeam'
 import EncartConcept from '../../components/Client/EncartConcept'
 
@@ -15,13 +16,13 @@ function About() {
   console.log(datas)
   return (
     <div className='about'>
-      <h2 className='uCenter'>A propos</h2>
       <section id='presentation'>
-        <div>
-          <EncartConcept
+        <h2 className='uCenter'>A propos</h2>
+        <div className='responsive'>
+          <ActuEncart
             imageEncart='images/Annexe2.jpg'
             titleH3={[`Qui sommes-nous`]}
-            texte={[
+            text={[
               `Chez High Cube, nous proposons des solutions économiques et
             écologiques quel que soit votre projet : maison économique,
             écologique, confortable, logement étudiant, logements sociaux,

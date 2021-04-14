@@ -16,11 +16,11 @@ export default function CardTeam({
         }}
       ></div>
       <div className='card-content'>
-        <h2>
+        <h3>
           <span>{FirstName} </span>
           <span> {LastName}</span>
-        </h2>
-        <h3>{Position}</h3>
+        </h3>
+        <h4>{Position}</h4>
         <p>{Description}</p>
       </div>
     </div>
