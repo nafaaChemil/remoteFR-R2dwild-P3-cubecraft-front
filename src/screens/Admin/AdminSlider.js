@@ -39,6 +39,13 @@ export default function AdminSlider() {
        if(res.data.mess !== "Authorized"){
          history.push('/admin/login')
        }
+        const fetchData = async () => {
+        const resq = await axios.get(`http://localhost:4242/slider`)
+        setDatas(resq.data)
+    }
+
+    fetchData()
+       
     })
   }, [inputVisible, display])
 

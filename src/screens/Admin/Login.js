@@ -15,7 +15,6 @@ export default function Connexion() {
         password: password
       })
       .then(res => {
-        
         history.push('/admin/slider')
         localStorage.setItem('adminUser', res.headers['x-access-token'])
       })
