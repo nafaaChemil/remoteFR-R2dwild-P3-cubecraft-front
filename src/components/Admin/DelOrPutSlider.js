@@ -4,21 +4,33 @@ import PropTypes from 'prop-types'
 
 export default function DelOrPutSlider(props) {
   const [text, setText] = useState(props.text)
+  const [update, setUpdate] = useState(false)
   function updateSlider(id, t) {
-    axios.put(`http://localhost:4242/slider/${id}`, {
-      Word: t
-    })
+    axios
+      .put(`http://localhost:4242/slider/${id}`, {
+        Word: t
+      })
+      .then(response => {
+        if (response.status === 200) {
+          setUpdate(true)
+          setTimeout(() => {
+            setUpdate(false)
+          }, 2000)
+        }
+      })
   }
 
   return (
     <div className='admin_general_Del_Edit'>
-      <input
-        id={props.id}
-        value={text || text === '' ? text : props.text}
-        onChange={e => setText(e.target.value)}
-        type='text'
-      />
-
+      <div>
+        <input
+          id={props.id}
+          value={text || text === '' ? text : props.text}
+          onChange={e => setText(e.target.value)}
+          type='text'
+        />
+        {update ? '💾✔️' : ''}
+      </div>
       <div>
         <button className='BtnAction' onClick={props.handleClickSupp}>
           <img
