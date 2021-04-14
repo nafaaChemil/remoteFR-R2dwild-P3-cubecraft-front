@@ -129,16 +129,18 @@ export default function AdminConceptModified() {
                 style={{ display: `${display ? 'none' : 'flex'}` }}
               >
                 {infos.map((info, index) => (
-                  <div className='choicephoto-container'>
-                    <img
-                      className='img-upload'
-                      key={index}
-                      src={`${info.Name}`}
-                    />
-                    <button onClick={() => addId(info.Id, info.Name)}>
-                      Choisir
-                    </button>
-                  </div>
+                  <>
+                    <div className='choicephoto-container'>
+                      <img
+                        className='img-upload'
+                        key={index}
+                        src={`${info.Name}`}
+                      />
+                      <button onClick={() => addId(info.Id, info.Name)}>
+                        Choisir
+                      </button>
+                    </div>
+                  </>
                 ))}
               </div>
             </>

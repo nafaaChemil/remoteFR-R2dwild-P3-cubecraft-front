@@ -1,23 +1,40 @@
 import ScrollingText from './ScrollingText'
 import IntroEncart from '../../components/Client/IntroEncart'
 import EncartConcept from '../../components/Client/EncartConcept'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 function Home() {
+  const [datas, setDatas] = useState([''])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const resq = await axios.get(`http://localhost:4242/slider/title`)
+      setDatas(resq.data)
+      console.log(datas)
+    }
+    fetchData()
+  }, [])
+
   return (
     <div>
-      <div
-        className='Home'
-        style={{
-          backgroundImage: `url("images/bureauHighCubeEcoDesign-rendufinal.png")`
-        }}
-      >
-        <div className='home-hero-carousel'>
-          <h1 className='home-title'>Une solution</h1>
-          <div className='carousel-text'>
-            <ScrollingText />
+      {datas.map(info => (
+        <>
+          <div
+            className='Home'
+            style={{
+              backgroundImage: `url(${info.Name})`
+            }}
+          >
+            <div className='home-hero-carousel'>
+              <h1 className='home-title'>{info.Titre}</h1>
+              <div className='carousel-text'>
+                <ScrollingText />
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </>
+      ))}
 
       {/* Encart intro */}
       <section className='concept'>

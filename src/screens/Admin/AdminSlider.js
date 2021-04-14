@@ -11,8 +11,10 @@ export default function AdminSlider() {
   const [textModified, setTextModified] = useState('')
   const [display, setDisplay] = useState(true)
   const [picture, setPicture] = useState('')
+  const [namePicture, setNamePicture] = useState('')
   const [infos, setInfos] = useState([''])
   const [updatedOk, setUpdatedOk] = useState('')
+  const [updatedImgOk, setUpdatedImgOk] = useState('')
 
   function displayPhotos() {
     const fetchData = async () => {
@@ -34,6 +36,7 @@ export default function AdminSlider() {
   }, [inputVisible, display])
   const addId = id => {
     setPicture(id)
+    setNamePicture(id)
     setDisplay(!display)
   }
   const deleteSlider = id => {
@@ -51,13 +54,22 @@ export default function AdminSlider() {
         setNewWord('')
       })
   }
-  const updateInfos = async () => {
+  const updateTitle = async () => {
     const res = await axios
       .put(`http://localhost:4242/slider/title/1`, {
         Titre: title
       })
       .then(res => {
         setUpdatedOk('Titre mis à jour')
+      })
+  }
+  const updateBackground = async () => {
+    const res = await axios
+      .put(`http://localhost:4242/slider/title/1`, {
+        Photo_id: picture
+      })
+      .then(res => {
+        setUpdatedImgOk('Image de fond mis à jour')
       })
   }
 
@@ -73,7 +85,7 @@ export default function AdminSlider() {
             type='text'
             onChange={e => setTitle(e.target.value)}
           />
-          <button onClick={updateInfos} className='BtnAction'>
+          <button onClick={updateTitle} className='BtnAction'>
             <img
               alt='logo edit'
               className='logoBtn'
@@ -104,17 +116,18 @@ export default function AdminSlider() {
       <div className=''>
         <h3>Changer l'image de fond : </h3>
         <div className='form-group'>
-          <input type='number' name='picture' value={picture} />
+          <input type='number' name='picture' value={namePicture} />
           <button className='choice-picture' onClick={displayPhotos}>
             Choisir
           </button>
-          <button onClick={updateInfos} className='BtnAction'>
+          <button onClick={updateBackground} className='BtnAction'>
             <img
               alt='logo edit'
               className='logoBtn'
               src='/images/logo/save.svg'
             />
           </button>
+          {updatedImgOk ? <p className='updateTitle'>{updatedImgOk}</p> : ''}
         </div>
         <div
           className='container-choice-img'
@@ -124,7 +137,7 @@ export default function AdminSlider() {
             <>
               <div className='choicephoto-container'>
                 <img className='img-upload' key={index} src={`${info.Name}`} />
-                <button onClick={() => addId(info.Id)}>Choisir</button>
+                <button onClick={() => addId(info.Name)}>Choisir</button>
               </div>
             </>
           ))}
