@@ -36,7 +36,9 @@ export default function AdminSlider() {
       }
     })
     .then(res => {
-       console.log(res)
+       if(res.data.mess !== "Authorized"){
+         history.push('/admin/login')
+       }
     })
   }, [inputVisible, display])
 
