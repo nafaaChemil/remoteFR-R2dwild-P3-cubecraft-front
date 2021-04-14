@@ -40,7 +40,6 @@ export default function AdminConceptModified() {
       setTextConcept(resq.data[0].Text)
       setPicture(resq.data[0].Name)
       setPictureId(resq.data[0].Photo_Id)
-      console.log(resq.data)
     }
     fetchData()
   }, [])
