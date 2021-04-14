@@ -9,35 +9,17 @@ export default function Connexion() {
   let history = useHistory()
   const handleConnect = e => {
     e.preventDefault()
-    // Verification du user
     axios
       .post('http://localhost:4242/signin', {
         username: username,
         password: password
       })
       .then(res => {
-        console.log(res)
-        localStorage.setItem('adminUser', res.headers['x-access-token'])
-        console.log('adminUser', localStorage.getItem('adminUser'))
-      })
-  }
-
-  const protectedRoute = () => {
-    const token = localStorage.getItem('adminUser')
-    console.log(token)
-    axios({
-      method: 'POST',
-      url: 'http://localhost:4242/signin/protected',
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
-      .then(res => {
+        
         history.push('/admin/slider')
+        localStorage.setItem('adminUser', res.headers['x-access-token'])
       })
-      .catch(err => {
-        setAlert('Email ou Mot de passe incorrect ')
-      })
+      .catch(err => setAlert('Mauvais identifiant ou mot de passe'))
   }
 
   return (
@@ -66,7 +48,7 @@ export default function Connexion() {
             value={password}
           ></input>
         </div>
-        <button type='submit' onClick={() => protectedRoute()}>
+        <button type='submit'>
           Connexion
         </button>
         <p>{alert}</p>
