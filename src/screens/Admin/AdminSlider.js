@@ -5,7 +5,7 @@ import DelOrPutSlider from '../../components/Admin/DelOrPutSlider'
 
 export default function AdminSlider() {
   const [datas, setDatas] = useState([''])
-  const [title, setTitle] = useState()
+  const [title, setTitle] = useState('')
   const [inputVisible, setInputvisible] = useState(false)
   const [newWord, setNewWord] = useState('')
   const [textModified, setTextModified] = useState('')
@@ -25,9 +25,9 @@ export default function AdminSlider() {
   useEffect(() => {
     const fetchData = async () => {
       const resq = await axios.get(`http://localhost:4242/slider`)
-      // const title = await axios.get(`http://localhost:4242/title`)
       setDatas(resq.data)
-      // setTitle(title.data[0].Title)
+      const res = await axios.get('http://localhost:4242/slider/title')
+      setTitle(res.data[0].Titre)
     }
 
     fetchData()
@@ -44,21 +44,20 @@ export default function AdminSlider() {
   function AddSlider() {
     axios
       .post('http://localhost:4242/slider', {
-        Word: newWord,
-        Photo_id: 1
+        Word: newWord
       })
       .then(res => {
         setInputvisible(!inputVisible)
         setNewWord('')
       })
   }
-  const updateTitle = async () => {
+  const updateInfos = async () => {
     const res = await axios
-      .put(`http://localhost:4242/title/1`, {
-        Title: title
+      .put(`http://localhost:4242/slider/title/1`, {
+        Titre: title
       })
       .then(res => {
-        setUpdatedOk('Titre mise à jour')
+        setUpdatedOk('Titre mis à jour')
       })
   }
 
@@ -74,7 +73,7 @@ export default function AdminSlider() {
             type='text'
             onChange={e => setTitle(e.target.value)}
           />
-          <button onClick={updateTitle} className='BtnAction'>
+          <button onClick={updateInfos} className='BtnAction'>
             <img
               alt='logo edit'
               className='logoBtn'
@@ -108,6 +107,13 @@ export default function AdminSlider() {
           <input type='number' name='picture' value={picture} />
           <button className='choice-picture' onClick={displayPhotos}>
             Choisir
+          </button>
+          <button onClick={updateInfos} className='BtnAction'>
+            <img
+              alt='logo edit'
+              className='logoBtn'
+              src='/images/logo/save.svg'
+            />
           </button>
         </div>
         <div
