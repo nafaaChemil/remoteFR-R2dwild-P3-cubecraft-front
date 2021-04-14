@@ -10,6 +10,7 @@ const Contact = () => {
   const [message, setMessage] = useState("");
   const [valid, setValid] = useState(false);
   
+  
   function sendEmail(e) {
     e.preventDefault();
     console.log('sending email')
@@ -91,6 +92,7 @@ const Contact = () => {
         </div>
 
       </form>
+      
      {valid && <p>Message envoyé</p>}
     </div>
     );
