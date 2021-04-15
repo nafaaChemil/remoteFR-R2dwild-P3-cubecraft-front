@@ -49,6 +49,7 @@ export default function AdminSlider() {
         setDatas(resq.data)
         const res = await axios.get('http://localhost:4242/slider/title')
         setTitle(res.data[0].Titre)
+        setNamePicture(res.data[0].Name)
       }
       fetchData()
     })
@@ -141,6 +142,25 @@ export default function AdminSlider() {
           </button>
           {updatedImgOk ? <p className='updateTitle'>{updatedImgOk}</p> : ''}
         </div>
+        <div className='addTitleSlider'>
+          <h3>Ajouter un nouveau mot :</h3>
+          <div className='form-group'>
+            <input
+              type='text'
+              value={newWord}
+              onChange={e => setNewWord(e.target.value)}
+            />
+            <button className='BtnAction' onClick={AddSlider}>
+              <img
+                alt='logo add'
+                className='logoBtn'
+                src='/images/logo/add.svg'
+              />
+            </button>
+            {addWord ? <p className='updateTitle'>{addWord}</p> : ''}
+          </div>
+        </div>
+
         <div
           className='container-choice-img'
           style={{ display: `${display ? 'none' : 'flex'}` }}
@@ -157,40 +177,7 @@ export default function AdminSlider() {
           ))}
         </div>
       </div>
-      <div className='addTitleSlider'>
-        <h3>Ajouter un nouveau mot :</h3>
-        <div className='form-group'>
-          <input
-            type='text'
-            value={newWord}
-            onChange={e => setNewWord(e.target.value)}
-          />
-          <button className='BtnAction' onClick={AddSlider}>
-            <img
-              alt='logo add'
-              className='logoBtn'
-              src='/images/logo/add.svg'
-            />
-          </button>
-          {addWord ? <p className='updateTitle'>{addWord}</p> : ''}
-        </div>
-      </div>
-
       <div className=''>
-        <h3>Changer l'image de fond : </h3>
-        <div className='form-group'>
-          <input type='number' name='picture' value={picture} />
-          <button className='choice-picture' onClick={displayPhotos}>
-            Choisir
-          </button>
-          <button onClick={updateInfos} className='BtnAction'>
-            <img
-              alt='logo edit'
-              className='logoBtn'
-              src='/images/logo/save.svg'
-            />
-          </button>
-        </div>
         <div
           className='container-choice-img'
           style={{ display: `${display ? 'none' : 'flex'}` }}
