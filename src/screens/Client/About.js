@@ -6,14 +6,18 @@ import EncartConcept from '../../components/Client/EncartConcept'
 
 function About() {
   const [datas, setDatas] = useState([''])
+  const [title, setTitle] = useState([''])
   useEffect(() => {
     const fetchData = async () => {
       const resq = await axios.get(`http://localhost:4242/about/detail`)
       setDatas(resq.data)
+      const res = await axios.get(`http://localhost:4242/about/card`)
+      // setTitle(res.data)
+      setTitle(res.data[0].Titre)
     }
     fetchData()
   }, [])
-  console.log(datas)
+
   return (
     <div className='about'>
       <section id='presentation'>
@@ -21,7 +25,7 @@ function About() {
         <div className='responsive'>
           <ActuEncart
             imageEncart='images/Annexe2.jpg'
-            titleH3={[`Qui sommes-nous`]}
+            titleH3={title}
             text={[
               `Chez High Cube, nous proposons des solutions économiques et
             écologiques quel que soit votre projet : maison économique,

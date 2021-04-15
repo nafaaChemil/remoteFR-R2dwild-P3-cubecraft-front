@@ -40,7 +40,6 @@ input:focus {
     border-radius: 10px;
     padding: $spaceH_XL;
     width: 100%;
-    
     font-family: $typoPrimaire;
     border:1px solid $colorSecondary;
     
@@ -62,3 +61,16 @@ textarea {
 textarea:focus {
   background: #06172338;
 }
+
+.consent {
+  margin-top: 5px;
+  display: flex;
+}
+.p-consent {
+  margin-left: 5px;
+  font-size: 10px;
+}
+
+
+
+

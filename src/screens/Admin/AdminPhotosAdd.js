@@ -9,6 +9,7 @@ export default function AdminPhotosAdd() {
   }
 
   const [valid, setValid] = useState(false)
+  const [addOk, setAddOk] = useState('')
   const [file, setFile] = useState({
     data: '',
     name: ''
@@ -30,10 +31,19 @@ export default function AdminPhotosAdd() {
   }, [])
 
 
+  const invisible = () => {
+    setAddOk('')
+  }
+
   const handleSubmit = () => {
-    axios.post('http://localhost:4242/photos', {
-      Name: `/images/${file.name}`
-    })
+    axios
+      .post('http://localhost:4242/photos', {
+        Name: `/images/${file.name}`
+      })
+      .then(res => {
+        setAddOk('Image ajoutée')
+        setTimeout(invisible, 1500)
+      })
     const data = new FormData()
     data.append('name', file.name)
     data.append('file', file.data)
@@ -41,7 +51,6 @@ export default function AdminPhotosAdd() {
       .post('http://localhost:4242/upload', data)
       .then(res => console.log(res))
       .catch(err => console.log(err))
-    history.goBack
   }
 
   return (
@@ -75,6 +84,7 @@ export default function AdminPhotosAdd() {
           >
             Sauvegarder
           </button>
+          {addOk ? <p className='updateTitle'>{addOk}</p> : ''}
         </div>
       </div>
     </section>
