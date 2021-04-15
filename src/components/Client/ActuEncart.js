@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default function ActuEncart({ imageEncart, titleH3, text, link }) {
+export default function ActuEncart({ imageEncart, titleH3, text, link,linktext }) {
   function createMarkup() {
-    return {__html: text};
+    return { __html: text }
   }
   return (
     <ul className='actu_card'>
@@ -19,10 +19,12 @@ export default function ActuEncart({ imageEncart, titleH3, text, link }) {
           <h3>{titleH3}</h3>
         </li>
         <li>
-          <p dangerouslySetInnerHTML= {createMarkup()}></p>
+          <p dangerouslySetInnerHTML={createMarkup()}></p>
         </li>
         <li>
-          <a href=''>{link}</a>
+          <a href={link} target='_blanck'>
+            www.{linktext}
+          </a>
         </li>
       </ul>
     </ul>
