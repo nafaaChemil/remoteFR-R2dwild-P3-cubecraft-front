@@ -128,9 +128,9 @@ export default function AdminNewsModified(props) {
       <Link to='/admin/actualites/'>Retourner aux actus</Link>
     </div>
   ) : (
-    <section className='AddPage'>
+    <section className='AddPage' id='admin'>
       <div className='Container-Addpage'>
-        <h2>Modifier une actualitée</h2>
+        <h1>Actualités : Modifier une actualitée</h1>
         <div className='formulaire-admin-add'>
           <div className='form-group-add'>
             <label htmlFor='title'>Titre</label>

@@ -1,6 +1,6 @@
 import './App.scss'
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import About from './screens/Client/About'
 import AdminAboutUs from './screens/Admin/AdminAboutUs'
@@ -36,6 +36,11 @@ import SideDrawer from './components/Client/SideDrawer'
 
 const App = () => {
   const [sideToggle, setSideToggle] = useState(false)
+  const [displayLog, setDisplayLog] = useState('')
+
+  useEffect(() => {
+    localStorage.adminUser ? setDisplayLog('block') : setDisplayLog('none')
+  })
 
   return (
     <Router>
@@ -47,7 +52,7 @@ const App = () => {
       >
         {/* Test adress if location contain Admin we get the Nav of admin else the Nav site */}
         {location.pathname.includes('admin') ? (
-          <NavBarAdmin />
+          <NavBarAdmin displayLog={displayLog} />
         ) : (
           <>
             <Navbar
