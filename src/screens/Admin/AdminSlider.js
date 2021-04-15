@@ -80,36 +80,48 @@ export default function AdminSlider() {
     })
   }
   function AddSlider() {
-    axios
-      .post('http://localhost:4242/slider', {
-        Word: newWord
-      })
-      .then(res => {
-        setInputvisible(!inputVisible)
-        setAddWord('Un nouveau mot a été ajouté')
-        setTimeout(invisible, 1500)
-      })
+    if (newWord.length === 0) {
+      setAddWord('Champs vide')
+    } else {
+      axios
+        .post('http://localhost:4242/slider', {
+          Word: newWord
+        })
+        .then(res => {
+          setInputvisible(!inputVisible)
+          setAddWord('Un nouveau mot a été ajouté')
+          setTimeout(invisible, 1500)
+        })
+    }
   }
   const updateInfos = async () => {
-    const res = await axios
-      .put(`http://localhost:4242/slider/title/1`, {
-        Titre: title
-      })
-      .then(res => {
-        setUpdatedOk('Titre mis à jour')
-        setTimeout(invisible, 1500)
-      })
+    if (title.length === 0) {
+      setUpdatedOk('Champs vide')
+    } else {
+      const res = await axios
+        .put(`http://localhost:4242/slider/title/1`, {
+          Titre: title
+        })
+        .then(res => {
+          setUpdatedOk('Titre mis à jour')
+          setTimeout(invisible, 1500)
+        })
+    }
   }
 
   const updateBackground = async () => {
-    const res = await axios
-      .put(`http://localhost:4242/slider/title/1`, {
-        Photo_id: picture
-      })
-      .then(res => {
-        setUpdatedImgOk('Image de fond mis à jour')
-        setTimeout(invisible, 1500)
-      })
+    if (picture.length === 0) {
+      setUpdatedImgOk('Champs vide')
+    } else {
+      const res = await axios
+        .put(`http://localhost:4242/slider/title/1`, {
+          Photo_id: picture
+        })
+        .then(res => {
+          setUpdatedImgOk('Image de fond mis à jour')
+          setTimeout(invisible, 1500)
+        })
+    }
   }
 
   return (
@@ -131,7 +143,11 @@ export default function AdminSlider() {
               src='/images/logo/save.svg'
             />
           </button>
-          {updatedOk ? <p className='updateTitle'>{updatedOk}</p> : ''}
+          {updatedOk === 'Champs vide' ? (
+            <p className='updateTitleWarning'>{updatedOk}</p>
+          ) : (
+            <p className='updateTitle'>{updatedOk}</p>
+          )}
         </div>
       </div>
       <div>
@@ -155,7 +171,11 @@ export default function AdminSlider() {
               src='/images/logo/save.svg'
             />
           </button>
-          {updatedImgOk ? <p className='updateTitle'>{updatedImgOk}</p> : ''}
+          {updatedImgOk === 'Champs vide' ? (
+            <p className='updateTitleWarning'>{updatedImgOk}</p>
+          ) : (
+            <p className='updateTitle'>{updatedImgOk}</p>
+          )}
         </div>
         <div className='addTitleSlider'>
           <h3>Ajouter un nouveau mot :</h3>
@@ -172,7 +192,11 @@ export default function AdminSlider() {
                 src='/images/logo/add.svg'
               />
             </button>
-            {addWord ? <p className='updateTitle'>{addWord}</p> : ''}
+            {addWord === 'Champs vide' ? (
+              <p className='updateTitleWarning'>{addWord}</p>
+            ) : (
+              <p className='updateTitle'>{addWord}</p>
+            )}
           </div>
         </div>
 
