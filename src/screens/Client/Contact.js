@@ -27,7 +27,15 @@ const Contact = () => {
       <div>
         <h1 className='title-form'>Plus d'infos ?</h1>
       </div>
-      <form onSubmit={sendEmail} className='form'>
+      <div className="consent">
+      <input className="input-consent" type="checkbox"
+        required
+        consent={consent}
+        onChange={() => setConsent(!consent)}
+      />
+       <p className="p-consent">En soumettant ce formulaire, j'accepte que les informations saisies soient exploitées dans le cadre de la relation commerciale qui pourrait en découler.</p>
+     </div>
+      <form onSubmit={sendEmail} className='contact-form'>
 
         <div className='form-group'>
           <input placeholder='Nom / Raison sociale *'
@@ -38,6 +46,7 @@ const Contact = () => {
             required 
             />
         </div>
+        <hr />
 
         <div className='form-group'>
           <input placeholder='Prénom'
@@ -60,7 +69,10 @@ const Contact = () => {
         <hr />
 
         <div className="form-group">
-            <input type="tel" maxLength="10" placeholder="Téléphone "
+            <input type="tel"
+              pattern="[0-9]"
+              maxLength="10"
+              placeholder="Téléphone"
               id="phone"
               className="phone"
                />
@@ -84,20 +96,12 @@ const Contact = () => {
             type="submit"
             value='Envoyer'
             className="form-btn"
-            >
-            </input>
-            {valid && <p>Message envoyé</p>}
+            />
+            
         </div>
-
       </form>
-     <div className="consent">
-      <input className="input-consent" type="checkbox"
-        required
-        consent={consent}
-        onChange={() => setConsent(!consent)}
-      />
-       <p className="p-consent">En soumettant ce formulaire, j'accepte que les informations saisies soient exploitées dans le cadre de la relation commerciale qui pourrait en découler.</p>
-     </div>
+      {valid && <p>Message envoyé</p>}
+      
      <MapLeaflet />
     </div>
     );
