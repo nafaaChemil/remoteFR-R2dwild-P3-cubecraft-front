@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 
-export default function EspacePro() {
+export default function EncartAbout() {
   const [title, setTitle] = useState('')
   const [newWord, setNewWord] = useState('')
   const [display, setDisplay] = useState(true)
@@ -22,14 +22,14 @@ export default function EspacePro() {
   }
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.get('http://localhost:4242/slider/cardPart')
+      const res = await axios.get('http://localhost:4242/about/card')
       setNewWord(res.data[0].Text)
       setNamePicture(res.data[0].Name)
       setTitle(res.data[0].Word)
     }
 
     fetchData()
-  }, [])
+  }, [display])
 
   const addId = (id, name) => {
     setDisplay(!display)
@@ -42,13 +42,14 @@ export default function EspacePro() {
     setUpdatedImgOk('')
   }
   const updateText = async e => {
+    console.log('poulet')
     const target = e.target.id
-    const res = await axios
-      .put(`http://localhost:4242/slider/cardPart/7`, {
+    const resq = await axios
+      .put(`http://localhost:4242/about/card/3`, {
         Text: newWord,
         Word: title
       })
-      .then(res => {
+      .then(resq => {
         target == 'title' && setUpdatedTitleOk('Titre mis à jour')
         target == 'text' && setUpdatedOk('Texte mis à jour')
         setTimeout(invisible, 1500)
@@ -56,7 +57,7 @@ export default function EspacePro() {
   }
   const updatePicture = async () => {
     const res = await axios
-      .put(`http://localhost:4242/slider/cardPart/7`, {
+      .put(`http://localhost:4242/about/card/3`, {
         Photo_id: picture
       })
       .then(res => {
@@ -66,29 +67,11 @@ export default function EspacePro() {
   }
 
   return (
-    <section id='admin'>
-      <h2>Espace particulier :</h2>
+    <>
+      <h2>Encart A propos :</h2>
+
       <div className='addTitleSlider'>
-        <h3>Texte carte :</h3>
-        <div className='form-group'>
-          <input
-            type='text'
-            value={newWord}
-            onChange={e => setNewWord(e.target.value)}
-          />
-          <button className='BtnAction' onClick={updateText}>
-            <img
-              id='text'
-              alt='logo edit'
-              className='logoBtn'
-              src='/images/logo/save.svg'
-            />
-          </button>
-          {updatedOk ? <p className='updateTitle'>{updatedOk}</p> : ''}
-        </div>
-      </div>
-      <div className='addTitleSlider'>
-        <h3>Texte bouton :</h3>
+        <h3>Titre encart:</h3>
         <div className='form-group'>
           <input
             type='text'
@@ -110,17 +93,29 @@ export default function EspacePro() {
           )}
         </div>
       </div>
-
-      <div className=''>
-        <h3>Image de la carte : </h3>
+      <div className='addTitleSlider'>
+        <h3>Texte encart :</h3>
         <div className='form-group'>
-          <img
-            className='img-upload'
-            src={`${namePicture}`}
-            style={{
-              width: '250px'
-            }}
+          <textarea
+            type='text'
+            value={newWord}
+            onChange={e => setNewWord(e.target.value)}
           />
+          <button className='BtnAction' onClick={updateText}>
+            <img
+              id='text'
+              alt='logo edit'
+              className='logoBtn'
+              src='/images/logo/save.svg'
+            />
+          </button>
+          {updatedOk ? <p className='updateTitle'>{updatedOk}</p> : ''}
+        </div>
+      </div>
+      <div className=''>
+        <h3>Image de l'encart : </h3>
+        <div className='form-group'>
+          <input type='text' name='picture' value={namePicture} />
           <button className='choice-picture' onClick={displayPhotos}>
             Choisir
           </button>
@@ -150,6 +145,6 @@ export default function EspacePro() {
           ))}
         </div>
       </div>
-    </section>
+    </>
   )
 }

@@ -4,12 +4,12 @@ import emailjs from 'emailjs-com'
 import MapLeaflet from '../../components/Client/Map.js'
 
 const Contact = () => {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
-  const [valid, setValid] = useState(false);
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [phone, setPhone] = useState('')
+  const [email, setEmail] = useState('')
+  const [message, setMessage] = useState('')
+  const [valid, setValid] = useState(false)
   const [consent, setConsent] = useState(true)
   
   const handleSubmit = event => {
@@ -42,16 +42,7 @@ const Contact = () => {
   function reset() {
     document.getElementById('').reset()
   }
-  /*function sendEmail(e) {
-    e.preventDefault()
-    console.log('sending email')
-    emailjs.sendForm('my.gmail', 'template_dnukio6', e.target.reset,
-      'user_eyvbTv2muWvgFT0taOlAM')
-      .then((result) => {
-      setValid(!valid)
-      });
-  }
-  */
+  
   return (
     <div className='Contact'>
       <div>
@@ -119,6 +110,7 @@ const Contact = () => {
             />
           </div>
           <hr />
+<<<<<<< HEAD
             {valid && <p className="p-valid">Message envoyé</p>}
         <div className="form-group">
           <input className="input-form" 
@@ -149,3 +141,37 @@ export default Contact;
  
 
 
+=======
+
+          <div className='form-group'>
+            <input
+              className='input-form'
+              type='submit'
+              value='Envoyer'
+              className='form-btn'
+            ></input>
+            {valid && <p>Message envoyé</p>}
+          </div>
+        </form>
+        <div className='consent'>
+          <input
+            className='input-consent'
+            type='checkbox'
+            required
+            consent={consent}
+            onChange={() => setConsent(!consent)}
+          />
+          <p className='p-consent'>
+            En soumettant ce formulaire, j'accepte que les informations saisies
+            soient exploitées dans le cadre de la relation commerciale qui
+            pourrait en découler.
+          </p>
+        </div>
+      </div>
+      <MapLeaflet />
+    </>
+  )
+}
+
+export default Contact
+>>>>>>> 3ec35ed87f9dbee4cf8b2b50f1ef19e31027bd71

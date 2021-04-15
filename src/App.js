@@ -1,5 +1,5 @@
 import './App.scss'
-import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
+import { Route, Switch, BrowserRouter as Router, Redirect } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
 import About from './screens/Client/About'
@@ -78,6 +78,9 @@ const App = () => {
             path='/admin/about/profile/:id'
             component={AdminAboutUsModified}
           />
+          <Route exact path="/admin">
+            <Redirect to="/admin/login"/>
+           </Route>
           <Route path='/admin/login' component={Connexion} />
           <Route path='/admin/about/profile' component={AdminAboutUsAdd} />
           <Route path='/admin/about' component={AdminAboutUs} />

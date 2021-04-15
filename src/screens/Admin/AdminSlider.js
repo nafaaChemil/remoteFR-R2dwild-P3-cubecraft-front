@@ -32,6 +32,17 @@ export default function AdminSlider() {
     fetchData()
   }
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const resq = await axios.get(`http://localhost:4242/slider`)
+      setDatas(resq.data)
+      const res = await axios.get('http://localhost:4242/slider/title')
+      setTitle(res.data[0].Titre)
+      setNamePicture(res.data[0].Name)
+    }
+    fetchData()
+  }, [])
+
   useEffect(async () => {
     const token = localStorage.getItem('adminUser')
     axios({
@@ -44,16 +55,12 @@ export default function AdminSlider() {
       if (res.data.mess !== 'Authorized') {
         history.push('/admin/login')
       }
-      const fetchData = async () => {
-        const resq = await axios.get(`http://localhost:4242/slider`)
-        setDatas(resq.data)
-        const res = await axios.get('http://localhost:4242/slider/title')
-        setTitle(res.data[0].Titre)
-        setNamePicture(res.data[0].Name)
+      const changeImg = () => {
+        setNamePicture(namePicture)
       }
-      fetchData()
+      changeImg()
     })
-  }, [inputVisible, display])
+  }, [namePicture, inputVisible, display])
 
   const invisible = () => {
     setUpdatedOk('')
@@ -73,35 +80,48 @@ export default function AdminSlider() {
     })
   }
   function AddSlider() {
-    axios
-      .post('http://localhost:4242/slider', {
-        Word: newWord
-      })
-      .then(res => {
-        setInputvisible(!inputVisible)
-        setAddWord('Un nouveau mot a été ajouté')
-        setTimeout(invisible, 1500)
-      })
+    if (newWord.length === 0) {
+      setAddWord('Champs vide')
+    } else {
+      axios
+        .post('http://localhost:4242/slider', {
+          Word: newWord
+        })
+        .then(res => {
+          setInputvisible(!inputVisible)
+          setAddWord('Un nouveau mot a été ajouté')
+          setTimeout(invisible, 1500)
+        })
+    }
   }
   const updateInfos = async () => {
-    const res = await axios
-      .put(`http://localhost:4242/slider/title/1`, {
-        Titre: title
-      })
-      .then(res => {
-        setUpdatedOk('Titre mis à jour')
-        setTimeout(invisible, 1500)
-      })
+    if (title.length === 0) {
+      setUpdatedOk('Champs vide')
+    } else {
+      const res = await axios
+        .put(`http://localhost:4242/slider/title/1`, {
+          Titre: title
+        })
+        .then(res => {
+          setUpdatedOk('Titre mis à jour')
+          setTimeout(invisible, 1500)
+        })
+    }
   }
+
   const updateBackground = async () => {
-    const res = await axios
-      .put(`http://localhost:4242/slider/title/1`, {
-        Photo_id: picture
-      })
-      .then(res => {
-        setUpdatedImgOk('Image de fond mis à jour')
-        setTimeout(invisible, 1500)
-      })
+    if (picture.length === 0) {
+      setUpdatedImgOk('Champs vide')
+    } else {
+      const res = await axios
+        .put(`http://localhost:4242/slider/title/1`, {
+          Photo_id: picture
+        })
+        .then(res => {
+          setUpdatedImgOk('Image de fond mis à jour')
+          setTimeout(invisible, 1500)
+        })
+    }
   }
 
   return (
@@ -123,13 +143,24 @@ export default function AdminSlider() {
               src='/images/logo/save.svg'
             />
           </button>
-          {updatedOk ? <p className='updateTitle'>{updatedOk}</p> : ''}
+          {updatedOk === 'Champs vide' ? (
+            <p className='updateTitleWarning'>{updatedOk}</p>
+          ) : (
+            <p className='updateTitle'>{updatedOk}</p>
+          )}
         </div>
       </div>
-      <div className=''>
+      <div>
         <h3>Changer l'image de fond : </h3>
         <div className='form-group'>
-          <input type='text' name='picture' value={namePicture} />
+          {/* <input type='text' name='picture' value={namePicture} /> */}
+          <img
+            className='img-upload'
+            src={`${namePicture}`}
+            style={{
+              width: '250px'
+            }}
+          />
           <button className='choice-picture' onClick={displayPhotos}>
             Choisir
           </button>
@@ -140,7 +171,11 @@ export default function AdminSlider() {
               src='/images/logo/save.svg'
             />
           </button>
-          {updatedImgOk ? <p className='updateTitle'>{updatedImgOk}</p> : ''}
+          {updatedImgOk === 'Champs vide' ? (
+            <p className='updateTitleWarning'>{updatedImgOk}</p>
+          ) : (
+            <p className='updateTitle'>{updatedImgOk}</p>
+          )}
         </div>
         <div className='addTitleSlider'>
           <h3>Ajouter un nouveau mot :</h3>
@@ -157,7 +192,11 @@ export default function AdminSlider() {
                 src='/images/logo/add.svg'
               />
             </button>
-            {addWord ? <p className='updateTitle'>{addWord}</p> : ''}
+            {addWord === 'Champs vide' ? (
+              <p className='updateTitleWarning'>{addWord}</p>
+            ) : (
+              <p className='updateTitle'>{addWord}</p>
+            )}
           </div>
         </div>
 
@@ -186,7 +225,9 @@ export default function AdminSlider() {
             <>
               <div className='choicephoto-container'>
                 <img className='img-upload' key={index} src={`${info.Name}`} />
-                <button onClick={() => addId(info.Id)}>Choisir</button>
+                <button onClick={() => addId(info.Id, info.Name)}>
+                  Choisir
+                </button>
               </div>
             </>
           ))}

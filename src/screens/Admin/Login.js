@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import React, { useState,useEffect } from 'react'
+import { useHistory, history } from 'react-router-dom'
 import axios from 'axios'
 export default function Connexion() {
   const [username, setUsername] = useState('')
@@ -21,6 +21,22 @@ export default function Connexion() {
       })
       .catch(err => setAlert('Mauvais identifiant ou mot de passe'))
   }
+
+  useEffect(async () => {
+    const token = localStorage.getItem('adminUser')
+    axios({
+      method: 'POST',
+      url: 'http://localhost:4242/signin/protected',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then(res => {
+      if (res.data.mess === 'Authorized') {
+        history.push('/admin/slider')
+      }
+     
+    })
+  }, [])
 
   return (
     <div id='admin'>
