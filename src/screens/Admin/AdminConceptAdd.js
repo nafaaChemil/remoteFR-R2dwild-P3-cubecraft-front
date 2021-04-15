@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Editor } from '@tinymce/tinymce-react'
 import ApiKey from './Apikey'
@@ -12,6 +12,22 @@ export default function AdminConceptAdd() {
   const [valid, setValid] = useState(false)
   const [datas, setDatas] = useState([''])
   const [display, setDisplay] = useState(true)
+
+
+  useEffect(() => {
+    const token = localStorage.getItem('adminUser')
+    axios({
+      method: 'POST',
+      url: 'http://localhost:4242/signin/protected',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then(res => {
+      if (res.data.mess !== 'Authorized') {
+        history.push('/admin/login')
+      }
+    })
+  }, [])
 
   function displayPhotos() {
     const fetchData = async () => {

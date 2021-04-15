@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 
 export default function AdminPhotosAdd() {
@@ -14,7 +14,21 @@ export default function AdminPhotosAdd() {
     name: ''
   })
 
-  console.log(file.name)
+  useEffect(() => {
+    const token = localStorage.getItem('adminUser')
+    axios({
+      method: 'POST',
+      url: 'http://localhost:4242/signin/protected',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then(res => {
+      if (res.data.mess !== 'Authorized') {
+        history.push('/admin/login')
+      }
+    })
+  }, [])
+
 
   const handleSubmit = () => {
     axios.post('http://localhost:4242/photos', {
