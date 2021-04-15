@@ -127,12 +127,6 @@ export default function AdminAboutUsModified() {
               </div>
               <div className='form-group-add'>
                 <label>Description :</label>
-                {/* <input
-                  type='text'
-                  name='description'
-                  value={description}
-                  onChange={event => setDescription(event.target.value)}
-                /> */}
                  <Editor
               initialValue={initialValue}
               apiKey={ApiKey}

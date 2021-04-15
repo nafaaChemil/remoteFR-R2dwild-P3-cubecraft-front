@@ -128,12 +128,6 @@ export default function AdminAboutUsAdd() {
                 bullist numlist outdent indent | help'
               }}
             />
-            {/* <input
-              type='text'
-              name='description'
-              value={description}
-              onChange={event => setDescription(event.target.value)}
-            /> */}
           </div>
           <div className='form-group-add'>
             <label>Choix de la photos</label>
