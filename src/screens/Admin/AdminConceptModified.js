@@ -8,8 +8,11 @@ export default function AdminConceptModified() {
   const history = useHistory()
   const [title, setTitle] = useState('')
   const [textConcept, setTextConcept] = useState('')
+
   const [textConceptSd, setTextConceptSd] = useState('')
   const [picture, setPicture] = useState('')
+  const [pictureId, setPictureId] = useState('')
+
   const [valid, setValid] = useState(false)
   const [datas, setDatas] = useState([])
   const [infos, setInfos] = useState([])
@@ -26,19 +29,40 @@ export default function AdminConceptModified() {
 
   console.log(textConcept)
   let { id } = useParams()
+
   useEffect(() => {
-    const fetchData = async () => {
-      const resq = await axios.get(`http://localhost:4242/concept/${id}`)
-      setDatas(resq.data)
-      setTitle(resq.data[0].Title)
-      setTextConcept(resq.data[0].Text)
-      setPicture(resq.data[0].Photo_id)
-    }
-    fetchData()
+    const token = localStorage.getItem('adminUser')
+    axios({
+      method: 'POST',
+      url: 'http://localhost:4242/signin/protected',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then(res => {
+      if (res.data.mess !== 'Authorized') {
+        history.push('/admin/login')
+      }
+      const fetchData = async () => {
+        const resq = await axios.get(
+          `http://localhost:4242/concept/details/${id}`
+        )
+        setDatas(resq.data)
+        setTitle(resq.data[0].Title)
+        setTextConcept(resq.data[0].Text)
+        setPicture(resq.data[0].Name)
+        setPictureId(resq.data[0].Photo_Id)
+        console.log(resq.data)
+      }
+      fetchData()
+    })
+    
   }, [])
 
-  const addId = id => {
-    setPicture(id)
+  // useEffect(() => {}, [picture])
+
+  const addId = (id, name) => {
+    setPicture(name)
+    setPictureId(id)
     setDisplay(!display)
   }
 
@@ -47,17 +71,17 @@ export default function AdminConceptModified() {
       .put(`http://localhost:4242/concept/${id}`, {
         Text: textConceptSd,
         Title: title,
-        Photo_id: picture
+        Photo_id: pictureId
       })
       .then(res => {
         setValid(!valid)
         setTitle(title)
         setTextConcept(textConcept)
-        setPicture(picture)
+        setPictureId(pictureId)
       })
   }
   function comeBack() {
-    history.push('/admin/concept')
+    history.goBack()
   }
 
   const handleEditorChange = (content, editor) => {
@@ -108,24 +132,29 @@ export default function AdminConceptModified() {
               </div>
               <div className='form-group-add'>
                 <label>Choix de la photo</label>
-                <input type='number' name='picture' value={picture} />
+                {/* <input type='number' name='picture' value={picture} /> */}
                 <button className='choice-picture' onClick={displayPhotos}>
                   Choisir
                 </button>
+                <img src={picture} alt='' width='200px' />
               </div>
               <div
                 className='container-choice-img'
                 style={{ display: `${display ? 'none' : 'flex'}` }}
               >
                 {infos.map((info, index) => (
-                  <div className='choicephoto-container'>
-                    <img
-                      className='img-upload'
-                      key={index}
-                      src={`${info.Name}`}
-                    />
-                    <button onClick={() => addId(info.Id)}>Choisir</button>
-                  </div>
+                  <>
+                    <div className='choicephoto-container'>
+                      <img
+                        className='img-upload'
+                        key={index}
+                        src={`${info.Name}`}
+                      />
+                      <button onClick={() => addId(info.Id, info.Name)}>
+                        Choisir
+                      </button>
+                    </div>
+                  </>
                 ))}
               </div>
             </>

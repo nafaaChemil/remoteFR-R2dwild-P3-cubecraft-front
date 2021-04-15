@@ -32,6 +32,23 @@ export default function AdminPro() {
       setTitle(res.data[0].Titre)
     }
     fetchData()
+    const token = localStorage.getItem('adminUser')
+    axios({
+      method: 'POST',
+      url: 'http://localhost:4242/signin/protected',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then(res => {
+      if (res.data.mess !== 'Authorized') {
+        history.push('/admin/login')
+      }
+      const fetchData = async () => {
+        const resq = await axios.get('http://localhost:4242/particularPro/pro')
+        setDatas(resq.data)
+      }
+      fetchData()
+    })
   }, [change])
 
   function handleClickEdit(number) {

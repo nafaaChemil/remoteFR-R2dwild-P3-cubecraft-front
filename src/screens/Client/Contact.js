@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import emailjs from 'emailjs-com'
 
+import MapLeaflet from '../../components/Client/Map.js'
 
 const Contact = () => {
   const [firstName, setFirstName] = useState('');
@@ -12,7 +13,7 @@ const Contact = () => {
   const [consent, setConsent] = useState(true)
   
   function sendEmail(e) {
-    e.preventDefault();
+    e.preventDefault()
     console.log('sending email')
     emailjs.sendForm('service_9ba3ccb', 'template_dnukio6', e.target.reset,
       'user_eyvbTv2muWvgFT0taOlAM')
@@ -37,7 +38,6 @@ const Contact = () => {
             required 
             />
         </div>
-        <hr />
 
         <div className='form-group'>
           <input placeholder='Prénom'
@@ -67,16 +67,17 @@ const Contact = () => {
         </div>
         <hr />
 
-        <div className="form-group">
-            <textarea placeholder="Message *"
-              id="message"
+          <div className='form-group'>
+            <textarea
+              placeholder='Message *'
+              id='message'
               name='message'
               required
-              className="form-textarea"
-              maxLength="150"
-               />
-        </div>
-        <hr />
+              className='form-textarea'
+              maxLength='150'
+            />
+          </div>
+          <hr />
 
         <div className="form-group">
           <input className="input-form" 
@@ -97,9 +98,16 @@ const Contact = () => {
       />
        <p className="p-consent">En soumettant ce formulaire, j'accepte que les informations saisies soient exploitées dans le cadre de la relation commerciale qui pourrait en découler.</p>
      </div>
-        
+     <MapLeaflet />
     </div>
     );
     }
-  
+    
 export default Contact;
+          
+          
+      
+    
+ 
+
+

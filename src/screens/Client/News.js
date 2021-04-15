@@ -1,40 +1,30 @@
-import { Link } from 'react-router-dom'
+import axios from 'axios'
+import { useState, useEffect } from 'react'
+import ActuEncart from '../../components/Client/ActuEncart'
 
-function News() {
+export default function News() {
+  const [datas, setDatas] = useState([''])
+  useEffect(() => {
+    const fetchData = async () => {
+      const resq = await axios.get(`http://localhost:4242/news`)
+      setDatas(resq.data)
+    }
+    fetchData()
+  }, [])
   return (
-    <section id='home-actualite'>
-      <h2 className='uCenter'>Notre actualités</h2>
-      <ul className='container-thumbnail-actualite'>
-        <li>
-          <img
-            className='thumbnails-actualite'
-            src='images/Annexe4.jpg'
-            alt='actu'
+    <section id='actu'>
+      <h2 className='uCenter'>Actualités.</h2>
+      <div className='responsive'>
+        {datas.map((data, index) => (
+          <ActuEncart
+            key={index}
+            imageEncart='images/Annexe6.jpg'
+            titleH3={data.Title}
+            text={data.Text}
+            link={data.Link}
           />
-          <h3>Titre</h3>
-          <p>jkfdjfkdsjfkds jfkdsjfdsk jfkdsjfkds</p>
-        </li>
-        <li>
-          <img
-            className='thumbnails-actualite'
-            src='images/Annexe4.jpg'
-            alt='actu'
-          />
-          <h3>Titre</h3>
-          <p>jkfdjfkdsjfkds jfkdsjfdsk jfkdsjfkds</p>
-        </li>
-        <li>
-          <img
-            className='thumbnails-actualite'
-            src='images/Annexe4.jpg'
-            alt='actu'
-          />
-          <h3>Titre</h3>
-          <p>jkfdjfkdsjfkds jfkdsjfdsk jfkdsjfkds</p>
-        </li>
-      </ul>
+        ))}
+      </div>
     </section>
   )
 }
-
-export default News

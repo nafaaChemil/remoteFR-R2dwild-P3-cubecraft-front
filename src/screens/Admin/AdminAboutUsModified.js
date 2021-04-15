@@ -11,6 +11,7 @@ export default function AdminAboutUsModified() {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [jobName, setJobName] = useState('')
+  const [description, setDescription] = useState('')
   const [picture, setPicture] = useState('')
   const [valid, setValid] = useState(false)
   const [datas, setDatas] = useState([])
@@ -19,15 +20,31 @@ export default function AdminAboutUsModified() {
 
   let { id } = useParams()
   useEffect(() => {
-    const fetchData = async () => {
-      const resq = await axios.get(`http://localhost:4242/about/${id}`)
-      setDatas(resq.data)
-      setFirstName(resq.data[0].FirstName)
-      setLastName(resq.data[0].LastName)
-      setJobName(resq.data[0].JobName)
-      setPicture(resq.data[0].Photo_id)
-    }
-    fetchData()
+    useEffect(() => {
+      const token = localStorage.getItem('adminUser')
+      axios({
+        method: 'POST',
+        url: 'http://localhost:4242/signin/protected',
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }).then(res => {
+        if (res.data.mess !== 'Authorized') {
+          history.push('/admin/login')
+        }
+        const fetchData = async () => {
+          const resq = await axios.get(`http://localhost:4242/about/${id}`)
+          setDatas(resq.data)
+          setFirstName(resq.data[0].FirstName)
+          setLastName(resq.data[0].LastName)
+          setJobName(resq.data[0].JobName)
+          setDescription(resq.data[0].Description)
+          setPicture(resq.data[0].Photo_id)
+        }
+        fetchData()
+      })
+    }, [])
+  
   }, [])
 
   function displayPhotos() {
@@ -38,6 +55,7 @@ export default function AdminAboutUsModified() {
       setFirstName(firstName)
       setLastName(lastName)
       setJobName(jobName)
+      setDescription(description)
       setPicture(picture)
     }
     fetchPhoto()
@@ -54,6 +72,7 @@ export default function AdminAboutUsModified() {
         FirstName: firstName,
         LastName: lastName,
         JobName: jobName,
+        Description: description,
         Photo_id: picture
       })
       .then(res => {
@@ -61,6 +80,7 @@ export default function AdminAboutUsModified() {
         setFirstName(firstName)
         setLastName(lastName)
         setJobName(jobName)
+        setDescription(description)
         setPicture(picture)
       })
   }
@@ -98,6 +118,15 @@ export default function AdminAboutUsModified() {
                   name='jobname'
                   value={jobName}
                   onChange={event => setJobName(event.target.value)}
+                />
+              </div>
+              <div className='form-group-add'>
+                <label>Description :</label>
+                <input
+                  type='text'
+                  name='description'
+                  value={description}
+                  onChange={event => setDescription(event.target.value)}
                 />
               </div>
               <div className='form-group-add'>
