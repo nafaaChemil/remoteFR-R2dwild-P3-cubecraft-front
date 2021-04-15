@@ -31,18 +31,31 @@ export default function AdminConceptModified() {
   let { id } = useParams()
 
   useEffect(() => {
-    const fetchData = async () => {
-      const resq = await axios.get(
-        `http://localhost:4242/concept/details/${id}`
-      )
-      setDatas(resq.data)
-      setTitle(resq.data[0].Title)
-      setTextConcept(resq.data[0].Text)
-      setPicture(resq.data[0].Name)
-      setPictureId(resq.data[0].Photo_Id)
-      console.log(resq.data)
-    }
-    fetchData()
+    const token = localStorage.getItem('adminUser')
+    axios({
+      method: 'POST',
+      url: 'http://localhost:4242/signin/protected',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then(res => {
+      if (res.data.mess !== 'Authorized') {
+        history.push('/admin/login')
+      }
+      const fetchData = async () => {
+        const resq = await axios.get(
+          `http://localhost:4242/concept/details/${id}`
+        )
+        setDatas(resq.data)
+        setTitle(resq.data[0].Title)
+        setTextConcept(resq.data[0].Text)
+        setPicture(resq.data[0].Name)
+        setPictureId(resq.data[0].Photo_Id)
+        console.log(resq.data)
+      }
+      fetchData()
+    })
+    
   }, [])
 
   // useEffect(() => {}, [picture])

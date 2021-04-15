@@ -1,9 +1,9 @@
 import axios from 'axios'
-import { useState } from 'react'
+import { useState , useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Editor } from '@tinymce/tinymce-react'
 import ApiKey from './Apikey'
-
+import { useHistory } from 'react-router-dom'
 export default function AdminProAdd() {
   const [formData, setFormData] = useState({
     CategoryName: '',
@@ -22,6 +22,21 @@ export default function AdminProAdd() {
   const handleEditorChange = (content, editor) => {
     setFormData({ ...formData, Description: content })
   }
+  let history = useHistory()
+  useEffect(() => {
+    const token = localStorage.getItem('adminUser')
+    axios({
+      method: 'POST',
+      url: 'http://localhost:4242/signin/protected',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then(res => {
+      if (res.data.mess !== 'Authorized') {
+        history.push('/admin/login')
+      }
+    })
+  }, [])
 
   function displayPhotos() {
     const fetchData = async () => {

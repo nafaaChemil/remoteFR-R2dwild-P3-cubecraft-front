@@ -26,7 +26,7 @@ export default function AdminSlider() {
 
   let history = useHistory()
 
-  useEffect(async () => { 
+  useEffect(async () => {
     const token = localStorage.getItem('adminUser')
     axios({
       method: 'POST',
@@ -34,21 +34,17 @@ export default function AdminSlider() {
       headers: {
         Authorization: `Bearer ${token}`
       }
-    })
-    .then(res => {
-       if(res.data.mess !== "Authorized"){
-         history.push('/admin/login')
-       }
-        const fetchData = async () => {
+    }).then(res => {
+      if (res.data.mess !== 'Authorized') {
+        history.push('/admin/login')
+      }
+      const fetchData = async () => {
         const resq = await axios.get(`http://localhost:4242/slider`)
         setDatas(resq.data)
-    }
-
-    fetchData()
-       
+      }
+      fetchData()
     })
   }, [inputVisible, display])
-
 
   const addId = id => {
     setPicture(id)
