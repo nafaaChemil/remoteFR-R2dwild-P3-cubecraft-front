@@ -32,6 +32,17 @@ export default function AdminSlider() {
     fetchData()
   }
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const resq = await axios.get(`http://localhost:4242/slider`)
+      setDatas(resq.data)
+      const res = await axios.get('http://localhost:4242/slider/title')
+      setTitle(res.data[0].Titre)
+      setNamePicture(res.data[0].Name)
+    }
+    fetchData()
+  }, [])
+
   useEffect(async () => {
     const token = localStorage.getItem('adminUser')
     axios({
@@ -44,16 +55,12 @@ export default function AdminSlider() {
       if (res.data.mess !== 'Authorized') {
         history.push('/admin/login')
       }
-      const fetchData = async () => {
-        const resq = await axios.get(`http://localhost:4242/slider`)
-        setDatas(resq.data)
-        const res = await axios.get('http://localhost:4242/slider/title')
-        setTitle(res.data[0].Titre)
-        setNamePicture(res.data[0].Name)
+      const changeImg = () => {
+        setNamePicture(namePicture)
       }
-      fetchData()
+      changeImg()
     })
-  }, [inputVisible, display])
+  }, [namePicture, inputVisible, display])
 
   const invisible = () => {
     setUpdatedOk('')
@@ -93,6 +100,7 @@ export default function AdminSlider() {
         setTimeout(invisible, 1500)
       })
   }
+
   const updateBackground = async () => {
     const res = await axios
       .put(`http://localhost:4242/slider/title/1`, {
@@ -126,10 +134,17 @@ export default function AdminSlider() {
           {updatedOk ? <p className='updateTitle'>{updatedOk}</p> : ''}
         </div>
       </div>
-      <div className=''>
+      <div>
         <h3>Changer l'image de fond : </h3>
         <div className='form-group'>
-          <input type='text' name='picture' value={namePicture} />
+          {/* <input type='text' name='picture' value={namePicture} /> */}
+          <img
+            className='img-upload'
+            src={`${namePicture}`}
+            style={{
+              width: '250px'
+            }}
+          />
           <button className='choice-picture' onClick={displayPhotos}>
             Choisir
           </button>
@@ -186,7 +201,9 @@ export default function AdminSlider() {
             <>
               <div className='choicephoto-container'>
                 <img className='img-upload' key={index} src={`${info.Name}`} />
-                <button onClick={() => addId(info.Id)}>Choisir</button>
+                <button onClick={() => addId(info.Id, info.Name)}>
+                  Choisir
+                </button>
               </div>
             </>
           ))}

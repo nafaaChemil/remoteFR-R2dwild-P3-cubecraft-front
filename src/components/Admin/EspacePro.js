@@ -29,7 +29,7 @@ export default function EspacePro() {
     }
 
     fetchData()
-  }, [display])
+  }, [])
 
   const addId = (id, name) => {
     setDisplay(!display)
@@ -114,7 +114,13 @@ export default function EspacePro() {
       <div className=''>
         <h3>Image de la carte : </h3>
         <div className='form-group'>
-          <input type='text' name='picture' value={namePicture} />
+          <img
+            className='img-upload'
+            src={`${namePicture}`}
+            style={{
+              width: '250px'
+            }}
+          />
           <button className='choice-picture' onClick={displayPhotos}>
             Choisir
           </button>
