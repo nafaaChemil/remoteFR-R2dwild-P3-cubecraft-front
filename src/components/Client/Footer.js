@@ -9,7 +9,7 @@ function Footer() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const resq = await axios.get('http://localhost:4242/contact')
+      const resq = await axios.get('http://localhost:4242/contact/title')
       setDatas(resq.data)
     }
 
@@ -20,9 +20,8 @@ function Footer() {
     <div className='footer'>
       <div className='footer_container'>
         <div className='coordonnees'>
-          <p id='coord-1'>{datas[0].Adress}</p>
-          <p id='coord-2'>{datas[0].Cp}</p>
-          <p id='coord-3'>{datas[0].City}</p>
+          <p id='coord-1'>{datas[0].Titre}</p>
+          <p id='coord-2'>{datas[0].Text}</p>
         </div>
         <div className='footer_reseaux'>
           <i className='fab fa-facebook ico-social'></i>

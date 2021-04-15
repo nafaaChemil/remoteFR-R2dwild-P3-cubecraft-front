@@ -82,7 +82,7 @@ export default function AdminSlider() {
         setTimeout(invisible, 1500)
       })
   }
-  const updateTitle = async () => {
+  const updateInfos = async () => {
     const res = await axios
       .put(`http://localhost:4242/slider/title/1`, {
         Titre: title
@@ -115,7 +115,7 @@ export default function AdminSlider() {
             type='text'
             onChange={e => setTitle(e.target.value)}
           />
-          <button onClick={updateTitle} className='BtnAction'>
+          <button onClick={updateInfos} className='BtnAction'>
             <img
               alt='logo edit'
               className='logoBtn'
@@ -175,6 +175,37 @@ export default function AdminSlider() {
           {addWord ? <p className='updateTitle'>{addWord}</p> : ''}
         </div>
       </div>
+
+      <div className=''>
+        <h3>Changer l'image de fond : </h3>
+        <div className='form-group'>
+          <input type='number' name='picture' value={picture} />
+          <button className='choice-picture' onClick={displayPhotos}>
+            Choisir
+          </button>
+          <button onClick={updateInfos} className='BtnAction'>
+            <img
+              alt='logo edit'
+              className='logoBtn'
+              src='/images/logo/save.svg'
+            />
+          </button>
+        </div>
+        <div
+          className='container-choice-img'
+          style={{ display: `${display ? 'none' : 'flex'}` }}
+        >
+          {infos.map((info, index) => (
+            <>
+              <div className='choicephoto-container'>
+                <img className='img-upload' key={index} src={`${info.Name}`} />
+                <button onClick={() => addId(info.Id)}>Choisir</button>
+              </div>
+            </>
+          ))}
+        </div>
+      </div>
+
       <div>
         <h3>Slider :</h3>
         <div style={{ display: `${display ? 'block' : 'none'}` }}>
