@@ -37,40 +37,52 @@ export default function AdminPartModified(props) {
   const params = props.match.params
   const id = params.id
   useEffect(() => {
-    const fetchData = async () => {
-      const resq = await axios
-        .get(`http://localhost:4242/particularPro/${id}`)
-        .then(function (response) {
-          if (response.status === 200) {
-            setStatus(200)
-            setFormData({
-              CategoryName: response.data.CategoryName,
-              Price: response.data.Price,
-              Description: response.data.Description,
-              Individual: 1,
-              photo_id: response.data.Photo_id
-            })
-            setInitialValue(response.data.Description)
-          }
-        })
-        .catch(error => {
-          if (error.response) {
-            console.log(error.response.data)
-            console.log(error.response.status)
-            console.log(error.response.headers)
-            if (error.response.status === 404) {
-              setStatus(404)
-              setProductAdded(false)
+    const token = localStorage.getItem('adminUser')
+    axios({
+      method: 'POST',
+      url: 'http://localhost:4242/signin/protected',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then(res => {
+      if (res.data.mess !== 'Authorized') {
+        history.push('/admin/login')
+      }
+      const fetchData = async () => {
+        const resq = await axios
+          .get(`http://localhost:4242/particularPro/${id}`)
+          .then(function (response) {
+            if (response.status === 200) {
+              setStatus(200)
+              setFormData({
+                CategoryName: response.data.CategoryName,
+                Price: response.data.Price,
+                Description: response.data.Description,
+                Individual: 1,
+                photo_id: response.data.Photo_id
+              })
+              setInitialValue(response.data.Description)
             }
-          } else if (error.request) {
-            console.log(error.request)
-          } else {
-            console.log('Error', error.message)
-          }
-          console.log(error.config)
-        })
-    }
-    fetchData()
+          })
+          .catch(error => {
+            if (error.response) {
+              console.log(error.response.data)
+              console.log(error.response.status)
+              console.log(error.response.headers)
+              if (error.response.status === 404) {
+                setStatus(404)
+                setProductAdded(false)
+              }
+            } else if (error.request) {
+              console.log(error.request)
+            } else {
+              console.log('Error', error.message)
+            }
+            console.log(error.config)
+          })
+      }
+      fetchData()
+    })
   }, [])
 
   const onChange = e =>

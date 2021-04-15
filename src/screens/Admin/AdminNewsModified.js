@@ -38,39 +38,52 @@ export default function AdminNewsModified(props) {
   }
 
   useEffect(() => {
-    const fetchData = async () => {
-      const resq = await axios
-        .get(`http://localhost:4242/news/${id}`)
-        .then(function (response) {
-          if (response.status === 200) {
-            setStatus(200)
-            setFormData({
-              title: response.data.Title,
-              link: response.data.Link,
-              text: response.data.Text,
-              photo_id: response.data.Photo_id
-            })
-            setInitialValue(response.data.Text)
-          }
-        })
-        .catch(error => {
-          if (error.response) {
-            console.log(error.response.data)
-            console.log(error.response.status)
-            console.log(error.response.headers)
-            if (error.response.status === 404) {
-              setStatus(404)
-              setNewsAdded(false)
+    const token = localStorage.getItem('adminUser')
+    axios({
+      method: 'POST',
+      url: 'http://localhost:4242/signin/protected',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then(res => {
+      if (res.data.mess !== 'Authorized') {
+        history.push('/admin/login')
+      }
+      const fetchData = async () => {
+        const resq = await axios
+          .get(`http://localhost:4242/news/${id}`)
+          .then(function (response) {
+            if (response.status === 200) {
+              setStatus(200)
+              setFormData({
+                title: response.data.Title,
+                link: response.data.Link,
+                text: response.data.Text,
+                photo_id: response.data.Photo_id
+              })
+              setInitialValue(response.data.Text)
             }
-          } else if (error.request) {
-            console.log(error.request)
-          } else {
-            console.log('Error', error.message)
-          }
-          console.log(error.config)
-        })
-    }
-    fetchData()
+          })
+          .catch(error => {
+            if (error.response) {
+              console.log(error.response.data)
+              console.log(error.response.status)
+              console.log(error.response.headers)
+              if (error.response.status === 404) {
+                setStatus(404)
+                setNewsAdded(false)
+              }
+            } else if (error.request) {
+              console.log(error.request)
+            } else {
+              console.log('Error', error.message)
+            }
+            console.log(error.config)
+          })
+      }
+      fetchData()
+    })
+    
   }, [])
 
   const onChange = e =>
