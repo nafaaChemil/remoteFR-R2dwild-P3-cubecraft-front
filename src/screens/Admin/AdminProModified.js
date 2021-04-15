@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Editor } from '@tinymce/tinymce-react'
-import ApiKey from './Apikey'
+import ApiKey from './Api-key'
 
 export default function AdminProModified(props) {
   const [productAdded, setProductAdded] = useState(false)
