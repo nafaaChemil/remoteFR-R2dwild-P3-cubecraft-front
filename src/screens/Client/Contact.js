@@ -12,38 +12,62 @@ const Contact = () => {
   const [valid, setValid] = useState(false);
   const [consent, setConsent] = useState(true)
   
-  function sendEmail(e) {
+  const handleSubmit = event => {
+    event.preventDefault()
+    emailjs.send(
+      'service_9ba3ccb',
+      'template_dnukio6',
+      {
+        firstName,
+        lastName,
+        phone,
+        email,
+        message
+      },
+      'user_eyvbTv2muWvgFT0taOlAM'
+    )
+    .then(() => {
+      setFirstName('')
+      setLastName('')
+      setPhone('')
+      setEmail('')
+      setMessage('')
+      setValid(!valid)
+    })
+    .catch(() => (document.querySelector('form-message').innerHTML =
+    "une erreur s'est produite.")
+    )
+  }
+
+  function reset() {
+    document.getElementById('').reset()
+  }
+  /*function sendEmail(e) {
     e.preventDefault()
     console.log('sending email')
-    emailjs.sendForm('service_9ba3ccb', 'template_dnukio6', e.target.reset,
+    emailjs.sendForm('my.gmail', 'template_dnukio6', e.target.reset,
       'user_eyvbTv2muWvgFT0taOlAM')
       .then((result) => {
       setValid(!valid)
       });
   }
-  
+  */
   return (
     <div className='Contact'>
       <div>
         <h1 className='title-form'>Plus d'infos ?</h1>
       </div>
-      <div className="consent">
-      <input className="input-consent" type="checkbox"
-        required
-        consent={consent}
-        onChange={() => setConsent(!consent)}
-      />
-       <p className="p-consent">En soumettant ce formulaire, j'accepte que les informations saisies soient exploitées dans le cadre de la relation commerciale qui pourrait en découler.</p>
-     </div>
-      <form onSubmit={sendEmail} className='contact-form'>
+      
+      <form onSubmit={handleSubmit} className='contact-form'>
 
         <div className='form-group'>
           <input placeholder='Nom / Raison sociale *'
             type='text'
-            id='lastName'
-            className='lasttName'
+            value={lastName}
+            className='lastName'
             name='last_name'
             required 
+            onChange={event => setLastName(event.target.value)}
             />
         </div>
         <hr />
@@ -51,9 +75,10 @@ const Contact = () => {
         <div className='form-group'>
           <input placeholder='Prénom'
             type='text'
-            id='firstName'
+            value={firstName}
             name='user_firstname'
             className='firstName'
+            onChange={event => setFirstName(event.target.value)}
           />
         </div>
         <hr />
@@ -62,19 +87,22 @@ const Contact = () => {
             <input placeholder="Email *"
               type="email"
               name="user_email"
-              id="email"
+              value={email}
               className="email"
-              required />
+              required
+              onChange={event => setEmail(event.target.value)}
+               />
         </div>
         <hr />
 
         <div className="form-group">
             <input type="tel"
-              pattern="[0-9]"
+              pattern="[0-9]{10}"
               maxLength="10"
               placeholder="Téléphone"
-              id="phone"
+              value={phone}
               className="phone"
+              onChange={event => setPhone(event.target.value)}
                />
         </div>
         <hr />
@@ -82,28 +110,34 @@ const Contact = () => {
           <div className='form-group'>
             <textarea
               placeholder='Message *'
-              id='message'
+              value={message}
               name='message'
               required
               className='form-textarea'
               maxLength='150'
+              onChange={event => setMessage(event.target.value)}
             />
           </div>
           <hr />
-
+            {valid && <p className="p-valid">Message envoyé</p>}
         <div className="form-group">
           <input className="input-form" 
             type="submit"
             value='Envoyer'
             className="form-btn"
             />
-            
         </div>
+        <div className="consent">
+      <input className="input-consent" type="checkbox"
+        required
+        /*consent={consent}
+        onChange={() => setConsent(!consent)}*/
+      />
+       <p className="p-consent">En soumettant ce formulaire, j'accepte que les informations saisies soient exploitées dans le cadre de la relation commerciale qui pourrait en découler.</p>
+     </div>
       </form>
-      {valid && <p>Message envoyé</p>}
-      
-     <MapLeaflet />
     </div>
+    
     );
     }
     
