@@ -1,6 +1,8 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
+import { Editor } from '@tinymce/tinymce-react'
+import ApiKey from './Apikey'
 
 export default function AdminAboutUsModified() {
   const history = useHistory()
@@ -17,34 +19,33 @@ export default function AdminAboutUsModified() {
   const [datas, setDatas] = useState([])
   const [display, setDisplay] = useState(true)
   const [infos, setInfos] = useState([])
+  const [initialValue, setInitialValue] = useState('')
 
   let { id } = useParams()
+
   useEffect(() => {
-    useEffect(() => {
-      const token = localStorage.getItem('adminUser')
-      axios({
-        method: 'POST',
-        url: 'http://localhost:4242/signin/protected',
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }).then(res => {
-        if (res.data.mess !== 'Authorized') {
-          history.push('/admin/login')
-        }
-        const fetchData = async () => {
-          const resq = await axios.get(`http://localhost:4242/about/${id}`)
-          setDatas(resq.data)
-          setFirstName(resq.data[0].FirstName)
-          setLastName(resq.data[0].LastName)
-          setJobName(resq.data[0].JobName)
-          setDescription(resq.data[0].Description)
-          setPicture(resq.data[0].Photo_id)
-        }
-        fetchData()
-      })
-    }, [])
-  
+    const token = localStorage.getItem('adminUser')
+    axios({
+      method: 'POST',
+      url: 'http://localhost:4242/signin/protected',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then(res => {
+      if (res.data.mess !== 'Authorized') {
+        history.push('/admin/login')
+      }
+      const fetchData = async () => {
+        const resq = await axios.get(`http://localhost:4242/about/${id}`)
+        setDatas(resq.data)
+        setFirstName(resq.data[0].FirstName)
+        setLastName(resq.data[0].LastName)
+        setJobName(resq.data[0].JobName)
+        setDescription(resq.data[0].Description)
+        setPicture(resq.data[0].Photo_id)
+      }
+      fetchData()
+    })
   }, [])
 
   function displayPhotos() {
@@ -64,6 +65,10 @@ export default function AdminAboutUsModified() {
   const addId = id => {
     setPicture(id)
     setDisplay(!display)
+  }
+
+  const handleEditorChange = (content, editor) => {
+    setDescription(content)
   }
 
   const modified = () => {
@@ -122,12 +127,35 @@ export default function AdminAboutUsModified() {
               </div>
               <div className='form-group-add'>
                 <label>Description :</label>
-                <input
+                {/* <input
                   type='text'
                   name='description'
                   value={description}
                   onChange={event => setDescription(event.target.value)}
-                />
+                /> */}
+                 <Editor
+              initialValue={initialValue}
+              apiKey={ApiKey}
+              name='text'
+              onEditorChange={handleEditorChange}
+              init={{
+              height: 500,
+              menubar: false,
+              quickbars_image_toolbar:
+                'alignleft aligncenter alignright | rotateleft rotateright | imageoptions',
+              plugins: [
+                'advlist autolink lists link image',
+                'charmap print preview anchor help',
+                'searchreplace visualblocks code',
+                'a_tinymce_plugin',
+                'insertdatetime media table paste wordcount'
+                ],
+                toolbar:
+                  'undo redo | formatselect | \
+                alignleft aligncenter alignright | \
+                bullist numlist outdent indent | help'
+              }}
+            />
               </div>
               <div className='form-group-add'>
                 <label>Choix de la photos</label>

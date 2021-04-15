@@ -1,6 +1,8 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
+import { Editor } from '@tinymce/tinymce-react'
+import ApiKey from './Apikey'
 
 export default function AdminAboutUsAdd() {
   const history = useHistory()
@@ -16,7 +18,7 @@ export default function AdminAboutUsAdd() {
   const [valid, setValid] = useState(false)
   const [datas, setDatas] = useState([''])
   const [display, setDisplay] = useState(true)
-
+  const [initialValue, setInitialValue] = useState('')
 
   useEffect(() => {
     const token = localStorage.getItem('adminUser')
@@ -46,7 +48,9 @@ export default function AdminAboutUsAdd() {
     setPicture(id)
     setDisplay(!display)
   }
-
+  const handleEditorChange = (content, editor) => {
+    setDescription(content)
+  }
   const AddProfile = () => {
     axios
       .post('http://localhost:4242/about', {
@@ -101,12 +105,35 @@ export default function AdminAboutUsAdd() {
           </div>
           <div className='form-group-add'>
             <label htmlFor='picture'>Description : </label>
-            <input
+            <Editor
+              initialValue={initialValue}
+              apiKey={ApiKey}
+              name='text'
+              onEditorChange={handleEditorChange}
+              init={{
+                height: 500,
+                menubar: false,
+                quickbars_image_toolbar:
+                  'alignleft aligncenter alignright | rotateleft rotateright | imageoptions',
+                plugins: [
+                  'advlist autolink lists link image',
+                  'charmap print preview anchor help',
+                  'searchreplace visualblocks code',
+                  'a_tinymce_plugin',
+                  'insertdatetime media table paste wordcount'
+                ],
+                toolbar:
+                  'undo redo | formatselect | \
+                alignleft aligncenter alignright | \
+                bullist numlist outdent indent | help'
+              }}
+            />
+            {/* <input
               type='text'
               name='description'
               value={description}
               onChange={event => setDescription(event.target.value)}
-            />
+            /> */}
           </div>
           <div className='form-group-add'>
             <label>Choix de la photos</label>
