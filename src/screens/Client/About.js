@@ -7,13 +7,18 @@ import EncartConcept from '../../components/Client/EncartConcept'
 function About() {
   const [datas, setDatas] = useState([''])
   const [title, setTitle] = useState([''])
+  const [word, setWord] = useState([''])
+  const [image, setImage] = useState([''])
+  const [text, setText] = useState([''])
   useEffect(() => {
     const fetchData = async () => {
       const resq = await axios.get(`http://localhost:4242/about/detail`)
       setDatas(resq.data)
       const res = await axios.get(`http://localhost:4242/about/card`)
-      // setTitle(res.data)
       setTitle(res.data[0].Titre)
+      setWord(res.data[0].Word)
+      setImage(res.data[0].Name)
+      setText(res.data[0].Text)
     }
     fetchData()
   }, [])
@@ -21,31 +26,9 @@ function About() {
   return (
     <div className='about'>
       <section id='presentation'>
-        <h2 className='uCenter'>A propos</h2>
+        <h2 className='uCenter'>{title}</h2>
         <div className='responsive'>
-          <ActuEncart
-            imageEncart='images/Annexe2.jpg'
-            titleH3={title}
-            text={[
-              `Chez High Cube, nous proposons des solutions économiques et
-            écologiques quel que soit votre projet : maison économique,
-            écologique, confortable, logement étudiant, logements sociaux,
-            piscine, cabane de jardin et bien plus encore !
-              
-            Notre bureau d’étude, High Cube Eco Design, est spécialisé dans le
-            domaine du bâtiment et de la construction de maison container. Il
-            saura donc, répondre parfaitement à votre demande. Notre équipe
-            composée d'expert de la construction et de l'innovation peux
-            répondre à tous les défis techniques afin de réaliser des projets
-            immobiliers à l'air du temps!
-
-            Vous allez pouvoir vivre dans un cadre de vie orignal en un temps
-            record mais aussi réaliser des économies au quotidien, en matière
-            d’électricité et de chauffage ! De plus, le prix d’un container
-            habitable est très avantageux avec un coût de construction moindre
-            par rapport à une maison classique.`
-            ]}
-          />
+          <ActuEncart imageEncart={image} titleH3={word} text={text} />
         </div>
       </section>
       <section id='team'>
