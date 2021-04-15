@@ -14,8 +14,8 @@ const Contact = () => {
   function sendEmail(e) {
     e.preventDefault();
     console.log('sending email')
-    emailjs.sendForm('my.gmail', 'template_qforei9', e.target,
-      'user_fELVRdb1kJc5SzL1ge2Br')
+    emailjs.sendForm('my.gmail', 'template_qp14hid', e.target,
+      'user_eyvbTv2muWvgFT0taOlAM')
       .then((result) => {
       setValid(!valid)
       });
@@ -60,7 +60,7 @@ const Contact = () => {
         <hr />
 
         <div className="form-group">
-            <input type="tel" size="10" placeholder="Téléphone "
+            <input type="tel" maxLength="10" placeholder="Téléphone "
               id="phone"
               className="phone"
                />
@@ -85,6 +85,7 @@ const Contact = () => {
             className="form-btn"
             >
             </input>
+            {valid && <p>Message envoyé</p>}
         </div>
 
       </form>
@@ -96,7 +97,7 @@ const Contact = () => {
       />
        <p className="p-consent">En soumettant ce formulaire, j'accepte que les informations saisies soient exploitées dans le cadre de la relation commerciale qui pourrait en découler.</p>
      </div>
-        {valid && <p>Message envoyé</p>}
+        
     </div>
     );
     }
