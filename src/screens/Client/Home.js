@@ -13,13 +13,10 @@ function Home() {
     const fetchData = async () => {
       const resq = await axios.get(`http://localhost:4242/slider/title`)
       setDatas(resq.data)
-      console.log(datas)
       const res = await axios.get(`http://localhost:4242/slider/cardPro`)
       setPro(res.data)
-      console.log(pro)
       const response = await axios.get(`http://localhost:4242/slider/cardPart`)
       setPart(response.data)
-      console.log(part)
     }
     fetchData()
   }, [])
