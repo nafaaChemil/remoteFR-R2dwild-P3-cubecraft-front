@@ -14,7 +14,7 @@ const Contact = () => {
   function sendEmail(e) {
     e.preventDefault();
     console.log('sending email')
-    emailjs.sendForm('my.gmail', 'template_qp14hid', e.target,
+    emailjs.sendForm('service_9ba3ccb', 'template_dnukio6', e.target.reset,
       'user_eyvbTv2muWvgFT0taOlAM')
       .then((result) => {
       setValid(!valid)
