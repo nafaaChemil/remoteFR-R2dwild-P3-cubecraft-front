@@ -7,6 +7,9 @@ export default function CardTeam({
   Position,
   Description
 }) {
+  function createMarkup() {
+    return {__html: Description};
+  }
   return (
     <div className='player'>
       <div
@@ -21,7 +24,7 @@ export default function CardTeam({
           <span> {LastName}</span>
         </h3>
         <h4>{Position}</h4>
-        <p>{Description}</p>
+        <p  dangerouslySetInnerHTML= {createMarkup()}></p>
       </div>
     </div>
   )

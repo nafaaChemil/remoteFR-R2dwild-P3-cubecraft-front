@@ -8,6 +8,7 @@ export default function News() {
     const fetchData = async () => {
       const resq = await axios.get(`http://localhost:4242/news`)
       setDatas(resq.data)
+      console.log(resq.data)
     }
     fetchData()
   }, [])
