@@ -73,7 +73,7 @@ export default function AdminNewsAdd() {
   }
 
   return (
-    <section className='AddPage'>
+    <section className='AddPage' id='admin'>
       <div className='Container-Addpage'>
         <h2>Ajouter une actualité</h2>
         <div className='form-group-add'>

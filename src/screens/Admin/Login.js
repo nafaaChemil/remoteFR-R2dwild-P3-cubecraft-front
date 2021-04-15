@@ -17,20 +17,26 @@ export default function Connexion() {
       .then(res => {
         history.push('/admin/slider')
         localStorage.setItem('adminUser', res.headers['x-access-token'])
+        window.location.reload(true)
       })
       .catch(err => setAlert('Mauvais identifiant ou mot de passe'))
   }
 
   return (
     <div id='admin'>
+      <h1>Connectez-vous</h1>
       <form onSubmit={handleConnect} className='Form-Connexion'>
-        <img
-          className='logo-connexion'
-          src='images/Highcubelogo.png'
-          alt='Logo High cube'
-        />
         <div className='Form-group-connexion'>
-          <label htmlFor='username'>Pseudo :</label>
+          <label
+            htmlFor='username'
+            style={{
+              width: '100px',
+              display: 'inline-block',
+              marginTop: '30px'
+            }}
+          >
+            Pseudo :
+          </label>
           <input
             type='text'
             name='username'
@@ -39,7 +45,16 @@ export default function Connexion() {
           ></input>
         </div>
         <div className='Form-group-connexion'>
-          <label htmlFor='password'>Mot de passe :</label>
+          <label
+            htmlFor='password'
+            style={{
+              width: '100px',
+              display: 'inline-block',
+              marginTop: '30px'
+            }}
+          >
+            Mot de passe :
+          </label>
           <input
             type='password'
             name='password'
@@ -47,8 +62,16 @@ export default function Connexion() {
             value={password}
           ></input>
         </div>
-        <button type='submit'>
-          Connexion
+        <button
+          type='submit'
+          style={{
+            width: '100px',
+            display: 'block',
+            marginLeft: '100px',
+            marginTop: '25px'
+          }}
+        >
+          Validez
         </button>
         <p>{alert}</p>
       </form>
