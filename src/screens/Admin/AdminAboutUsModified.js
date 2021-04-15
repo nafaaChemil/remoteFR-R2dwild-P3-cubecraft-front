@@ -20,16 +20,31 @@ export default function AdminAboutUsModified() {
 
   let { id } = useParams()
   useEffect(() => {
-    const fetchData = async () => {
-      const resq = await axios.get(`http://localhost:4242/about/${id}`)
-      setDatas(resq.data)
-      setFirstName(resq.data[0].FirstName)
-      setLastName(resq.data[0].LastName)
-      setJobName(resq.data[0].JobName)
-      setDescription(resq.data[0].Description)
-      setPicture(resq.data[0].Photo_id)
-    }
-    fetchData()
+    useEffect(() => {
+      const token = localStorage.getItem('adminUser')
+      axios({
+        method: 'POST',
+        url: 'http://localhost:4242/signin/protected',
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }).then(res => {
+        if (res.data.mess !== 'Authorized') {
+          history.push('/admin/login')
+        }
+        const fetchData = async () => {
+          const resq = await axios.get(`http://localhost:4242/about/${id}`)
+          setDatas(resq.data)
+          setFirstName(resq.data[0].FirstName)
+          setLastName(resq.data[0].LastName)
+          setJobName(resq.data[0].JobName)
+          setDescription(resq.data[0].Description)
+          setPicture(resq.data[0].Photo_id)
+        }
+        fetchData()
+      })
+    }, [])
+  
   }, [])
 
   function displayPhotos() {

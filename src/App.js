@@ -4,6 +4,7 @@ import { useState } from 'react'
 
 import About from './screens/Client/About'
 import AdminAboutUs from './screens/Admin/AdminAboutUs'
+import Connexion from './screens/Admin/Login'
 import AdminAboutUsAdd from './screens/Admin/AdminAboutUsAdd'
 import AdminAboutUsModified from './screens/Admin/AdminAboutUsModified'
 import AdminConcept from './screens/Admin/AdminConcept'
@@ -50,7 +51,6 @@ const App = () => {
         ) : (
           <>
             <Navbar
-              positionNav={location.pathname == '/' ? 'absolute' : 'relative'}
               stateBt={`hamburger__menu ${sideToggle ? 'close' : ''}`}
               click={() =>
                 sideToggle ? setSideToggle(false) : setSideToggle(true)
@@ -73,6 +73,7 @@ const App = () => {
             path='/admin/about/profile/:id'
             component={AdminAboutUsModified}
           />
+          <Route path='/admin/login' component={Connexion} />
           <Route path='/admin/about/profile' component={AdminAboutUsAdd} />
           <Route path='/admin/about' component={AdminAboutUs} />
           <Route path='/admin/actualites/add' component={AdminNewsAdd} />

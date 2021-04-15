@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { Link , useHistory} from 'react-router-dom'
 import { Editor } from '@tinymce/tinymce-react'
 import ApiKey from './Apikey'
 
@@ -16,6 +16,22 @@ export default function AdminPartAdd() {
   const [display, setDisplay] = useState(true)
   const [productAdded, setProductAdded] = useState(false)
   const [status, setStatus] = useState(null)
+
+  let history = useHistory()
+  useEffect(() => {
+    const token = localStorage.getItem('adminUser')
+    axios({
+      method: 'POST',
+      url: 'http://localhost:4242/signin/protected',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then(res => {
+      if (res.data.mess !== 'Authorized') {
+        history.push('/admin/login')
+      }
+    })
+  }, [])
 
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value })

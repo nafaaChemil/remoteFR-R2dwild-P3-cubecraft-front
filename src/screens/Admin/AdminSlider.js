@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
+import { useHistory } from 'react-router-dom'
 
 import DelOrPutSlider from '../../components/Admin/DelOrPutSlider'
 
@@ -22,16 +23,31 @@ export default function AdminSlider() {
     }
     fetchData()
   }
-  useEffect(() => {
-    const fetchData = async () => {
-      const resq = await axios.get(`http://localhost:4242/slider`)
-      setDatas(resq.data)
-      const res = await axios.get('http://localhost:4242/slider/title')
-      setTitle(res.data[0].Titre)
-    }
 
-    fetchData()
+  let history = useHistory()
+
+  useEffect(async () => {
+    const token = localStorage.getItem('adminUser')
+    axios({
+      method: 'POST',
+      url: 'http://localhost:4242/signin/protected',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then(res => {
+      if (res.data.mess !== 'Authorized') {
+        history.push('/admin/login')
+      }
+      const fetchData = async () => {
+        const resq = await axios.get(`http://localhost:4242/slider`)
+        setDatas(resq.data)
+        const res = await axios.get('http://localhost:4242/slider/title')
+        setTitle(res.data[0].Titre)
+      }
+      fetchData()
+    })
   }, [inputVisible, display])
+
   const addId = id => {
     setPicture(id)
     setDisplay(!display)

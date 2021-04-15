@@ -33,6 +33,23 @@ export default function AdminAboutUs() {
       setTitle(res.data[0].Titre)
     }
     fetchData()
+    const token = localStorage.getItem('adminUser')
+    axios({
+      method: 'POST',
+      url: 'http://localhost:4242/signin/protected',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then(res => {
+      if (res.data.mess !== 'Authorized') {
+        history.push('/admin/login')
+      }
+      const fetchData = async () => {
+        const resq = await axios.get('http://localhost:4242/about/')
+        setDatas(resq.data)
+      }
+      fetchData()
+    })
   }, [affiched])
 
   const updateInfos = async () => {
