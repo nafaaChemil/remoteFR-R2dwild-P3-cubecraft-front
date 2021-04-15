@@ -8,6 +8,8 @@ import SuppOrEdit from '../../components/Admin/SuppOrEdit'
 export default function AdminAboutUs() {
   const [datas, setDatas] = useState([''])
   const [affiched, setAffiched] = useState(true)
+  const [title, setTitle] = useState('')
+  const [updatedOk, setUpdatedOk] = useState('')
   const history = useHistory()
 
   const deleteProfile = id => {
@@ -25,11 +27,23 @@ export default function AdminAboutUs() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const resq = await axios.get('http://localhost:4242/about/')
+      const resq = await axios.get('http://localhost:4242/about')
       setDatas(resq.data)
+      const res = await axios.get('http://localhost:4242/about/card')
+      setTitle(res.data[0].Titre)
     }
     fetchData()
   }, [affiched])
+
+  const updateInfos = async () => {
+    await axios
+      .put(`http://localhost:4242/about/card/3`, {
+        Titre: title
+      })
+      .then(res => {
+        setUpdatedOk('Titre mis à jour')
+      })
+  }
 
   return (
     <>
@@ -39,7 +53,6 @@ export default function AdminAboutUs() {
         <div>
           <ButtonAdd name='Ajouter un profil' handleClickAdd={AddProfile} />
         </div>
-
         <div>
           {datas.map((data, index) => (
             <SuppOrEdit
@@ -49,6 +62,25 @@ export default function AdminAboutUs() {
               name={data.FirstName + '  ' + data.LastName}
             ></SuppOrEdit>
           ))}
+        </div>
+
+        <div>
+          <h3>Titre :</h3>
+          <div className='form-group'>
+            <input
+              value={title}
+              type='text'
+              onChange={e => setTitle(e.target.value)}
+            />
+            <button onClick={updateInfos} className='BtnAction'>
+              <img
+                alt='logo edit'
+                className='logoBtn'
+                src='/images/logo/save.svg'
+              />
+            </button>
+            {updatedOk ? <p className='updateTitle'>{updatedOk}</p> : ''}
+          </div>
         </div>
       </section>
     </>
