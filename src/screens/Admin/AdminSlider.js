@@ -2,6 +2,9 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 
 import DelOrPutSlider from '../../components/Admin/DelOrPutSlider'
+import EspacePro from '../../components/Admin/EspacePro'
+import EspaceParticulier from '../../components/Admin/EspaceParticulier'
+import TitreHomepage from '../../components/Admin/TitreHomepage'
 
 export default function AdminSlider() {
   const [datas, setDatas] = useState([''])
@@ -15,6 +18,7 @@ export default function AdminSlider() {
   const [infos, setInfos] = useState([''])
   const [updatedOk, setUpdatedOk] = useState('')
   const [updatedImgOk, setUpdatedImgOk] = useState('')
+  const [addWord, setAddWord] = useState('')
 
   function displayPhotos() {
     const fetchData = async () => {
@@ -30,13 +34,22 @@ export default function AdminSlider() {
       setDatas(resq.data)
       const res = await axios.get('http://localhost:4242/slider/title')
       setTitle(res.data[0].Titre)
+      setNamePicture(res.data[0].Name)
     }
 
     fetchData()
   }, [inputVisible, display])
-  const addId = id => {
+
+  const invisible = () => {
+    setUpdatedOk('')
+    setUpdatedImgOk('')
+    setAddWord('')
+    setNewWord('')
+  }
+
+  const addId = (id, name) => {
     setPicture(id)
-    setNamePicture(id)
+    setNamePicture(name)
     setDisplay(!display)
   }
   const deleteSlider = id => {
@@ -51,7 +64,8 @@ export default function AdminSlider() {
       })
       .then(res => {
         setInputvisible(!inputVisible)
-        setNewWord('')
+        setAddWord('Un nouveau mot a été ajouté')
+        setTimeout(invisible, 1500)
       })
   }
   const updateTitle = async () => {
@@ -61,6 +75,7 @@ export default function AdminSlider() {
       })
       .then(res => {
         setUpdatedOk('Titre mis à jour')
+        setTimeout(invisible, 1500)
       })
   }
   const updateBackground = async () => {
@@ -70,15 +85,16 @@ export default function AdminSlider() {
       })
       .then(res => {
         setUpdatedImgOk('Image de fond mis à jour')
+        setTimeout(invisible, 1500)
       })
   }
 
   return (
     <section id='admin'>
-      <h1>Slider </h1>
+      <h1>Page d'accueil</h1>
 
       <div>
-        <h3>Titre :</h3>
+        <h3>Intro slider :</h3>
         <div className='form-group'>
           <input
             value={title}
@@ -95,28 +111,10 @@ export default function AdminSlider() {
           {updatedOk ? <p className='updateTitle'>{updatedOk}</p> : ''}
         </div>
       </div>
-      <div className='addTitleSlider'>
-        <h3>Ajouter un nouveau texte : </h3>
-        <div className='form-group'>
-          <input
-            type='text'
-            value={newWord}
-            onChange={e => setNewWord(e.target.value)}
-          />
-          <button className='BtnAction' onClick={AddSlider}>
-            <img
-              alt='logo add'
-              className='logoBtn'
-              src='/images/logo/add.svg'
-            />
-          </button>
-        </div>
-      </div>
-
       <div className=''>
         <h3>Changer l'image de fond : </h3>
         <div className='form-group'>
-          <input type='number' name='picture' value={namePicture} />
+          <input type='text' name='picture' value={namePicture} />
           <button className='choice-picture' onClick={displayPhotos}>
             Choisir
           </button>
@@ -137,15 +135,34 @@ export default function AdminSlider() {
             <>
               <div className='choicephoto-container'>
                 <img className='img-upload' key={index} src={`${info.Name}`} />
-                <button onClick={() => addId(info.Name)}>Choisir</button>
+                <button onClick={() => addId(info.Id, info.Name)}>
+                  Choisir
+                </button>
               </div>
             </>
           ))}
         </div>
       </div>
-
+      <div className='addTitleSlider'>
+        <h3>Ajouter un nouveau mot :</h3>
+        <div className='form-group'>
+          <input
+            type='text'
+            value={newWord}
+            onChange={e => setNewWord(e.target.value)}
+          />
+          <button className='BtnAction' onClick={AddSlider}>
+            <img
+              alt='logo add'
+              className='logoBtn'
+              src='/images/logo/add.svg'
+            />
+          </button>
+          {addWord ? <p className='updateTitle'>{addWord}</p> : ''}
+        </div>
+      </div>
       <div>
-        <h3>Vos textes :</h3>
+        <h3>Slider :</h3>
         <div style={{ display: `${display ? 'block' : 'none'}` }}>
           {datas.map((data, index) => (
             <DelOrPutSlider
@@ -157,6 +174,13 @@ export default function AdminSlider() {
               handleClickSupp={() => deleteSlider(data.Id)}
             ></DelOrPutSlider>
           ))}
+          <div className='concept-block'>
+            <TitreHomepage></TitreHomepage>
+          </div>
+        </div>
+        <div style={{ display: 'flex' }}>
+          <EspacePro></EspacePro>
+          <EspaceParticulier></EspaceParticulier>
         </div>
       </div>
     </section>
