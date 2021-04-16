@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { Editor } from '@tinymce/tinymce-react'
 import ApiKey from './Apikey'
 
-export default function AdminConceptAdd() {
+export default function AdminEncartAdd() {
   const history = useHistory()
   const [title, setTitle] = useState('')
   const [textConcept, setTextConcept] = useState('')
@@ -42,9 +42,9 @@ export default function AdminConceptAdd() {
     setDisplay(!display)
   }
 
-  const AddConcept = () =>
+  const addEncart = () =>
     axios
-      .post('http://localhost:4242/concept', {
+      .post('http://localhost:4242/encart', {
         Text: textConcept,
         Title: title,
         Photo_id: picture
@@ -56,7 +56,7 @@ export default function AdminConceptAdd() {
         setPicture(picture)
       })
   function comeBack() {
-    history.push('/admin/concept')
+    history.push('/admin/encart')
   }
 
   const handleEditorChange = (content, editor) => {
@@ -66,10 +66,10 @@ export default function AdminConceptAdd() {
   return (
     <section className='AddPage' id='admin'>
       <div className='Container-Addpage'>
-        <h1>Concept: Ajouter un concept </h1>
+        <h1>Encart: Ajouter un encart </h1>
         <div className='formulaire-admin-add'>
           <div className='form-group-add'>
-            <label htmlFor='title'>Titre du concept :</label>
+            <label htmlFor='title'>Titre de l'encart :</label>
             <input
               type='text'
               name='title'
@@ -78,7 +78,7 @@ export default function AdminConceptAdd() {
             />
           </div>
           <div className='form-group-add'>
-            <label htmlFor='concept'>Concept :</label>
+            <label htmlFor='concept'>Encart :</label>
             <Editor
               apiKey={ApiKey}
               name='text'
@@ -114,20 +114,26 @@ export default function AdminConceptAdd() {
             style={{ display: `${display ? 'none' : 'flex'}` }}
           >
             {datas.map((data, index) => (
-              <div className='choicephoto-container'>
-                <img className='img-upload' key={index} src={`${data.Name}`} />
-                <button onClick={() => addId(data.Id)}>Choisir</button>
-              </div>
+              <>
+                <div className='choicephoto-container'>
+                  <img
+                    className='img-upload'
+                    key={index}
+                    src={`${data.Name}`}
+                  />
+                  <button onClick={() => addId(data.Id)}>Choisir</button>
+                </div>
+              </>
             ))}
           </div>
           <div className='Form-group-btn'>
             <button onClick={comeBack}>Retour</button>
-            {valid ? 'Un nouveau concept à été ajouté' : ''}
+            {valid ? 'Un nouveau encart à été ajouté' : ''}
             <button
-              onClick={AddConcept}
+              onClick={addEncart}
               style={{ display: `${valid ? 'none' : 'block'}` }}
             >
-              Ajouter un concept
+              Ajouter un encart
             </button>
           </div>
         </div>

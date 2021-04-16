@@ -4,7 +4,7 @@ import { useHistory, useParams } from 'react-router-dom'
 import { Editor } from '@tinymce/tinymce-react'
 import ApiKey from './Apikey'
 
-export default function AdminConceptModified() {
+export default function AdminEncartModified() {
   const history = useHistory()
   const [title, setTitle] = useState('')
   const [textConcept, setTextConcept] = useState('')
@@ -43,16 +43,14 @@ export default function AdminConceptModified() {
         history.push('/admin/login')
       }
       const fetchData = async () => {
-        const resq = await axios.get(
-          `http://localhost:4242/concept/details/${id}`
-        )
+        const resq = await axios.get(`http://localhost:4242/encart/${id}`)
         setDatas(resq.data)
         setTitle(resq.data[0].Title)
         setTextConcept(resq.data[0].Text)
         setPicture(resq.data[0].Name)
         setPictureId(resq.data[0].Photo_Id)
-      }
-      fetchData()
+    }
+    fetchData()
     })
   }, [])
 
@@ -64,7 +62,7 @@ export default function AdminConceptModified() {
 
   const modified = () => {
     axios
-      .put(`http://localhost:4242/concept/${id}`, {
+      .put(`http://localhost:4242/encart/${id}`, {
         Text: textConceptSd,
         Title: title,
         Photo_id: pictureId
@@ -87,12 +85,12 @@ export default function AdminConceptModified() {
   return (
     <section className='AddPage' id='admin'>
       <div className='Container-Addpage'>
-        <h1>Concept: Modifier un concept </h1>
+        <h1>Encart: Modifier un encart </h1>
         <div className='formulaire-admin-add'>
           {datas.map(data => (
             <>
               <div className='form-group-add'>
-                <label>Titre du concept</label>
+                <label>Titre de l'encart</label>
                 <input
                   type='text'
                   name='title'
@@ -101,7 +99,7 @@ export default function AdminConceptModified() {
                 />
               </div>
               <div className='form-group-add'>
-                <label>Concept</label>
+                <label>Encart</label>
                 <Editor
                   apiKey={ApiKey}
                   name='text'
@@ -162,7 +160,7 @@ export default function AdminConceptModified() {
             >
               Valider modification
             </button>
-            {valid ? 'Le concept à été modifié' : ''}
+            {valid ? "L'encart à été modifié" : ''}
             <button onClick={comeBack}>Retour</button>
           </div>
         </div>
