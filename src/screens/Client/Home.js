@@ -8,6 +8,7 @@ function Home() {
   const [datas, setDatas] = useState([''])
   const [pro, setPro] = useState([''])
   const [part, setPart] = useState([''])
+  const [encart, setEncart] = useState([''])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,6 +18,8 @@ function Home() {
       setPro(res.data)
       const response = await axios.get(`http://localhost:4242/slider/cardPart`)
       setPart(response.data)
+      const resp = await axios.get(`http://localhost:4242/encart/detail`)
+      setEncart(resp.data)
     }
     fetchData()
   }, [])
@@ -42,6 +45,18 @@ function Home() {
       ))}
 
       {/* Encart intro */}
+      <div className='concept-block'>
+        {encart.map(enc => (
+          <>
+            <EncartConcept
+              imageEncart={enc.Name}
+              titleH3={enc.Title}
+              texte={enc.Text}
+              link='Découvrir nos offres'
+            />
+          </>
+        ))}
+      </div>
       <section className='concept'>
         {part.map(infoPart =>
           pro.map(infoPro => (
@@ -67,31 +82,6 @@ function Home() {
           ))
         )}
       </section>
-
-      {/* Encart intro */}
-
-      <EncartConcept
-        imageEncart='images/Annexe6.jpg'
-        titleH3='Particulier'
-        texte={[
-          `Pour réaliser votre projet, nous recyclons des conteneurs maritimes destinés à être détruit afin de leur donner une seconde vie. En recyclant ces conteneurs, on réduit considérablement notre 
-            empreinte carbone sur la construction d'une maison.`
-        ]}
-        link='Découvrir nos offres
-        '
-      />
-
-      <EncartConcept
-        imageEncart='images/Annexe6.jpg'
-        titleH3='Professionnels'
-        texte={[
-          `Pour réaliser votre projet, nous recyclons des conteneurs maritimes destinés à être détruit afin de leur donner une seconde vie. En recyclant ces conteneurs, on réduit considérablement notre 
-                  empreinte carbone sur la construction d'une maison.`
-        ]}
-        link='Découvrir nos offres
-        '
-      />
-
       <section className='concept'>
         <h2>Suivez-nous sur les réseaux</h2>
       </section>

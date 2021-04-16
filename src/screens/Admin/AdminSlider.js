@@ -6,6 +6,7 @@ import DelOrPutSlider from '../../components/Admin/DelOrPutSlider'
 import EspacePro from '../../components/Admin/EspacePro'
 import EspaceParticulier from '../../components/Admin/EspaceParticulier'
 import TitreHomepage from '../../components/Admin/TitreHomepage'
+import AdminEncart from './AdminEncart'
 
 export default function AdminSlider() {
   const [datas, setDatas] = useState([''])
@@ -252,9 +253,10 @@ export default function AdminSlider() {
           </div>
         </div>
         <div style={{ display: 'flex' }}>
-          <EspacePro></EspacePro>
-          <EspaceParticulier></EspaceParticulier>
+          <EspacePro />
+          <EspaceParticulier />
         </div>
+        <AdminEncart />
       </div>
     </section>
   )

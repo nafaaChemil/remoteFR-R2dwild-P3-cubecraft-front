@@ -15,7 +15,6 @@ function Concept() {
 
   return (
     <div className='concept-block'>
-      {/* Encart Site */}
       <h2 className='uCenter'>Un concept avec de nombreux avantages.</h2>
 
       {datas.map((info, index) => (
