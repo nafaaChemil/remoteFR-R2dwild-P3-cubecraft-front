@@ -46,6 +46,11 @@ function Home() {
 
       {/* Encart intro */}
       <div className='concept-block'>
+        {part.map(infoPart => (
+          <>
+            <h2>{infoPart.Titre}</h2>
+          </>
+        ))}
         {encart.map(enc => (
           <>
             <EncartConcept
@@ -61,8 +66,6 @@ function Home() {
         {part.map(infoPart =>
           pro.map(infoPro => (
             <>
-              <h2>{infoPart.Titre}</h2>
-
               <div className='responsive'>
                 <IntroEncart
                   imageEncart={infoPart.Name}
