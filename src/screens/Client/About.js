@@ -2,7 +2,6 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import ActuEncart from '../../components/Client/ActuEncart'
 import CardTeam from '../../components/Client/CardTeam'
-import EncartConcept from '../../components/Client/EncartConcept'
 
 function About() {
   const [datas, setDatas] = useState([''])

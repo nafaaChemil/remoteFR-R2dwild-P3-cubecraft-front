@@ -1,6 +1,12 @@
 import React from 'react'
 
-export default function ActuEncart({ imageEncart, titleH3, text, link,linktext }) {
+export default function ActuEncart({
+  imageEncart,
+  titleH3,
+  text,
+  link,
+  linktext
+}) {
   function createMarkup() {
     return { __html: text }
   }
@@ -21,11 +27,13 @@ export default function ActuEncart({ imageEncart, titleH3, text, link,linktext }
         <li>
           <p dangerouslySetInnerHTML={createMarkup()}></p>
         </li>
-        <li>
-          <a href={link} target='_blanck'>
-            www.{linktext}
-          </a>
-        </li>
+        {link && (
+          <li>
+            <a href={link} target='_blanck'>
+              www.{linktext}
+            </a>
+          </li>
+        )}
       </ul>
     </ul>
   )
