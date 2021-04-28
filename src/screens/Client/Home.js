@@ -85,9 +85,6 @@ function Home() {
           ))
         )}
       </section>
-      <section className='concept'>
-        <h2>Suivez-nous sur les réseaux</h2>
-      </section>
     </div>
   )
 }
