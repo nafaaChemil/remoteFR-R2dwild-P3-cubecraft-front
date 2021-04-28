@@ -1,13 +1,12 @@
 
-PROJET HIGHCUBE - PARTIE FRONT-END
+# PROJET HIGHCUBE - PARTIE FRONT-END
 
 ![Highcube_screen](https://user-images.githubusercontent.com/74924939/116384808-7de87580-a818-11eb-854b-c130f3b2c4e3.jpg)
 
 
-Pour suivre les étapes ci-dessous il faut impérativement avoir installé la partie back-end disponible à cette adresse : 
-- https://github.com/WildCodeSchool/remoteFR-R2dwild-P3-cubecraft-back
+Pour suivre les étapes ci-dessous il faut impérativement avoir installé la partie back-end disponible à  l'adresse : - https://github.com/WildCodeSchool/remoteFR-R2dwild-P3-cubecraft-back
 
-#Etape 1 / Prérequis
+## Etape 1 / Prérequis
 
 Avoir installer sur son poste :
 - GIT,
@@ -15,20 +14,19 @@ Avoir installer sur son poste :
 - NODE,
 
 
-Une bonne machine ;)
-
-#Etape 2 / Récupération du projet 
+## Etape 2 / Récupération du projet 
 
 Cloner le projet sur son poste :
 - Git clone https://github.com/WildCodeSchool/remoteFR-R2dwild-P3-cubecraft-front
 
-#Etape 3 Demarrer
+
+## Etape 3 Démarrer
 - se placer dans le répertoire /remoteFR-R2dwild-P3-cubecraft-front,
 - lancer la commande npm install,
-
 - npm start.
+
 
 Si tout fonctionne correctement vous devriez avoir votre navigateur qui s'ouvre avec cette adresse : http://localhost:3000/
 
-Pour acceder à la partie administrateur du site, rendez-vous sur http://localhost:3000/admin et entrez les login et mot de passe.
+Pour accéder à la partie administrateur du site, rendez-vous sur http://localhost:3000/admin et entrez les login et mot de passe.
 
