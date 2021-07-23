@@ -30,6 +30,7 @@ export default function AdminAboutUs() {
       const resq = await axios.get('http://localhost:4242/about')
       setDatas(resq.data)
     }
+    
     fetchData()
     const token = localStorage.getItem('adminUser')
     axios({
